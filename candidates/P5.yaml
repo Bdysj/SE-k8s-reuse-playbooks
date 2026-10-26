@@ -1,0 +1,18 @@
+- name: Service routing repair
+  hosts: k8s_nodes
+  gather_facts: false
+  tasks:
+  - name: Restore only the declared web Service selector
+    ansible.builtin.command:
+      argv:
+      - kubectl
+      - --context
+      - '{{ kube_context }}'
+      - -n
+      - robot-shop
+      - patch
+      - service
+      - web
+      - --type=merge
+      - -p
+      - '{"spec":{"selector":{"service":"web"}}}'

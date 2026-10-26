@@ -1,0 +1,24 @@
+# Pilot fault injector; pinned chart 2.8.4, k3s containerd socket.
+controllerManager:
+  replicaCount: 1
+  enableFilterNamespace: true
+  resources:
+    requests:
+      cpu: 25m
+      memory: 256Mi
+    limits:
+      memory: 512Mi
+  podChaos:
+    podFailure:
+      pauseImage: registry.k8s.io/pause:3.10
+chaosDaemon:
+  runtime: containerd
+  socketPath: /run/k3s/containerd/containerd.sock
+  resources:
+    requests:
+      cpu: 25m
+      memory: 64Mi
+    limits:
+      memory: 256Mi
+dashboard:
+  create: false

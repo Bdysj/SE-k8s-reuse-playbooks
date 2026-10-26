@@ -1,0 +1,531 @@
+version: requirements-S3-revised-v2
+written_at_epoch: 1790833134.039278
+stage: One infeasible pre-freeze proposal replaced; feasibility pending
+qualification_setup: results/qualification-v3/protocol.json
+candidate_hashes:
+  P1: 3955ed2918a54282ff2a84d71f694a1da04c68eef2a3c8efe94a67cc5ebf8047
+  P2: 7a2adce624bf0bddc87e486c392f1ce723853111ef469deb9911acb600a4d0a2
+  P3: ec5656022730e08a468a5af478c8c31ab5961317f8b6ce9a51cbb0db33988c48
+  P4: 427e6db77f3dbdb51c85a88603b80f438a4c389a23ef79346bf815979e696a37
+  P5: f6f0071809636870a9e253a3eff6d324d17e977484ebddc3e6aa690a8e8c9f6c
+constants: Images, workload demand, physical cluster capacity and security policies fixed; no candidate edits or
+  input rescues.
+feasibility_gate: Legal mutation, full healthy state before fault, observable intended symptom, explicit owner/Service
+  binding and controlled reset including added objects and node labels. Infeasible proposals may change before main
+  freeze.
+status_counts:
+  proposals: 40
+  feasibility_verified: 0
+  registered_main_scenarios: 0
+  main_replay_trials: 0
+requirements:
+  P1:
+    target_objects: Existing deployment-list/grep web rule resolves intended serving Deployment, without adding
+      discovery.
+    referenced_fields: Restart template update and controller rollout are admitted; paused=true is unsupported by
+      kubectl restart.
+    resource_relationships: Current frontend Service routes to the Pods of the Deployment restarted by the candidate.
+    verification_criteria: Historical homepage status/content/latency establishes only the original read criterion.
+  P2:
+    target_objects: Literal Deployment ratings in robot-shop owns the intended serving Pods.
+    referenced_fields: Numeric spec.replicas plus one satisfies the current required ready-replica minimum.
+    resource_relationships: Ratings Service selects the scaled Deployment and Pods can access existing MySQL Service/account.
+    verification_criteria: Historical fetch does not establish persistent vote write/read correctness.
+  P3:
+    target_objects: Literal Deployment web and actual named-container ownership remain valid.
+    referenced_fields: Fixed resources and retained affinity/rollout fields must permit a ready current template
+      on the declared node. beta.kubernetes.io/os=linux alone does not establish schedulability. Legacy annotation
+      alone does not establish actual QoS.
+    resource_relationships: Current serving desired template belongs to the workload whose resources the candidate
+      changes.
+    verification_criteria: Recovery binds to current matching ReplicaSet/Pod; stronger transaction criteria require
+      new evidence.
+  P4:
+    target_objects: Literal Deployment web is the frontend consuming the repaired variable.
+    referenced_fields: CATALOGUE_HOST is consumed by envsubst; catalogue resolves to intended backend; updates by
+      name preserve other consumed variables.
+    resource_relationships: Patched frontend receives current traffic and restarted nginx consumes updated variable.
+    verification_criteria: Catalogue read success does not establish cart write/read integration.
+  P5:
+    target_objects: Literal Service web is the routing object to be repaired.
+    referenced_fields: Fixed selector.service=web matches current Pod labels and retained selector keys also match.
+    resource_relationships: Current client path traverses repaired Service and selected endpoints are actual frontend
+      Pods.
+    verification_criteria: Historical homepage success does not establish current stateful cart write/read integration.
+proposals:
+- id: P1-1-1
+  candidate: P1
+  condition: target_objects
+  requirement: Existing deployment-list/grep web rule resolves intended serving Deployment, without adding discovery.
+  change: Replace web Pod, preserving Deployment web, discovery rule and Service.
+  expected_effect: potentially_preserves_reuse
+  expectation_is_not_outcome_label: true
+  feasibility_verified: false
+  overlap_policy: Record every additional affected condition; no independent single-condition causal-effect claim.
+  verification_note: Stricter criteria may require new evidence even when unchanged repair succeeds; never force
+    failure labels.
+- id: P1-1-2
+  candidate: P1
+  condition: target_objects
+  requirement: Existing deployment-list/grep web rule resolves intended serving Deployment, without adding discovery.
+  change: Rename serving web Deployment to storefront without web substring; preserve labels/Service; fault storefront.
+  expected_effect: potentially_invalidates_reuse
+  expectation_is_not_outcome_label: true
+  feasibility_verified: false
+  overlap_policy: Record every additional affected condition; no independent single-condition causal-effect claim.
+  verification_note: Stricter criteria may require new evidence even when unchanged repair succeeds; never force
+    failure labels.
+- id: P1-2-1
+  candidate: P1
+  condition: referenced_fields
+  requirement: Restart template update and controller rollout are admitted; paused=true is unsupported by kubectl
+    restart.
+  change: Set admitted RollingUpdate maxSurge=2, maxUnavailable=0, unpaused.
+  expected_effect: potentially_preserves_reuse
+  expectation_is_not_outcome_label: true
+  feasibility_verified: false
+  overlap_policy: Record every additional affected condition; no independent single-condition causal-effect claim.
+  verification_note: Stricter criteria may require new evidence even when unchanged repair succeeds; never force
+    failure labels.
+- id: P1-2-2
+  candidate: P1
+  condition: referenced_fields
+  requirement: Restart template update and controller rollout are admitted; paused=true is unsupported by kubectl
+    restart.
+  change: Set paused=true before fixed-victim fault; confirm healthy before injection; frozen restart is unsupported.
+  expected_effect: potentially_invalidates_reuse
+  expectation_is_not_outcome_label: true
+  feasibility_verified: false
+  overlap_policy: Record every additional affected condition; no independent single-condition causal-effect claim.
+  verification_note: Stricter criteria may require new evidence even when unchanged repair succeeds; never force
+    failure labels.
+- id: P1-3-1
+  candidate: P1
+  condition: resource_relationships
+  requirement: Current frontend Service routes to the Pods of the Deployment restarted by the candidate.
+  change: Recreate frontend Service, preserving selector/ports and logical backend.
+  expected_effect: potentially_preserves_reuse
+  expectation_is_not_outcome_label: true
+  feasibility_verified: false
+  overlap_policy: Record every additional affected condition; no independent single-condition causal-effect claim.
+  verification_note: Stricter criteria may require new evidence even when unchanged repair succeeds; never force
+    failure labels.
+- id: P1-3-2
+  candidate: P1
+  condition: resource_relationships
+  requirement: Current frontend Service routes to the Pods of the Deployment restarted by the candidate.
+  change: Keep web Deployment; route current Service to same-image frontend-live Deployment; fault that Pod. Frozen
+    locator still selects idle web.
+  expected_effect: potentially_invalidates_reuse
+  expectation_is_not_outcome_label: true
+  feasibility_verified: false
+  overlap_policy: Record every additional affected condition; no independent single-condition causal-effect claim.
+  verification_note: Stricter criteria may require new evidence even when unchanged repair succeeds; never force
+    failure labels.
+- id: P1-4-1
+  candidate: P1
+  condition: verification_criteria
+  requirement: Historical homepage status/content/latency establishes only the original read criterion.
+  change: Use /index.html instead of / through same Service; confirm equivalent content/latency.
+  expected_effect: potentially_preserves_reuse
+  expectation_is_not_outcome_label: true
+  feasibility_verified: false
+  overlap_policy: Record every additional affected condition; no independent single-condition causal-effect claim.
+  verification_note: Stricter criteria may require new evidence even when unchanged repair succeeds; never force
+    failure labels.
+- id: P1-4-2
+  candidate: P1
+  condition: verification_criteria
+  requirement: Historical homepage status/content/latency establishes only the original read criterion.
+  change: Require fresh-cart add/read with Watson SKU and quantity, plus historical checks.
+  expected_effect: old_success_evidence_insufficient
+  expectation_is_not_outcome_label: true
+  feasibility_verified: false
+  overlap_policy: Record every additional affected condition; no independent single-condition causal-effect claim.
+  verification_note: Stricter criteria may require new evidence even when unchanged repair succeeds; never force
+    failure labels.
+- id: P2-1-1
+  candidate: P2
+  condition: target_objects
+  requirement: Literal Deployment ratings in robot-shop owns the intended serving Pods.
+  change: Replace ratings Pod, preserving Deployment and Service.
+  expected_effect: potentially_preserves_reuse
+  expectation_is_not_outcome_label: true
+  feasibility_verified: false
+  overlap_policy: Record every additional affected condition; no independent single-condition causal-effect claim.
+  verification_note: Stricter criteria may require new evidence even when unchanged repair succeeds; never force
+    failure labels.
+- id: P2-1-2
+  candidate: P2
+  condition: target_objects
+  requirement: Literal Deployment ratings in robot-shop owns the intended serving Pods.
+  change: Rename ratings Deployment to feedback; preserve labels/Service; scale feedback to zero.
+  expected_effect: potentially_invalidates_reuse
+  expectation_is_not_outcome_label: true
+  feasibility_verified: false
+  overlap_policy: Record every additional affected condition; no independent single-condition causal-effect claim.
+  verification_note: Stricter criteria may require new evidence even when unchanged repair succeeds; never force
+    failure labels.
+- id: P2-2-1
+  candidate: P2
+  condition: referenced_fields
+  requirement: Numeric spec.replicas plus one satisfies the current required ready-replica minimum.
+  change: Healthy desired/minimum replicas=2; underprovision to 1; frozen +1 can restore minimum.
+  expected_effect: potentially_preserves_reuse
+  expectation_is_not_outcome_label: true
+  feasibility_verified: false
+  overlap_policy: Record every additional affected condition; no independent single-condition causal-effect claim.
+  verification_note: Stricter criteria may require new evidence even when unchanged repair succeeds; never force
+    failure labels.
+- id: P2-2-2
+  candidate: P2
+  condition: referenced_fields
+  requirement: Numeric spec.replicas plus one satisfies the current required ready-replica minimum.
+  change: Healthy desired/minimum replicas=3; underprovision to 1; frozen +1 is insufficient. Explicit overlap with
+    verification/multiplicity.
+  expected_effect: potentially_invalidates_reuse
+  expectation_is_not_outcome_label: true
+  feasibility_verified: false
+  overlap_policy: Record every additional affected condition; no independent single-condition causal-effect claim.
+  verification_note: Stricter criteria may require new evidence even when unchanged repair succeeds; never force
+    failure labels.
+- id: P2-3-1
+  candidate: P2
+  condition: resource_relationships
+  requirement: Ratings Service selects the scaled Deployment and Pods can access existing MySQL Service/account.
+  change: Replace MySQL Pod with same PVC/Service/accounts; wait actual SQL and ratings health; no in-trial data
+    restore.
+  expected_effect: potentially_preserves_reuse
+  expectation_is_not_outcome_label: true
+  feasibility_verified: false
+  overlap_policy: Record every additional affected condition; no independent single-condition causal-effect claim.
+  verification_note: Stricter criteria may require new evidence even when unchanged repair succeeds; never force
+    failure labels.
+- id: P2-3-2
+  candidate: P2
+  condition: resource_relationships
+  requirement: Ratings Service selects the scaled Deployment and Pods can access existing MySQL Service/account.
+  change: Keep ratings; route ratings Service to same-image feedback-live Deployment; establish healthy, scale feedback-live
+    to zero. Candidate scales idle ratings.
+  expected_effect: potentially_invalidates_reuse
+  expectation_is_not_outcome_label: true
+  feasibility_verified: false
+  overlap_policy: Record every additional affected condition; no independent single-condition causal-effect claim.
+  verification_note: Stricter criteria may require new evidence even when unchanged repair succeeds; never force
+    failure labels.
+- id: P2-4-1
+  candidate: P2
+  condition: verification_criteria
+  requirement: Historical fetch does not establish persistent vote write/read correctness.
+  change: Structured JSON rating_count nonnegative integer on same fetch endpoint; retain HTTP/latency/rollout criteria.
+  expected_effect: potentially_preserves_reuse
+  expectation_is_not_outcome_label: true
+  feasibility_verified: false
+  overlap_policy: Record every additional affected condition; no independent single-condition causal-effect claim.
+  verification_note: Stricter criteria may require new evidence even when unchanged repair succeeds; never force
+    failure labels.
+- id: P2-4-2
+  candidate: P2
+  condition: verification_criteria
+  requirement: Historical fetch does not establish persistent vote write/read correctness.
+  change: Require accepted vote and persistent fetch count increase; predeclare concurrency/race policy and validate
+    healthy feasibility.
+  expected_effect: old_success_evidence_insufficient
+  expectation_is_not_outcome_label: true
+  feasibility_verified: false
+  overlap_policy: Record every additional affected condition; no independent single-condition causal-effect claim.
+  verification_note: Stricter criteria may require new evidence even when unchanged repair succeeds; never force
+    failure labels.
+- id: P3-1-1
+  candidate: P3
+  condition: target_objects
+  requirement: Literal Deployment web and actual named-container ownership remain valid.
+  change: Replace web Pod, preserving Deployment/current ownership.
+  expected_effect: potentially_preserves_reuse
+  expectation_is_not_outcome_label: true
+  feasibility_verified: false
+  overlap_policy: Record every additional affected condition; no independent single-condition causal-effect claim.
+  verification_note: Stricter criteria may require new evidence even when unchanged repair succeeds; never force
+    failure labels.
+- id: P3-1-2
+  candidate: P3
+  condition: target_objects
+  requirement: Literal Deployment web and actual named-container ownership remain valid.
+  change: Rename web Deployment to storefront; preserve labels/Service; underallocate storefront container.
+  expected_effect: potentially_invalidates_reuse
+  expectation_is_not_outcome_label: true
+  feasibility_verified: false
+  overlap_policy: Record every additional affected condition; no independent single-condition causal-effect claim.
+  verification_note: Stricter criteria may require new evidence even when unchanged repair succeeds; never force
+    failure labels.
+- id: P3-2-1
+  candidate: P3
+  condition: referenced_fields
+  requirement: Fixed resources and retained affinity/rollout fields must permit a ready current template on the
+    declared node. beta.kubernetes.io/os=linux alone does not establish schedulability. Legacy annotation alone
+    does not establish actual QoS.
+  change: Calibrated underallocation memory 1Mi -> 2Mi, below observed working set; current-template readiness still
+    required.
+  expected_effect: potentially_preserves_reuse
+  expectation_is_not_outcome_label: true
+  feasibility_verified: false
+  overlap_policy: Record every additional affected condition; no independent single-condition causal-effect claim.
+  verification_note: Stricter criteria may require new evidence even when unchanged repair succeeds; never force
+    failure labels.
+- id: P3-2-2
+  candidate: P3
+  condition: referenced_fields
+  requirement: Fixed resources and retained affinity/rollout fields must permit a ready current template on the
+    declared node. beta.kubernetes.io/os=linux alone does not establish schedulability. Legacy annotation alone
+    does not establish actual QoS.
+  change: Recreate same-named web with one healthy Pod, hostname placement, hard self anti-affinity, maxSurge=1/maxUnavailable=0.
+    Subsequent resource-template update cannot schedule a surge Pod beside the existing Pod. Frozen P3 retains that
+    anti-affinity; current-template recovery requires new evidence.
+  expected_effect: potentially_invalidates_reuse
+  expectation_is_not_outcome_label: true
+  feasibility_verified: false
+  overlap_policy: Record every additional affected condition; no independent single-condition causal-effect claim.
+  verification_note: Stricter criteria may require new evidence even when unchanged repair succeeds; never force
+    failure labels.
+  replaces_infeasible: results/S3-feasibility-v1/29-P3-2-2/record.json
+- id: P3-3-1
+  candidate: P3
+  condition: resource_relationships
+  requirement: Current serving desired template belongs to the workload whose resources the candidate changes.
+  change: Recreate frontend Service, preserving connection to current web Pods.
+  expected_effect: potentially_preserves_reuse
+  expectation_is_not_outcome_label: true
+  feasibility_verified: false
+  overlap_policy: Record every additional affected condition; no independent single-condition causal-effect claim.
+  verification_note: Stricter criteria may require new evidence even when unchanged repair succeeds; never force
+    failure labels.
+- id: P3-3-2
+  candidate: P3
+  condition: resource_relationships
+  requirement: Current serving desired template belongs to the workload whose resources the candidate changes.
+  change: Keep web; route Service to same-image frontend-live Deployment; underallocate there. Verify current owner/template
+    there, not idle web.
+  expected_effect: potentially_invalidates_reuse
+  expectation_is_not_outcome_label: true
+  feasibility_verified: false
+  overlap_policy: Record every additional affected condition; no independent single-condition causal-effect claim.
+  verification_note: Stricter criteria may require new evidence even when unchanged repair succeeds; never force
+    failure labels.
+- id: P3-4-1
+  candidate: P3
+  condition: verification_criteria
+  requirement: Recovery binds to current matching ReplicaSet/Pod; stronger transaction criteria require new evidence.
+  change: EndpointSlice current-Pod ownership as equivalent evidence, retaining current template/resources/QoS/readiness
+    and business criteria.
+  expected_effect: potentially_preserves_reuse
+  expectation_is_not_outcome_label: true
+  feasibility_verified: false
+  overlap_policy: Record every additional affected condition; no independent single-condition causal-effect claim.
+  verification_note: Stricter criteria may require new evidence even when unchanged repair succeeds; never force
+    failure labels.
+- id: P3-4-2
+  candidate: P3
+  condition: verification_criteria
+  requirement: Recovery binds to current matching ReplicaSet/Pod; stronger transaction criteria require new evidence.
+  change: Require cart add/read state assertions plus current-template rollout and catalogue read.
+  expected_effect: old_success_evidence_insufficient
+  expectation_is_not_outcome_label: true
+  feasibility_verified: false
+  overlap_policy: Record every additional affected condition; no independent single-condition causal-effect claim.
+  verification_note: Stricter criteria may require new evidence even when unchanged repair succeeds; never force
+    failure labels.
+- id: P4-1-1
+  candidate: P4
+  condition: target_objects
+  requirement: Literal Deployment web is the frontend consuming the repaired variable.
+  change: Replace web Pod, preserving Deployment and variable consumption.
+  expected_effect: potentially_preserves_reuse
+  expectation_is_not_outcome_label: true
+  feasibility_verified: false
+  overlap_policy: Record every additional affected condition; no independent single-condition causal-effect claim.
+  verification_note: Stricter criteria may require new evidence even when unchanged repair succeeds; never force
+    failure labels.
+- id: P4-1-2
+  candidate: P4
+  condition: target_objects
+  requirement: Literal Deployment web is the frontend consuming the repaired variable.
+  change: Rename web Deployment to storefront; preserve labels/Service; inject bad host on storefront.
+  expected_effect: potentially_invalidates_reuse
+  expectation_is_not_outcome_label: true
+  feasibility_verified: false
+  overlap_policy: Record every additional affected condition; no independent single-condition causal-effect claim.
+  verification_note: Stricter criteria may require new evidence even when unchanged repair succeeds; never force
+    failure labels.
+- id: P4-2-1
+  candidate: P4
+  condition: referenced_fields
+  requirement: CATALOGUE_HOST is consumed by envsubst; catalogue resolves to intended backend; updates by name preserve
+    other consumed variables.
+  change: Add consumed CART_HOST as equivalent FQDN before CATALOGUE_HOST in env list; inject bad catalogue host;
+    repair by name must preserve CART_HOST.
+  expected_effect: potentially_preserves_reuse
+  expectation_is_not_outcome_label: true
+  feasibility_verified: false
+  overlap_policy: Record every additional affected condition; no independent single-condition causal-effect claim.
+  verification_note: Stricter criteria may require new evidence even when unchanged repair succeeds; never force
+    failure labels.
+- id: P4-2-2
+  candidate: P4
+  condition: referenced_fields
+  requirement: CATALOGUE_HOST is consumed by envsubst; catalogue resolves to intended backend; updates by name preserve
+    other consumed variables.
+  change: Move backend to catalogue-v2 Service; update web/cart CATALOGUE_HOST and ratings CATALOGUE_URL; remove
+    old catalogue. Full healthy workload required before bad web-host fault. Fixed catalogue literal becomes unsuitable.
+  expected_effect: potentially_invalidates_reuse
+  expectation_is_not_outcome_label: true
+  feasibility_verified: false
+  overlap_policy: Record every additional affected condition; no independent single-condition causal-effect claim.
+  verification_note: Stricter criteria may require new evidence even when unchanged repair succeeds; never force
+    failure labels.
+- id: P4-3-1
+  candidate: P4
+  condition: resource_relationships
+  requirement: Patched frontend receives current traffic and restarted nginx consumes updated variable.
+  change: Replace catalogue Pod, preserving Service and consumed host connection.
+  expected_effect: potentially_preserves_reuse
+  expectation_is_not_outcome_label: true
+  feasibility_verified: false
+  overlap_policy: Record every additional affected condition; no independent single-condition causal-effect claim.
+  verification_note: Stricter criteria may require new evidence even when unchanged repair succeeds; never force
+    failure labels.
+- id: P4-3-2
+  candidate: P4
+  condition: resource_relationships
+  requirement: Patched frontend receives current traffic and restarted nginx consumes updated variable.
+  change: Keep web; route Service to same-image frontend-live; inject wrong consumed host there. Frozen candidate
+    patches idle web.
+  expected_effect: potentially_invalidates_reuse
+  expectation_is_not_outcome_label: true
+  feasibility_verified: false
+  overlap_policy: Record every additional affected condition; no independent single-condition causal-effect claim.
+  verification_note: Stricter criteria may require new evidence even when unchanged repair succeeds; never force
+    failure labels.
+- id: P4-4-1
+  candidate: P4
+  condition: verification_criteria
+  requirement: Catalogue read success does not establish cart write/read integration.
+  change: Use /api/catalogue/product/Watson with expected SKU; document equivalent catalogue-host fault dependence.
+  expected_effect: potentially_preserves_reuse
+  expectation_is_not_outcome_label: true
+  feasibility_verified: false
+  overlap_policy: Record every additional affected condition; no independent single-condition causal-effect claim.
+  verification_note: Stricter criteria may require new evidence even when unchanged repair succeeds; never force
+    failure labels.
+- id: P4-4-2
+  candidate: P4
+  condition: verification_criteria
+  requirement: Catalogue read success does not establish cart write/read integration.
+  change: Require cart add/read integration plus catalogue read and consumed configuration.
+  expected_effect: old_success_evidence_insufficient
+  expectation_is_not_outcome_label: true
+  feasibility_verified: false
+  overlap_policy: Record every additional affected condition; no independent single-condition causal-effect claim.
+  verification_note: Stricter criteria may require new evidence even when unchanged repair succeeds; never force
+    failure labels.
+- id: P5-1-1
+  candidate: P5
+  condition: target_objects
+  requirement: Literal Service web is the routing object to be repaired.
+  change: Recreate Service web with new UID and unchanged routing contract; confirm healthy before fault.
+  expected_effect: potentially_preserves_reuse
+  expectation_is_not_outcome_label: true
+  feasibility_verified: false
+  overlap_policy: Record every additional affected condition; no independent single-condition causal-effect claim.
+  verification_note: Stricter criteria may require new evidence even when unchanged repair succeeds; never force
+    failure labels.
+- id: P5-1-2
+  candidate: P5
+  condition: target_objects
+  requirement: Literal Service web is the routing object to be repaired.
+  change: Rename client-facing Service to storefront; update load/probe frontend URL; remove web Service; fault
+    storefront selector.
+  expected_effect: potentially_invalidates_reuse
+  expectation_is_not_outcome_label: true
+  feasibility_verified: false
+  overlap_policy: Record every additional affected condition; no independent single-condition causal-effect claim.
+  verification_note: Stricter criteria may require new evidence even when unchanged repair succeeds; never force
+    failure labels.
+- id: P5-2-1
+  candidate: P5
+  condition: referenced_fields
+  requirement: Fixed selector.service=web matches current Pod labels and retained selector keys also match.
+  change: Add track=stable to frontend Pods/Service selector; fault changes service key only; fixed merge retains
+    track.
+  expected_effect: potentially_preserves_reuse
+  expectation_is_not_outcome_label: true
+  feasibility_verified: false
+  overlap_policy: Record every additional affected condition; no independent single-condition causal-effect claim.
+  verification_note: Stricter criteria may require new evidence even when unchanged repair succeeds; never force
+    failure labels.
+- id: P5-2-2
+  candidate: P5
+  condition: referenced_fields
+  requirement: Fixed selector.service=web matches current Pod labels and retained selector keys also match.
+  change: Recreate same-named web Deployment with selector app=web, labels app=web/service=frontend; initial Service
+    selects frontend. After wrong-selector fault, fixed web value is unsuitable. Delete immutable-selector variant
+    during cleanup.
+  expected_effect: potentially_invalidates_reuse
+  expectation_is_not_outcome_label: true
+  feasibility_verified: false
+  overlap_policy: Record every additional affected condition; no independent single-condition causal-effect claim.
+  verification_note: Stricter criteria may require new evidence even when unchanged repair succeeds; never force
+    failure labels.
+- id: P5-3-1
+  candidate: P5
+  condition: resource_relationships
+  requirement: Current client path traverses repaired Service and selected endpoints are actual frontend Pods.
+  change: Replace backend web Pod; retain Service/selector; EndpointSlice targetRef matches current owned Pod.
+  expected_effect: potentially_preserves_reuse
+  expectation_is_not_outcome_label: true
+  feasibility_verified: false
+  overlap_policy: Record every additional affected condition; no independent single-condition causal-effect claim.
+  verification_note: Stricter criteria may require new evidence even when unchanged repair succeeds; never force
+    failure labels.
+- id: P5-3-2
+  candidate: P5
+  condition: resource_relationships
+  requirement: Current client path traverses repaired Service and selected endpoints are actual frontend Pods.
+  change: Keep web Service; move load/probe frontend to public-web Service with same initial backend; fault public-web
+    selector. Candidate repairs idle web.
+  expected_effect: potentially_invalidates_reuse
+  expectation_is_not_outcome_label: true
+  feasibility_verified: false
+  overlap_policy: Record every additional affected condition; no independent single-condition causal-effect claim.
+  verification_note: Stricter criteria may require new evidence even when unchanged repair succeeds; never force
+    failure labels.
+- id: P5-4-1
+  candidate: P5
+  condition: verification_criteria
+  requirement: Historical homepage success does not establish current stateful cart write/read integration.
+  change: Use /index.html instead of / through repaired Service; confirm equivalent content.
+  expected_effect: potentially_preserves_reuse
+  expectation_is_not_outcome_label: true
+  feasibility_verified: false
+  overlap_policy: Record every additional affected condition; no independent single-condition causal-effect claim.
+  verification_note: Stricter criteria may require new evidence even when unchanged repair succeeds; never force
+    failure labels.
+- id: P5-4-2
+  candidate: P5
+  condition: verification_criteria
+  requirement: Historical homepage success does not establish current stateful cart write/read integration.
+  change: Require cart add/read through current client-facing Service, plus homepage; no direct-Pod shortcut.
+  expected_effect: old_success_evidence_insufficient
+  expectation_is_not_outcome_label: true
+  feasibility_verified: false
+  overlap_policy: Record every additional affected condition; no independent single-condition causal-effect claim.
+  verification_note: Stricter criteria may require new evidence even when unchanged repair succeeds; never force
+    failure labels.
+open_design_points:
+- P2 replica minimum changes also alter verification/multiplicity; do not claim a field-type violation.
+- P4 relocation must update all actual catalogue consumers so healthy controls pass.
+- P5 changed immutable selector requires explicit deletion/recreation cleanup.
+- Vote-count assertions under concurrent load need an explicit race policy before testing.
+references:
+- D-DN-3.1_EN.docx 3.5.2-3.5.3
+- https://raw.githubusercontent.com/kubernetes/kubectl/v0.33.5/pkg/polymorphichelpers/objectrestarter.go
+derived_from: candidates/requirements.v1.yaml

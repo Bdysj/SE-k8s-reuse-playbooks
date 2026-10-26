@@ -1,0 +1,40 @@
+# k3d configuration for the incident cluster.
+#
+# The API port is pinned. A named network alone does not pin node addresses.
+# Existing primary nodes now have explicit Docker IPv4 reservations, recorded in
+# results/continuation-20261003/node-network-recovery.json. Start these retained
+# containers directly after a reboot, then require fresh baseline acceptance.
+# Avoid creating a k3d tools helper at a node's reserved address.
+#
+# The replica cluster used for isolated revalidation reuses this file with a
+# different name, network and port, and the same one-server/two-agent topology.
+apiVersion: k3d.io/v1alpha5
+kind: Simple
+metadata:
+  name: lab
+servers: 1
+agents: 2
+image: rancher/k3s:v1.33.5-k3s1
+#
+# A named network preserves the network definition, not each node IP. Do not add
+# a "subnet" field here: k3d
+# creates the network during preparation and then rejects the subnet with
+# "cannot specify subnet for existing network".
+network: ddn-lab-net
+kubeAPI:
+  hostIP: "127.0.0.1"
+  hostPort: "6550"
+registries:
+  use:
+    - k3d-ddn-registry:5050
+options:
+  k3s:
+    extraArgs:
+      # Business verification runs from a probe Pod through Kubernetes Services;
+      # the k3d load balancer exposes the Kubernetes API, not application routes.
+      - arg: --disable=traefik
+        nodeFilters:
+          - server:0
+  kubeconfig:
+    updateDefaultKubeconfig: true
+    switchCurrentContext: true

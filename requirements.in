@@ -1,0 +1,4 @@
+# Versions recorded in results/formal-rq3b-short-v5/freeze.json.
+ansible-core==2.19.3
+ansible-runner==2.4.2
+PyYAML==6.0.3

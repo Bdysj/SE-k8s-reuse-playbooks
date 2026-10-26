@@ -1,0 +1,17 @@
+created: '2026-10-01'
+stage: pilot calibration fixed before this episode and before scenario derivation
+fault_origin: study-defined resource underallocation inspired by MicroRemed
+rejected_instance:
+  reason: Original memory=200Mi and CPU=2m on native web did not maintain the chosen symptom across the pre-repair observation.
+  evidence: results/fault-pilot/P3.json
+new_instance:
+  deployment: web
+  container: web
+  requests: {cpu: 1m, memory: 1Mi}
+  limits: {cpu: 2m, memory: 1Mi}
+  reason: 1Mi is below the observed native web working set (13Mi). It models a severe memory-unit/resource configuration error.
+  delivery: Patch only the named container resources; do not kill the old Pod or alter the update strategy.
+  symptom: Desired generation cannot achieve a ready zero-restart Pod with the current declared resources; HTTP health alone may pass through the old ReplicaSet.
+repair_candidate: P3
+candidate_changes: none; original actions and resource values remain fixed
+main_registration: pending independent matched control and five qualification trials

@@ -1,0 +1,301 @@
+{
+  "status": "current_ids_and_architectures_verified_exported_locally",
+  "historical_at_utc": "2026-10-20T02:35:56.405511+00:00",
+  "application_images": [
+    {
+      "name": "rs-cart",
+      "ref": "ddn-eval/rs-cart:arm64",
+      "image_id": "sha256:c6af8494a9e565c8c8ae2b7fad7b81b274117dab4c4f266728362f297e47164a",
+      "architecture": "arm64",
+      "built_from": "sources/robot-shop/cart/Dockerfile",
+      "present_in_20261020_inventory": true,
+      "tag_matches_20261020_inventory": true,
+      "historical_reported_size_bytes": 897544514,
+      "registry_manifest_digest": null,
+      "current_live_presence": "verified_20261026",
+      "current_docker_config_image_id": "sha256:c6af8494a9e565c8c8ae2b7fad7b81b274117dab4c4f266728362f297e47164a",
+      "current_architecture": "arm64"
+    },
+    {
+      "name": "rs-catalogue",
+      "ref": "ddn-eval/rs-catalogue:arm64",
+      "image_id": "sha256:6c48504879a7277d22aa27e94e530e79257bc463cbd4bf2ac3221b17df72b3ee",
+      "architecture": "arm64",
+      "built_from": "sources/robot-shop/catalogue/Dockerfile",
+      "present_in_20261020_inventory": true,
+      "tag_matches_20261020_inventory": true,
+      "historical_reported_size_bytes": 892870267,
+      "registry_manifest_digest": null,
+      "current_live_presence": "verified_20261026",
+      "current_docker_config_image_id": "sha256:6c48504879a7277d22aa27e94e530e79257bc463cbd4bf2ac3221b17df72b3ee",
+      "current_architecture": "arm64"
+    },
+    {
+      "name": "rs-user",
+      "ref": "ddn-eval/rs-user:arm64",
+      "image_id": "sha256:1f368acb5df589244cd6d7685f58d2d0961ae52bba690bde41c9645dd6044df4",
+      "architecture": "arm64",
+      "built_from": "sources/robot-shop/user/Dockerfile",
+      "present_in_20261020_inventory": true,
+      "tag_matches_20261020_inventory": true,
+      "historical_reported_size_bytes": 893378910,
+      "registry_manifest_digest": null,
+      "current_live_presence": "verified_20261026",
+      "current_docker_config_image_id": "sha256:1f368acb5df589244cd6d7685f58d2d0961ae52bba690bde41c9645dd6044df4",
+      "current_architecture": "arm64"
+    },
+    {
+      "name": "rs-payment",
+      "ref": "ddn-eval/rs-payment:arm64",
+      "image_id": "sha256:abdb4597968923858568b10bdf8430399be2fb793b63afa04ca9efb56ba1fed3",
+      "architecture": "arm64",
+      "built_from": "sources/robot-shop/payment/Dockerfile",
+      "present_in_20261020_inventory": true,
+      "tag_matches_20261020_inventory": true,
+      "historical_reported_size_bytes": 1139005266,
+      "registry_manifest_digest": null,
+      "current_live_presence": "verified_20261026",
+      "current_docker_config_image_id": "sha256:abdb4597968923858568b10bdf8430399be2fb793b63afa04ca9efb56ba1fed3",
+      "current_architecture": "arm64"
+    },
+    {
+      "name": "rs-web",
+      "ref": "ddn-eval/rs-web:arm64",
+      "image_id": "sha256:cb242ed09d51e5114d251d26ef0680d76afc7fbbc417b5b52e63bd7f8b916444",
+      "architecture": "arm64",
+      "built_from": "sources/robot-shop/web/Dockerfile",
+      "present_in_20261020_inventory": true,
+      "tag_matches_20261020_inventory": true,
+      "historical_reported_size_bytes": 135654920,
+      "registry_manifest_digest": null,
+      "current_live_presence": "verified_20261026",
+      "current_docker_config_image_id": "sha256:cb242ed09d51e5114d251d26ef0680d76afc7fbbc417b5b52e63bd7f8b916444",
+      "current_architecture": "arm64"
+    },
+    {
+      "name": "rs-mongodb",
+      "ref": "ddn-eval/rs-mongodb:arm64",
+      "image_id": "sha256:bc41708500734ac38c08c03a863ccdf9ddead09d7f226184da21180e6f2a1b6c",
+      "architecture": "arm64",
+      "built_from": "sources/robot-shop/mongo/Dockerfile",
+      "present_in_20261020_inventory": true,
+      "tag_matches_20261020_inventory": true,
+      "historical_reported_size_bytes": 713386379,
+      "registry_manifest_digest": null,
+      "current_live_presence": "verified_20261026",
+      "current_docker_config_image_id": "sha256:bc41708500734ac38c08c03a863ccdf9ddead09d7f226184da21180e6f2a1b6c",
+      "current_architecture": "arm64"
+    },
+    {
+      "name": "rs-load",
+      "ref": "ddn-eval/rs-load:arm64-grouped",
+      "image_id": "sha256:17e590020aa926390071d4a8826e4f10c0d1252965b2c417bdf8970a98aeaa49",
+      "architecture": "arm64",
+      "built_from": "arch-eval/load.Dockerfile",
+      "present_in_20261020_inventory": true,
+      "tag_matches_20261020_inventory": true,
+      "historical_reported_size_bytes": 1194885405,
+      "registry_manifest_digest": null,
+      "current_live_presence": "verified_20261026",
+      "current_docker_config_image_id": "sha256:17e590020aa926390071d4a8826e4f10c0d1252965b2c417bdf8970a98aeaa49",
+      "current_architecture": "arm64"
+    },
+    {
+      "name": "rs-shipping",
+      "ref": "ddn-eval/rs-shipping:arm64",
+      "image_id": "sha256:a985a68d3325bac8e9f7df07a9016567ce8307352e0b3620c3775e35b5f52cc5",
+      "architecture": "arm64",
+      "built_from": "arch-eval/shipping.Dockerfile",
+      "present_in_20261020_inventory": true,
+      "tag_matches_20261020_inventory": true,
+      "historical_reported_size_bytes": 370994252,
+      "registry_manifest_digest": null,
+      "current_live_presence": "verified_20261026",
+      "current_docker_config_image_id": "sha256:a985a68d3325bac8e9f7df07a9016567ce8307352e0b3620c3775e35b5f52cc5",
+      "current_architecture": "arm64"
+    },
+    {
+      "name": "rs-ratings",
+      "ref": "ddn-eval/rs-ratings:arm64",
+      "image_id": "sha256:aa369d10f15874569021fa0f42ff3329db3179f4a807287a53fa1df8e104f0f4",
+      "architecture": "arm64",
+      "built_from": "arch-eval/ratings.Dockerfile",
+      "present_in_20261020_inventory": true,
+      "tag_matches_20261020_inventory": true,
+      "historical_reported_size_bytes": 451956892,
+      "registry_manifest_digest": null,
+      "current_live_presence": "verified_20261026",
+      "current_docker_config_image_id": "sha256:aa369d10f15874569021fa0f42ff3329db3179f4a807287a53fa1df8e104f0f4",
+      "current_architecture": "arm64"
+    },
+    {
+      "name": "rs-dispatch",
+      "ref": "ddn-eval/rs-dispatch:arm64",
+      "image_id": "sha256:baa118b600571fae683c759df7a7e1c8e7f1825655c4b5c7fc93c1a63d9c0098",
+      "architecture": "arm64",
+      "built_from": "arch-eval/dispatch.Dockerfile",
+      "present_in_20261020_inventory": true,
+      "tag_matches_20261020_inventory": true,
+      "historical_reported_size_bytes": 829775709,
+      "registry_manifest_digest": null,
+      "current_live_presence": "verified_20261026",
+      "current_docker_config_image_id": "sha256:baa118b600571fae683c759df7a7e1c8e7f1825655c4b5c7fc93c1a63d9c0098",
+      "current_architecture": "arm64"
+    },
+    {
+      "name": "rs-mysql-db",
+      "ref": "ddn-eval/rs-mysql-db:amd64",
+      "image_id": "sha256:7ae8f07f467acf49087c037b4d69d75b7c4fd121ecc8b857ba071d7f22773bf5",
+      "architecture": "amd64",
+      "built_from": "sources/robot-shop/mysql/Dockerfile",
+      "present_in_20261020_inventory": true,
+      "tag_matches_20261020_inventory": true,
+      "historical_reported_size_bytes": 517717067,
+      "registry_manifest_digest": null,
+      "current_live_presence": "verified_20261026",
+      "current_docker_config_image_id": "sha256:7ae8f07f467acf49087c037b4d69d75b7c4fd121ecc8b857ba071d7f22773bf5",
+      "current_architecture": "amd64"
+    }
+  ],
+  "workload_image_refs": [
+    "ddn-eval/rs-cart:arm64",
+    "ddn-eval/rs-catalogue:arm64",
+    "ddn-eval/rs-dispatch:arm64",
+    "ddn-eval/rs-load:arm64-grouped",
+    "ddn-eval/rs-mongodb:arm64",
+    "ddn-eval/rs-mysql-db:amd64",
+    "ddn-eval/rs-payment:arm64",
+    "ddn-eval/rs-ratings:arm64",
+    "ddn-eval/rs-shipping:arm64",
+    "ddn-eval/rs-user:arm64",
+    "ddn-eval/rs-web:arm64",
+    "rabbitmq@sha256:e97f6bb68aab3f747f8a6f4dc52ed57401de91ca480a0be3a36e7476ac273169",
+    "redis@sha256:0e773022cd6572a5153e5013afced0f7191652d3cdf9b1c6785eb13f6b2974b1"
+  ],
+  "ghcr_published": false,
+  "fresh_cluster_validated": false,
+  "notes": [
+    "Docker config image IDs are not registry manifest digests.",
+    "ARM64 application images and AMD64 MySQL are the recorded baseline.",
+    "The local Docker image bundle contains 11 application images, one seed image and four infrastructure images.",
+    "Redis, RabbitMQ, curl probe and cluster-managed runtime images are separate dependencies. See external_runtime_dependencies."
+  ],
+  "verified_at": "2026-10-26",
+  "offline_bundle": {
+    "joined_name": "frozen-images-20261026-v1.tar.gz",
+    "joined_bytes": 2127869150,
+    "joined_sha256": "0aa0550fa8be752e165b13fcf228257207c7596040b47c6170c9be33d7c5af4a",
+    "parts_in_order": [
+      "frozen-images-20261026-v1.tar.gz.part-01",
+      "frozen-images-20261026-v1.tar.gz.part-02"
+    ],
+    "unique_image_count": 16,
+    "restore_command": "cat frozen-images-20261026-v1.tar.gz.part-01 frozen-images-20261026-v1.tar.gz.part-02 | gzip -dc | docker image load"
+  },
+  "exported_image_count": 16,
+  "other_exported_images": [
+    {
+      "ref": "ddn-eval/mysql-seed:5.7",
+      "docker_config_image_id": "sha256:6cf04b6c61f98bc7c70f5a271d1ada0a083c249a2890cca562c2e95fd89a89fb",
+      "os": "linux",
+      "architecture": "arm64",
+      "recorded_repo_digests": []
+    },
+    {
+      "ref": "ghcr.io/k3d-io/k3d-tools:5.9.0",
+      "docker_config_image_id": "sha256:fb7a43edeeef16a67a86501aeb980918940f52b4de811b383874adf4a79a11c2",
+      "os": "linux",
+      "architecture": "arm64",
+      "recorded_repo_digests": [
+        "ghcr.io/k3d-io/k3d-tools@sha256:c57abce697e66feeb826922718738fe186b47779312d49d4e51e6fb9b8a6f34d"
+      ]
+    },
+    {
+      "ref": "docker.io/library/registry:2",
+      "docker_config_image_id": "sha256:33eeff39e0aaabe61ca826fd7502396183462451be0783133e1a8fa944fc7350",
+      "os": "linux",
+      "architecture": "arm64",
+      "recorded_repo_digests": [
+        "registry@sha256:a3d8aaa63ed8681a604f1dea0aa03f100d5895b6a58ace528858a7b332415373"
+      ]
+    },
+    {
+      "ref": "ghcr.io/k3d-io/k3d-proxy:5.9.0",
+      "docker_config_image_id": "sha256:1cf6e249ae3bae56702a5a4370d1da754f349ce155403a82c318b0dc49295c09",
+      "os": "linux",
+      "architecture": "arm64",
+      "recorded_repo_digests": [
+        "ghcr.io/k3d-io/k3d-proxy@sha256:7be40abfeb6ac9a81d0d4157a7cbf3aacc68a64a1780ca2efb160f1aea915177"
+      ]
+    },
+    {
+      "ref": "rancher/k3s:v1.33.5-k3s1",
+      "docker_config_image_id": "sha256:bcb1335ed521946f52f29d90a8c81eb566eef066c6913d88619755ccded827a2",
+      "os": "linux",
+      "architecture": "arm64",
+      "recorded_repo_digests": [
+        "rancher/k3s@sha256:fd4740667b7033055c27d424d0d2d660bf66cedbdb225d68e0eab6dd48aa0fd2"
+      ]
+    }
+  ],
+  "external_runtime_dependencies": [
+    {
+      "ref": "docker.io/curlimages/curl@sha256:c1fe1679c34d9784c1b0d1e5f62ac0a79fca01fb6377cdd33e90473c6f9f9a69",
+      "historical_node_config_image_id": "sha256:9b23c989cdb641988d7a866b742f5085d8ea331cad9fbbb978988de5436e68be",
+      "included_in_host_image_bundle": false,
+      "source": "Historical node inventory; current upstream pull is not tested."
+    },
+    {
+      "ref": "docker.io/library/rabbitmq@sha256:e97f6bb68aab3f747f8a6f4dc52ed57401de91ca480a0be3a36e7476ac273169",
+      "historical_node_config_image_id": "sha256:aff41f192e4bd9e6a5fae3fb5e2a6c7f7bc45556f2f53dde0480b2312201bd73",
+      "included_in_host_image_bundle": false,
+      "source": "Historical node inventory; current upstream pull is not tested."
+    },
+    {
+      "ref": "docker.io/rancher/klipper-lb@sha256:7eb86d5b908ec6ddd9796253d8cc2f43df99420fc8b8a18452a94dc56f86aca0",
+      "historical_node_config_image_id": "sha256:a399cf1b9d57c6a31922448a2766c89124869e9720bed5497c7628eda05e7be5",
+      "included_in_host_image_bundle": false,
+      "source": "Historical node inventory; current upstream pull is not tested."
+    },
+    {
+      "ref": "docker.io/rancher/local-path-provisioner@sha256:80496fdeb307541007621959aa13aed41d31db9cd2dc4167c19833e0bfa3878c",
+      "historical_node_config_image_id": "sha256:b41714cf6249634852799cf17377f98e07dace3e242c68d0f62797e452bbd032",
+      "included_in_host_image_bundle": false,
+      "source": "Historical node inventory; current upstream pull is not tested."
+    },
+    {
+      "ref": "docker.io/rancher/mirrored-pause@sha256:74c4244427b7312c5b901fe0f67cbc53683d06f4f24c6faee65d4182bf0fa893",
+      "historical_node_config_image_id": "sha256:7d46a07936af93fcce097459055f93ab07331509aa55f4a2a90d95a3ace1850e",
+      "included_in_host_image_bundle": false,
+      "source": "Historical node inventory; current upstream pull is not tested."
+    },
+    {
+      "ref": "ghcr.io/chaos-mesh/chaos-coredns@sha256:38bfdf5e37749a097873d226351013c34ba74174a8ddcfbe2871ec952af2d7b3",
+      "historical_node_config_image_id": "sha256:ad66af819a82c984a197f7e302ed5f8de25083ad48f4ac9324d3cda0eb080011",
+      "included_in_host_image_bundle": false,
+      "source": "Historical node inventory; current upstream pull is not tested."
+    },
+    {
+      "ref": "ghcr.io/chaos-mesh/chaos-daemon@sha256:0d28dbd95b033279f65605ea88c354d25fe902409197274016dd2efc28ef25cd",
+      "historical_node_config_image_id": "sha256:40f7b1b7dbae6962c3066175817aac84324d6876fdf73851d600ca19a8524cab",
+      "included_in_host_image_bundle": false,
+      "source": "Historical node inventory; current upstream pull is not tested."
+    },
+    {
+      "ref": "registry.k8s.io/pause@sha256:ee6521f290b2168b6e0935a181d4cff9be1ac3f505666ef0e3c98fae8199917a",
+      "historical_node_config_image_id": "sha256:afb61768ce381961ca0beff95337601f29dc70ff3ed14e5e4b3e5699057e6aa8",
+      "included_in_host_image_bundle": false,
+      "source": "Historical node inventory; current upstream pull is not tested."
+    },
+    {
+      "ref": "redis@sha256:0e773022cd6572a5153e5013afced0f7191652d3cdf9b1c6785eb13f6b2974b1",
+      "included_in_host_image_bundle": false,
+      "source": "Frozen qualification.v3 manifest; current upstream pull is not tested."
+    },
+    {
+      "ref": "ghcr.io/chaos-mesh/chaos-mesh:v2.8.4",
+      "included_in_host_image_bundle": false,
+      "source": "Frozen Helm chart version. Controller digest remains to be captured during isolated deployment validation."
+    }
+  ]
+}

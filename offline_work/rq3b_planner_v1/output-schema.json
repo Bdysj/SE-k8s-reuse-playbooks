@@ -1,0 +1,10 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "status": {"type": "string", "enum": ["candidate", "unresolved"]},
+    "plan_yaml": {"type": "string"},
+    "rationale": {"type": "string"}
+  },
+  "required": ["status", "plan_yaml", "rationale"]
+}

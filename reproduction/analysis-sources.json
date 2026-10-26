@@ -1,0 +1,17 @@
+[
+  {
+    "release_path": "reproduction/rq3b_analysis.py",
+    "sha256": "5a556c99e6012c41be67db368833bd66986958ade8e5c256e6b4713d2d691549",
+    "origin": "results/rq3b-final-document-v1/analyse.py"
+  },
+  {
+    "release_path": "offline_work/rq3a_analysis_v3/analysis.py",
+    "sha256": "6f85e686ed346338a28a3c6c9c2f0a08d0f065aa883670f3d7d06e303b7bcb91",
+    "origin": "offline_work/rq3a_analysis_v3/analysis.py"
+  },
+  {
+    "release_path": "reproduction/rq1_metrics.py",
+    "sha256": "a8aa17d90a005511ff928a16b1c07d3c2091d7fd63c102de8d102acd4221e70f",
+    "origin": "Pure functions copied from tools/analyse_formal_main_v1.py; original hash is in the file header"
+  }
+]

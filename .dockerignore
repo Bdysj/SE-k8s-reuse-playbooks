@@ -1,0 +1,17 @@
+.git
+.venv
+.cache
+outputs
+results
+runtime-logs
+archive-supplemental
+__pycache__
+**/__pycache__
+*.pyc
+.DS_Store
+seed/*.tar
+.env
+*.log
+*.pid
+*.pem
+*.key

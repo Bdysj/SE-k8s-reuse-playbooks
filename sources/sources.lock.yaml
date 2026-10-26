@@ -1,0 +1,555 @@
+lock_version: 1
+created: '2026-09-29'
+purpose: 'Reproducibility pins for the reuse assessment study. Section 3.5.1 requires the testbed to be pinned to
+  a recorded source commit, Helm chart revision and container image digests.
+
+  '
+repositories:
+  robot-shop:
+    role: primary testbed application
+    citation: Instana. (n.d.). Robot Shop [Computer software]. GitHub.
+    url: https://github.com/instana/robot-shop
+    commit: 55292e2199f2fb00a165b1f7d3045fe7f8922038
+    commit_date: '2023-03-06T07:18:42Z'
+    default_branch: master
+    license: Apache-2.0
+    archived: true
+    helm_chart:
+      path: K8s/helm
+      chart_name: robot-shop
+      chart_version: 1.1.0
+    notes:
+    - 'values.yaml ships image.version: latest. Override to 2.1.0 and resolve digests.'
+    - 'values.yaml ships eum.key: null, so the web container has no env block by default.'
+    - K8s/load-deployment.yaml references rs-load:latest. Override to the pinned digest.
+    - Reset must apply pre-rendered manifests, not helm upgrade, because a repair that deletes and recreates a Service
+      drops Helm ownership metadata.
+  kubeplaybook:
+    role: initial source of candidate playbooks (screened, not assumed qualifying)
+    citation: Sarda, K., Namrud, Z., Litoiu, M., Shwartz, L., & Watts, I. (2024a).
+    url: https://github.com/K8sPlayBook/KubePlaybook
+    commit: 57136d02afa68c2ee5e6df4dc5479d455b98047d
+    tag: v1.0.0
+    zenodo_doi: 10.5281/zenodo.10833402
+    zenodo_concept_doi: 10.5281/zenodo.10833401
+    license: MIT
+    pin_rationale: 'v1.0.0 is the citable Zenodo artefact. Verified that v1.0.0 and main HEAD (1feef63d1e5b23d1bc08c0368e90e457b6583c4b)
+      differ only in README.md, so no candidate playbook content changes between them.
+
+      '
+    inventory_at_pin:
+      real_time_fault_cases: 14
+      real_time_fault_playbooks: 24
+      screening_scope: Real_time_fault
+  microremed:
+    role: fault-injection assets (adapted; see adaptations below)
+    citation: L. Zhang et al. (2025, preprint). MicroRemed. arXiv:2511.01166
+    url: https://github.com/LLM4AIOps/MicroRemed
+    commit: f579d32279188ea9e5843877d3311d8d7b4ea2c3
+    commit_date: '2025-11-04T04:21:12Z'
+    default_branch: main
+    license: NONE
+    license_action: 'No licence is declared upstream. Do not redistribute MicroRemed files in the reproducibility
+      package. Reference the commit and describe the adaptation instead, or request permission from the authors.
+
+      '
+    assets_used:
+    - chaos/templates/pod-fail.yaml
+    - chaos/injection.py
+    assets_not_used:
+    - chaos/templates/network-delay.yaml
+    - chaos/templates/network-loss.yaml
+    - chaos/templates/cpu-stress.yaml
+    - chaos/templates/memory-stress.yaml
+    - chaos/templates/disk-io.yaml
+microremed_adaptations:
+- asset: chaos/templates/pod-fail.yaml
+  change: labelSelectors key changed from 'app' to 'service'
+  reason: 'Robot Shop labels workloads with ''service: <name>'', not ''app: <name>''.'
+- asset: chaos/injection.py line 26
+  change: label_selector changed from f'app={target_pod}' to f'service={target_pod}'
+  reason: 'The pod-config-error path does its own Pod lookup with an app= selector and then walks ownerReferences
+    to the Deployment. With the Robot Shop label scheme it would find no Pod and abort, so adapting the template
+    alone is not sufficient.
+
+    '
+- asset: chaos/injection.py (pod-config-error)
+  change: Container selected by name instead of by index containers[0]
+  reason: 'Index-based selection is not stable once a scenario inserts a sidecar. The injector must not depend on
+    the same positional assumption that a candidate playbook is being tested for.
+
+    '
+- asset: chaos/injection.py (pod-config-error)
+  change: kubeconfig path is a parameter, not hardcoded /etc/rancher/k3s/k3s.yaml
+  reason: Cluster runs under k3d; kubeconfig is not at the k3s host path.
+fault_pairing:
+  pod-config-error:
+    mechanism: 'Patches the Deployment container to requests cpu 1m / memory 100Mi and limits cpu 2m / memory 200Mi,
+      verified in chaos/injection.py.
+
+      '
+    pairs_with: resource adjustment
+    rationale: 'The injected fault is a reduced CPU and memory quota, and the repair action restores the quota.
+      This is the closest available pairing between an injected mechanism and a declared repair family, so it is
+      assigned first.
+
+      '
+    note: 'Relative to the declared baseline memory profile this is still a reduction, so it remains a fault after
+      the profile was applied.
+
+      '
+  pod-failure:
+    mechanism: Chaos Mesh PodChaos, action pod-failure
+    pairs_with: workload recovery
+    duration_in_template: 1200s
+    self_healing_risk: 'The template sets a duration, so the fault expires on its own. If the observation window
+      outlasts the duration, expiry would be recorded as a successful repair. The pilot must either set the observation
+      window well inside the duration or remove the duration and end the fault explicitly, and the no-repair control
+      must confirm the symptom persists for the whole window. This applies to any durative Chaos Mesh fault.
+
+      '
+    pending: the choice between bounded duration and explicit teardown is a pilot decision
+  pod-failure_duration_decision:
+    decision: 'Keep the template duration at 1200s for the pilot. The pilot must confirm that fault confirmation,
+      repair execution and the full verification window all complete before expiry. If they do not, adjust the duration
+      in the pilot and freeze it before the main trials. Removing the duration to obtain an indefinite fault is
+      not assumed to be correct and is not the default.
+
+      '
+    control_requirement: 'The matched no-repair control must show the symptom persisting for the whole observation
+      window, so that expiry can never be recorded as a repair.
+
+      '
+  not_yet_paired:
+    configuration repair: 'DECIDED: write a minimal candidate targeting CATALOGUE_HOST on the web workload, restoring
+      the correct value. Candidates 9/1 and 9/4 are recorded as screened and rejected: the baseline web container
+      has no env block, so the 9/1 JSON patch fails on a missing path, and no consumer of USE_CONNECTION_POOLING
+      was found in the application source. The chosen target has a verified consumption path: the web image declares
+      ENV CATALOGUE_HOST and entrypoint.sh applies it through envsubst to the nginx template at container start,
+      so the value determines routing and only takes effect after a restart. Origin type is recorded as manual,
+      and the candidate must pass the same S1 to S4 procedure as any repository candidate.
+
+      '
+    Service routing repair: 'DECIDED: write a minimal candidate addressing one explicit failure, either a wrong
+      Service selector or a wrong targetPort, and not both. The screening scope will not be widened merely to obtain
+      a repository origin. No candidate passed screening within the declared scope. Origin type is recorded as manual,
+      and the candidate must pass the same S1 to S4 procedure.
+
+      '
+    shared_requirement: 'Both manual candidates must be written before their scenarios are derived, and the repair
+      task specification must be fixed first, so that the candidate is not shaped around a scenario the study intends
+      to create.
+
+      '
+    replica adjustment: 'Fault is a configuration injection that sets replicas to zero; it is not a MicroRemed asset
+      and will be recorded as a study-defined injection.
+
+      '
+images:
+  platform_note: linux/amd64 via Rosetta on Apple M3
+  robotshop:
+    rs-web: sha256:b3c20d4a22f2875397726d2184062360bb2ab9c8776beffca7c2e7b3652893bc
+    rs-cart: sha256:388349d5cb3ccc14a192c345bfd42596920737db35d6a03a27457f6682710a37
+    rs-catalogue: sha256:d545747c1b97cd2e0f41221291cd2f66781bceabaab2cfd42a7be4b8c2f3ba62
+    rs-user: sha256:ea509182c180d20340a9427d8320f35085effdb4ed77b15275022d17bdd1fcf7
+    rs-payment: sha256:774b52c6180d8f3273f77230d70ace9c45e1f8909e21e10a19ed83b1cec53bb3
+    rs-shipping: sha256:89753ab489193286402c9486379da63c18a21d697b4fbd41246b68aacabfc6d3
+    rs-ratings: sha256:4899c686c249464783663342620425dc8c75a5d59ca55c247cf6aec62a5fff1a
+    rs-dispatch: sha256:de81f1d07b021f24c1cc66fef6aa27f9a5456f08b0c081dfb4cc71027ff67ead
+    rs-mongodb: sha256:119b545823cdce33a1d6cee87fdfed1cef82e680824ad0b49603be4aeb4e821e
+    rs-mysql-db: sha256:2355f9700d771f4326169d7d370ad1824d2d410876036f77342d9663d80f893b
+    rs-load: sha256:4041f38cb4d4c0263246dc4ceec493c5cd88e3be32b3292bd4960a1bceb8bd0e
+    tag_at_resolution: 2.1.0
+  infrastructure:
+    redis:
+      ref: redis:4.0.6
+      digest: sha256:0e773022cd6572a5153e5013afced0f7191652d3cdf9b1c6785eb13f6b2974b1
+    rabbitmq:
+      ref: rabbitmq:3.7-management-alpine
+      digest: sha256:e97f6bb68aab3f747f8a6f4dc52ed57401de91ca480a0be3a36e7476ac273169
+baseline_overrides:
+  storage_class:
+    setting: redis.storageClassName = local-path
+    chart_default: standard
+    reason: 'k3s provides the local-path storage class. With the chart default the redis PersistentVolumeClaim stays
+      Pending and the StatefulSet never starts.
+
+      '
+  memory_profile:
+    rule: 'For any container whose observed steady-state working set exceeds 60 per cent of the chart memory limit,
+      set limit to 256Mi and request to 128Mi. Applied uniformly to the affected services rather than tuned per
+      service.
+
+      '
+    reason: 'Robot Shop images are linux/amd64 and run under emulation on Apple silicon, which raises the resident
+      set. At the chart limit of 100Mi the ratings container was OOMKilled with exit code 137 while its own health
+      check and API were returning 200, so the fault was environmental rather than application behaviour. An unstable
+      baseline would invalidate the healthy-state checks that Section 3.5.3 requires before fault injection.
+
+      '
+    observed_working_set_at_chart_limit_100Mi:
+      ratings: '>100Mi (OOMKilled)'
+      user: 80Mi
+      cart: 78Mi
+      payment: 65Mi
+      catalogue: 51Mi
+      web: 42Mi
+    applied_to:
+    - cart
+    - catalogue
+    - dispatch
+    - payment
+    - ratings
+    - user
+    - web
+    - redis
+    new_values:
+      requests_memory: 128Mi
+      limits_memory: 256Mi
+    unchanged:
+    - mysql
+    - mongodb
+    - rabbitmq
+    - load
+    additional:
+      shipping:
+        requests_memory: 640Mi
+        limits_memory: 2048Mi
+        limits_cpu: 2000m
+        chart_values:
+          requests: 500Mi
+          limits: 1000Mi
+          limits_cpu: 500m
+        cpu_reason: 'Spring Boot startup is CPU bound and emulation multiplies that cost. At the chart CPU limit
+          of 500m the container was throttled and did not reach a ready state within the readiness budget of the
+          probe (initialDelay 5s, period 5s, failureThreshold 30, so 155s). The limit is raised only to absorb emulation
+          overhead; steady-state use is near 200m.
+
+          '
+        reason: 'The shipping container was also OOMKilled with exit code 137 at the chart limit of 1000Mi. It is
+          a Spring Boot service whose JVM heap grows during Hibernate initialisation, and emulation lengthens that
+          phase. Observed working set reached 626Mi before the kill.
+
+          '
+    verified_after_override:
+      ratings_working_set: 159Mi
+    note: 'CPU values are unchanged. P3 resource-adjustment scenarios are defined against this baseline, so the
+      injected misconfiguration remains a reduction relative to it.
+
+      '
+  workload:
+    setting: load generator NUM_CLIENTS = 5
+    manifest_default: 15
+    reason: 'Table 1.2 holds workload demand fixed, so the level must be declared. At the manifest default of 15
+      concurrent clients the load container was OOMKilled at its 200Mi limit, and the resulting request rate drove
+      Apache prefork in the ratings container past 256Mi so that it was also OOMKilled. Both effects are workload-driven
+      rather than injected faults, and an unstable baseline would invalidate the healthy-state checks of Section
+      3.5.3.
+
+      '
+    also_applied:
+      load:
+        requests_memory: 384Mi
+        limits_memory: 1024Mi
+      ratings:
+        requests_memory: 192Mi
+        limits_memory: 512Mi
+    note: 'The level will be confirmed by a stability window with zero restarts before any registration qualification
+      trial.
+
+      '
+    native_resource_reason: NUM_CLIENTS remains 5, all upstream transactions/waits unchanged. Prior native generator
+      was OOMKilled at 512Mi. Grouped statistics remained at 16 route entries but observed RSS still reached 364Mi,
+      so grouping alone is not accepted as a complete memory fix; 1Gi is the declared pilot envelope and must pass
+      the stability window.
+    native_stability_acceptance: Two five-user generators, 30-minute requested window, zero Pod replacements/restarts
+      and zero failures outside the designated upstream error task. Exact raw counts in results/dual-cluster/post-cleanup-stability/summary.json.
+  host_capacity_BLOCKER:
+    status: 'Native hybrid pilot accepted: three data-reset cycles, actual independent replica repair/isolation
+      and strict sustained dual-cluster window passed under dedicated Mac operation. No formal main/RQ3b trials.'
+    measurements:
+      docker_vm: 8 CPU, 7.75 GiB
+      k3d_cpu_with_load_generator: '>811% of 800% available (saturated)'
+      k3d_cpu_with_load_generator_stopped: 725% of 800%
+      k3d_cpu_after_restart_app_degraded: 601% of 800%
+      host_load_average: 69 to 142
+      consequences:
+      - kube-apiserver returned 'TLS handshake timeout'
+      - metrics-server became unavailable, so kubectl top stopped working
+      - ratings was OOMKilled repeatedly even at a 512Mi limit
+    cause: Historical node process inspection confirmed Rosetta translation. CPU readings were taken in different
+      application states, so they do not quantify an architecture-only causal effect.
+    why_earlier_advice_was_wrong: Neither initial success nor overload proves final host capacity. Current host
+      choice remains conditional on sustained load, total memory and actual dual-cluster replay.
+    note: No server purchase decision has been made. The hybrid architecture is implemented; whole-testbed or RQ3b
+      capacity has not yet been accepted.
+    chosen_path: Native arm64 applications, existing amd64 MySQL 5.7; no database migration or service reduction.
+    historical_options:
+    - Native amd64 host, on demand, powered on only for trial batches. Removes translation entirely and is the only
+      option that preserves the pinned published image digests.
+    - Build arm64 images from the Robot Shop Dockerfiles. Removes translation but replaces the pinned published
+      digests, so the reproducibility claim and Section 3.5.1 would both have to change.
+    - Reduce the deployed service set. Cheapest, but the resource-relationship condition depends on the dependency
+      structure, so this narrows RQ1.
+    current_acceptance: results/dual-cluster/acceptance.json
+  startup_time:
+    observation: 'The shipping container reached a ready state about 3.5 minutes after start under emulation. Trial
+      timeouts and reset waits must accommodate this; the exact values will be fixed in the pilot.
+
+      '
+  data_restore:
+    mode: fixed clean MySQL seed archive to independent per-environment PVC at round start
+    datadir: /var/lib/mysql
+    archive_sha256: 270b4241a511d725e08b577632bd69a17fe25c71a49e432ac1634136169547c5
+    mysql_gate: Separate client pod via Service using shipping and ratings accounts; exact seed row counts before
+      load.
+    other_stores:
+      mongodb: 'recreated pod writable layer, upstream initialization: 11 products and 3 users'
+      redis: clear work PVC with round-start Job while stopped, recreate pod, assert DBSIZE=0 before apps
+      rabbitmq: recreated pod writable layer; readiness before applications redeclare queues
+    during_trial: Ordinary MySQL pod restarts preserve the work PVC; never reseed on restart.
+    reset_acceptance:
+      passed: true
+      consecutive_cycles: 3
+      seconds:
+      - 153.73
+      - 153.58
+      - 159.5
+      evidence: results/reset-acceptance/summary.json
+      scope: Pilot contamination/removal across MySQL, MongoDB, Redis, RabbitMQ; not main trials.
+platform:
+  kubectl: v1.34.1
+  k3d: v5.9.0
+  k3s: v1.33.5-k3s1
+  helm: v4.3.0
+  node_arch: arm64
+  workload_arch: arm64 native application services; amd64 emulated MySQL 5.7
+  chaos_mesh: 2.8.4
+  python: 3.12 (uv-managed venv; system 3.14 is too new for ansible-core)
+  ansible_core: 2.19.3
+  cluster_topology:
+    lab: 1 server + 2 agents, traefik disabled
+    replica: 'lab-validation: 1 server + 2 agents; full application/Chaos capacity and isolation pilot passed; stopped
+      after validation'
+  restart_recovery_test:
+    performed: k3d cluster stop lab, then k3d cluster start lab
+    api_endpoint: unchanged at https://127.0.0.1:6550, so the kubeconfig stayed valid
+    fatal_networking_error: did not recur
+    node_ips_before:
+      server-0: 172.22.0.4
+      agent-0: 172.22.0.5
+      agent-1: 172.22.0.6
+    node_ips_after:
+      server-0: 172.22.0.4
+      agent-0: 172.22.0.6
+      agent-1: 172.22.0.5
+    conclusion: 'The pinned API port reliably fixes the stale-kubeconfig problem. The named network keeps the subnet
+      stable, which is why the earlier fatal error "failed to find interface with specified node ip" did not recur.
+      However the per-node IPs are NOT pinned and did swap between agent-0 and agent-1, so node IP stability must
+      not be claimed. All three nodes returned Ready.
+
+      '
+    workload_outcome: 'Every Pod restarted once, and ratings and shipping did not return to a ready state, so the
+      baseline was not confirmed after the restart. The supported recovery procedure is therefore: start the registry,
+      start the cluster, then run tools/reset_baseline.py --hard and require a confirmed baseline. A restarted cluster
+      is not assumed to be a valid snapshot.
+
+      '
+  verified_on_cluster:
+    beta_kubernetes_io_os_label: 'present on k3s v1.33.5 nodes, so the required nodeAffinity in candidate 3 is satisfiable
+
+      '
+    amd64_emulation_in_k3d: 'confirmed working; linux/amd64 Robot Shop images run on arm64 k3d nodes
+
+      '
+local_images:
+  purpose: Locally built replacements with recorded source, Dockerfile and exact observed Docker image IDs. Runtime
+    verification rejects IDs differing from this lock. Byte-identical future builds are not demonstrated; retain
+    exact images for release.
+  recorded: '2026-10-01'
+  third_party_unchanged:
+    redis: redis:4.0.6, multi-arch upstream, pulled natively per node
+    rabbitmq: rabbitmq:3.7-management-alpine, multi-arch upstream, pulled natively per node
+  note: Current accepted hybrid pilot keeps prior application limits except load request 384Mi/limit 1024Mi. NUM_CLIENTS=5
+    preserved; strict sustained dual-cluster window passed. Only unused primary node image copies were reclaimed;
+    Docker host images/build cache retained.
+  builds:
+    rs-cart:
+      ref: ddn-eval/rs-cart:arm64
+      image_id: sha256:c6af8494a9e565c8c8ae2b7fad7b81b274117dab4c4f266728362f297e47164a
+      architecture: arm64
+      size_bytes: 897544514
+      built_from: sources/robot-shop/cart/Dockerfile
+      deviation: unmodified
+    rs-catalogue:
+      ref: ddn-eval/rs-catalogue:arm64
+      image_id: sha256:6c48504879a7277d22aa27e94e530e79257bc463cbd4bf2ac3221b17df72b3ee
+      architecture: arm64
+      size_bytes: 892870267
+      built_from: sources/robot-shop/catalogue/Dockerfile
+      deviation: unmodified
+    rs-user:
+      ref: ddn-eval/rs-user:arm64
+      image_id: sha256:1f368acb5df589244cd6d7685f58d2d0961ae52bba690bde41c9645dd6044df4
+      architecture: arm64
+      size_bytes: 893378910
+      built_from: sources/robot-shop/user/Dockerfile
+      deviation: unmodified
+    rs-payment:
+      ref: ddn-eval/rs-payment:arm64
+      image_id: sha256:abdb4597968923858568b10bdf8430399be2fb793b63afa04ca9efb56ba1fed3
+      architecture: arm64
+      size_bytes: 1139005266
+      built_from: sources/robot-shop/payment/Dockerfile
+      deviation: unmodified
+    rs-web:
+      ref: ddn-eval/rs-web:arm64
+      image_id: sha256:cb242ed09d51e5114d251d26ef0680d76afc7fbbc417b5b52e63bd7f8b916444
+      architecture: arm64
+      size_bytes: 135654920
+      built_from: sources/robot-shop/web/Dockerfile
+      deviation: unmodified
+    rs-mongodb:
+      ref: ddn-eval/rs-mongodb:arm64
+      image_id: sha256:bc41708500734ac38c08c03a863ccdf9ddead09d7f226184da21180e6f2a1b6c
+      architecture: arm64
+      size_bytes: 713386379
+      built_from: sources/robot-shop/mongo/Dockerfile
+      deviation: unmodified
+    rs-load:
+      ref: ddn-eval/rs-load:arm64-grouped
+      image_id: sha256:17e590020aa926390071d4a8826e4f10c0d1252965b2c417bdf8970a98aeaa49
+      architecture: arm64
+      size_bytes: 1194882225
+      built_from: arch-eval/load.Dockerfile
+      deviation: Preserve upstream HTTP transactions, user count, spawn rate and wait times. Aggregate dynamic URL
+        statistics by route template using Locust name=, avoiding unbounded per-UUID stats; emit bounded health
+        metrics. Existing Locust 2.34.0 dependency environment is reused without upgrades.
+      previous_ref: ddn-eval/rs-load:arm64
+      previous_image_id: sha256:f8bcd3dbe6b30e83ee5bfaa29d8976f0ddb38f41dcf93eb5c830609673363e7e
+    rs-shipping:
+      ref: ddn-eval/rs-shipping:arm64
+      image_id: sha256:a985a68d3325bac8e9f7df07a9016567ce8307352e0b3620c3775e35b5f52cc5
+      architecture: arm64
+      size_bytes: 370994252
+      built_from: arch-eval/shipping.Dockerfile
+      deviation: runtime base openjdk:8-jdk replaced with eclipse-temurin:8-jdk; openjdk:8-jdk no longer exists
+        on Docker Hub
+      previous_recorded_id: sha256:3f4e61bf07a8bf523f42885b0087a124608bfcdb2b37b3e5a7f511b1a566d08f
+      created: '2026-09-30T15:16:46.389867296Z'
+    rs-ratings:
+      ref: ddn-eval/rs-ratings:arm64
+      image_id: sha256:aa369d10f15874569021fa0f42ff3329db3179f4a807287a53fa1df8e104f0f4
+      architecture: arm64
+      size_bytes: 451956892
+      built_from: arch-eval/ratings.Dockerfile
+      deviation: unzip dropped because bullseye security packages moved to archive.debian.org and the pinned version
+        404s on both architectures; composer stage pinned to composer:2.7; Instana AutoProfile ini dropped
+      previous_recorded_id: sha256:d0be8ba7c5f07f5d2ad336fad578f568953145358f8cbebddd47ffdbca21d005
+      created: '2026-09-30T15:18:09.362408417Z'
+    rs-dispatch:
+      ref: ddn-eval/rs-dispatch:arm64
+      image_id: sha256:baa118b600571fae683c759df7a7e1c8e7f1825655c4b5c7fc93c1a63d9c0098
+      architecture: arm64
+      size_bytes: 829775709
+      built_from: arch-eval/dispatch.Dockerfile
+      deviation: go-sensor pinned to v1.52.0, the last release before the pinned Robot Shop commit; the repository
+        commits no go.mod so the published build floated on latest and can no longer resolve under Go 1.17
+    rs-mysql-db:
+      ref: ddn-eval/rs-mysql-db:amd64
+      image_id: sha256:7ae8f07f467acf49087c037b4d69d75b7c4fd121ecc8b857ba071d7f22773bf5
+      architecture: amd64
+      size_bytes: 517717067
+      built_from: sources/robot-shop/mysql/Dockerfile
+      deviation: kept on amd64 under emulation; MySQL 5.7 publishes no arm64 image and it is not a measured hotspot
+      previous_recorded_id: sha256:d025771e96075c0de212a9a8764f21b45c331d72735e76806e4d7aa5f6f78116
+      created: '2026-09-30T15:18:27.647554468Z'
+  identity_reconciliation:
+    date: '2026-10-01'
+    reason: Three pre-existing image rebuilds were not reflected in the old lock. Actual Docker IDs equal the running
+      Pod IDs; previous IDs are preserved. No images rebuilt by reconciliation.
+    receipt: results/reset-acceptance/image-identity-reconciliation.json
+    reproducibility_limit: Dockerfiles contain floating dependencies; byte-identical rebuilds have not been demonstrated.
+      Preserve/export exact images before release.
+fault_tooling:
+  chaos_mesh_chart: 2.8.4
+  chart_file: tools/vendor/chaos-mesh-2.8.4.tgz
+  helm_values: tools/chaos-values.yaml
+  runtime: containerd
+  socket: /run/k3s/containerd/containerd.sock
+  ansible_core: 2.19.3
+  injector: tools/inject_fault.py
+  new_resource_fault: candidates/resource-calibration.yaml
+  qualification_status: S2/S3/S4 accepted; five unchanged candidates registered after 25 successes in 27 S4 attempts.
+    Two rejected attempts retained. Forty constructions feasible; main protocol pending and main trials zero.
+  chart_sha256: ae4abd385649771300e4d33a44627c0df3618be0780c385bf30cc2fdf2ad93fa
+qualification_continuation:
+  date: '2026-10-01'
+  stage: S1-S4 passed; five registered playbooks; main protocol pending
+  protocol: results/qualification-v3/protocol.json
+  acceptance: results/qualification-v3/S2-acceptance.json
+  setup_manifest: manifests/qualification.v3.yaml
+  manifest_sha256: 7a9783f73212cfd245a363f59b5337c13794872cb086d5309455a8b1155e5f5f
+  Python: 3.12.13 (main, May  4 2026, 21:02:19) [Clang 22.1.3 ]
+  ansible_core: 2.19.3
+  ansible_runner: 2.4.2
+  placement:
+    cart: k3d-lab-agent-1
+    catalogue: k3d-lab-agent-1
+    dispatch: k3d-lab-agent-1
+    load: k3d-lab-server-0
+    mongodb: k3d-lab-agent-1
+    mysql: k3d-lab-agent-0
+    payment: k3d-lab-server-0
+    rabbitmq: k3d-lab-server-0
+    ratings: k3d-lab-agent-1
+    redis: k3d-lab-agent-1
+    shipping: k3d-lab-server-0
+    user: k3d-lab-agent-1
+    web: k3d-lab-agent-1
+  load_random_seed: 20261001
+  payment_gateway:
+    override: true
+    endpoint: http://user:8080/health
+    contract: Explicit local substitute for the upstream dummy gateway HTTP-200 call. No financial transaction is
+      performed by this endpoint. Existing payment handler, queue publication and cart deletion remain.
+    reason: Avoid uncontrolled external Internet dependency in a single-worker synchronous payment service. The
+      source consumes PAYMENT_GATEWAY through requests.get without a timeout; this is a versioned lab configuration,
+      not an application upgrade.
+    scope: Gateway networking/reliability and real payment processing are outside this testbed evaluation.
+    causal_limit: Healthy no-fault control is retained separately. The single payment timeout cannot be attributed
+      uniquely to PayPal; local substitution removes a known uncontrolled dependency prospectively, rather than
+      re-labelling the failed run.
+  candidate_changes: none
+  main_trials: 0
+  S4_trials: 27
+  S3_acceptance: results/S3-feasibility-v1/acceptance.json
+  S3_requirements: candidates/requirements.S3-feasible.v1.yaml
+  S3_feasible: 40
+  S4_protocol: results/S4-registration-v3/protocol.json
+  S4_summary: results/S4-registration-v3/summary.json
+  registered_main_scenarios: 0
+  S4_successful_trials: 25
+  S4_rejected_trials: 2
+  S4_remaining_slots: 0
+  S4_successful_per_candidate:
+    P1: 5
+    P2: 5
+    P3: 5
+    P4: 5
+    P5: 5
+  S4_resume_protocol: results/S4-registration-v3/protocol.json
+  S4_rejection_classification: results/continuation-20261001/S4-rejection-classification.json
+  runtime_state: Primary and validation clusters stopped after successful final verification; registry, images,
+    data volumes and build cache retained
+  stop_receipt: results/S4-registration-v3/cluster-stop-receipt.json
+  latest_verified_state: results/S4-registration-v3/final-state.json
+  S4_environment_window: results/S4-registration-v3/environment-window.json
+  network_diagnostic: results/probe-network-control-v1/record.json
+  S4_rejection_classifications:
+  - results/continuation-20261001/S4-rejection-classification.json
+  - results/S4-registration-v2/rejection-classification.json
+  S4_acceptance: results/S4-registration-v3/acceptance.json
+  registered_candidate_count: 5
+  registration_record: candidates/registration.v1.json
+  main_protocol_ready: false

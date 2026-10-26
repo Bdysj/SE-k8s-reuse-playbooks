@@ -1,0 +1,2 @@
+*.yaml linguist-detectable=True
+*.txt linguist-detectable=True

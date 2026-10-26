@@ -1,0 +1,487 @@
+{
+  "services": {
+    "cart": {
+      "ports": [
+        {
+          "name": "http",
+          "port": 8080,
+          "targetPort": 8080
+        }
+      ],
+      "selector": {
+        "service": "cart"
+      },
+      "type": "ClusterIP"
+    },
+    "catalogue": {
+      "ports": [
+        {
+          "name": "http",
+          "port": 8080,
+          "targetPort": 8080
+        }
+      ],
+      "selector": {
+        "service": "catalogue"
+      },
+      "type": "ClusterIP"
+    },
+    "dispatch": {
+      "ports": [
+        {
+          "name": "headless",
+          "port": 55555,
+          "targetPort": 55555
+        }
+      ],
+      "selector": {
+        "service": "dispatch"
+      },
+      "type": "ClusterIP"
+    },
+    "mongodb": {
+      "ports": [
+        {
+          "name": "mongo",
+          "port": 27017,
+          "targetPort": 27017
+        }
+      ],
+      "selector": {
+        "service": "mongodb"
+      },
+      "type": "ClusterIP"
+    },
+    "mysql": {
+      "ports": [
+        {
+          "name": "mysql",
+          "port": 3306,
+          "targetPort": 3306
+        }
+      ],
+      "selector": {
+        "service": "mysql"
+      },
+      "type": "ClusterIP"
+    },
+    "payment": {
+      "ports": [
+        {
+          "name": "http",
+          "port": 8080,
+          "targetPort": 8080
+        }
+      ],
+      "selector": {
+        "service": "payment"
+      },
+      "type": "ClusterIP"
+    },
+    "rabbitmq": {
+      "ports": [
+        {
+          "name": "tcp-epmd",
+          "port": 4369,
+          "targetPort": 4369
+        },
+        {
+          "name": "tcp-amqp",
+          "port": 5672,
+          "targetPort": 5672
+        },
+        {
+          "name": "http-management",
+          "port": 15672,
+          "targetPort": 15672
+        }
+      ],
+      "selector": {
+        "service": "rabbitmq"
+      },
+      "type": "ClusterIP"
+    },
+    "ratings": {
+      "ports": [
+        {
+          "name": "http",
+          "port": 80,
+          "targetPort": 80
+        }
+      ],
+      "selector": {
+        "service": "ratings"
+      },
+      "type": "ClusterIP"
+    },
+    "redis": {
+      "ports": [
+        {
+          "name": "redis",
+          "port": 6379,
+          "targetPort": 6379
+        }
+      ],
+      "selector": {
+        "service": "redis"
+      },
+      "type": "ClusterIP"
+    },
+    "shipping": {
+      "ports": [
+        {
+          "name": "http",
+          "port": 8080,
+          "targetPort": 8080
+        }
+      ],
+      "selector": {
+        "service": "shipping"
+      },
+      "type": "ClusterIP"
+    },
+    "user": {
+      "ports": [
+        {
+          "name": "http",
+          "port": 8080,
+          "targetPort": 8080
+        }
+      ],
+      "selector": {
+        "service": "user"
+      },
+      "type": "ClusterIP"
+    },
+    "web": {
+      "ports": [
+        {
+          "name": "http",
+          "port": 8080,
+          "targetPort": 8080
+        }
+      ],
+      "selector": {
+        "service": "web"
+      },
+      "type": "LoadBalancer"
+    }
+  },
+  "workloads": {
+    "cart": {
+      "containers": {
+        "cart": {
+          "env": [
+            "INSTANA_AGENT_HOST"
+          ],
+          "image": "robotshop/rs-cart@sha256:388349d5cb3ccc14a192c345bfd42596920737db35d6a03a27457f6682710a37",
+          "resources": {
+            "limits": {
+              "cpu": 200,
+              "memory": 268435456
+            },
+            "requests": {
+              "cpu": 100,
+              "memory": 134217728
+            }
+          }
+        }
+      },
+      "kind": "Deployment",
+      "replicas": 1,
+      "selector": {
+        "service": "cart"
+      }
+    },
+    "catalogue": {
+      "containers": {
+        "catalogue": {
+          "env": [
+            "INSTANA_AGENT_HOST"
+          ],
+          "image": "robotshop/rs-catalogue@sha256:d545747c1b97cd2e0f41221291cd2f66781bceabaab2cfd42a7be4b8c2f3ba62",
+          "resources": {
+            "limits": {
+              "cpu": 200,
+              "memory": 268435456
+            },
+            "requests": {
+              "cpu": 100,
+              "memory": 134217728
+            }
+          }
+        }
+      },
+      "kind": "Deployment",
+      "replicas": 1,
+      "selector": {
+        "service": "catalogue"
+      }
+    },
+    "dispatch": {
+      "containers": {
+        "dispatch": {
+          "env": [
+            "INSTANA_AGENT_HOST"
+          ],
+          "image": "robotshop/rs-dispatch@sha256:de81f1d07b021f24c1cc66fef6aa27f9a5456f08b0c081dfb4cc71027ff67ead",
+          "resources": {
+            "limits": {
+              "cpu": 200,
+              "memory": 268435456
+            },
+            "requests": {
+              "cpu": 100,
+              "memory": 134217728
+            }
+          }
+        }
+      },
+      "kind": "Deployment",
+      "replicas": 1,
+      "selector": {
+        "service": "dispatch"
+      }
+    },
+    "load": {
+      "containers": {
+        "load": {
+          "env": [
+            "ERROR",
+            "HOST",
+            "NUM_CLIENTS",
+            "SILENT"
+          ],
+          "image": "robotshop/rs-load@sha256:4041f38cb4d4c0263246dc4ceec493c5cd88e3be32b3292bd4960a1bceb8bd0e",
+          "resources": {
+            "limits": {
+              "cpu": 200,
+              "memory": 536870912
+            },
+            "requests": {
+              "cpu": 100,
+              "memory": 134217728
+            }
+          }
+        }
+      },
+      "kind": "Deployment",
+      "replicas": 1,
+      "selector": {
+        "service": "load"
+      }
+    },
+    "mongodb": {
+      "containers": {
+        "mongodb": {
+          "env": [],
+          "image": "robotshop/rs-mongodb@sha256:119b545823cdce33a1d6cee87fdfed1cef82e680824ad0b49603be4aeb4e821e",
+          "resources": {
+            "limits": {
+              "cpu": 200,
+              "memory": 209715200
+            },
+            "requests": {
+              "cpu": 100,
+              "memory": 104857600
+            }
+          }
+        }
+      },
+      "kind": "Deployment",
+      "replicas": 1,
+      "selector": {
+        "service": "mongodb"
+      }
+    },
+    "mysql": {
+      "containers": {
+        "mysql": {
+          "env": [],
+          "image": "robotshop/rs-mysql-db@sha256:2355f9700d771f4326169d7d370ad1824d2d410876036f77342d9663d80f893b",
+          "resources": {
+            "limits": {
+              "cpu": 200,
+              "memory": 1073741824
+            },
+            "requests": {
+              "cpu": 100,
+              "memory": 734003200
+            }
+          }
+        }
+      },
+      "kind": "Deployment",
+      "replicas": 1,
+      "selector": {
+        "service": "mysql"
+      }
+    },
+    "payment": {
+      "containers": {
+        "payment": {
+          "env": [
+            "INSTANA_AGENT_HOST"
+          ],
+          "image": "robotshop/rs-payment@sha256:774b52c6180d8f3273f77230d70ace9c45e1f8909e21e10a19ed83b1cec53bb3",
+          "resources": {
+            "limits": {
+              "cpu": 200,
+              "memory": 268435456
+            },
+            "requests": {
+              "cpu": 100,
+              "memory": 134217728
+            }
+          }
+        }
+      },
+      "kind": "Deployment",
+      "replicas": 1,
+      "selector": {
+        "service": "payment",
+        "stage": "prod"
+      }
+    },
+    "rabbitmq": {
+      "containers": {
+        "rabbitmq": {
+          "env": [],
+          "image": "rabbitmq@sha256:e97f6bb68aab3f747f8a6f4dc52ed57401de91ca480a0be3a36e7476ac273169",
+          "resources": {
+            "limits": {
+              "cpu": 200,
+              "memory": 536870912
+            },
+            "requests": {
+              "cpu": 100,
+              "memory": 268435456
+            }
+          }
+        }
+      },
+      "kind": "Deployment",
+      "replicas": 1,
+      "selector": {
+        "service": "rabbitmq"
+      }
+    },
+    "ratings": {
+      "containers": {
+        "ratings": {
+          "env": [],
+          "image": "robotshop/rs-ratings@sha256:4899c686c249464783663342620425dc8c75a5d59ca55c247cf6aec62a5fff1a",
+          "resources": {
+            "limits": {
+              "cpu": 200,
+              "memory": 536870912
+            },
+            "requests": {
+              "cpu": 100,
+              "memory": 201326592
+            }
+          }
+        }
+      },
+      "kind": "Deployment",
+      "replicas": 1,
+      "selector": {
+        "service": "ratings"
+      }
+    },
+    "redis": {
+      "containers": {
+        "redis": {
+          "env": [],
+          "image": "redis@sha256:0e773022cd6572a5153e5013afced0f7191652d3cdf9b1c6785eb13f6b2974b1",
+          "resources": {
+            "limits": {
+              "cpu": 200,
+              "memory": 268435456
+            },
+            "requests": {
+              "cpu": 100,
+              "memory": 134217728
+            }
+          }
+        }
+      },
+      "kind": "StatefulSet",
+      "replicas": 1,
+      "selector": {
+        "service": "redis"
+      }
+    },
+    "shipping": {
+      "containers": {
+        "shipping": {
+          "env": [],
+          "image": "robotshop/rs-shipping@sha256:89753ab489193286402c9486379da63c18a21d697b4fbd41246b68aacabfc6d3",
+          "resources": {
+            "limits": {
+              "cpu": 2000,
+              "memory": 2147483648
+            },
+            "requests": {
+              "cpu": 100,
+              "memory": 671088640
+            }
+          }
+        }
+      },
+      "kind": "Deployment",
+      "replicas": 1,
+      "selector": {
+        "service": "shipping"
+      }
+    },
+    "user": {
+      "containers": {
+        "user": {
+          "env": [
+            "INSTANA_AGENT_HOST"
+          ],
+          "image": "robotshop/rs-user@sha256:ea509182c180d20340a9427d8320f35085effdb4ed77b15275022d17bdd1fcf7",
+          "resources": {
+            "limits": {
+              "cpu": 200,
+              "memory": 268435456
+            },
+            "requests": {
+              "cpu": 100,
+              "memory": 134217728
+            }
+          }
+        }
+      },
+      "kind": "Deployment",
+      "replicas": 1,
+      "selector": {
+        "service": "user"
+      }
+    },
+    "web": {
+      "containers": {
+        "web": {
+          "env": [],
+          "image": "robotshop/rs-web@sha256:b3c20d4a22f2875397726d2184062360bb2ab9c8776beffca7c2e7b3652893bc",
+          "resources": {
+            "limits": {
+              "cpu": 200,
+              "memory": 268435456
+            },
+            "requests": {
+              "cpu": 100,
+              "memory": 134217728
+            }
+          }
+        }
+      },
+      "kind": "Deployment",
+      "replicas": 1,
+      "selector": {
+        "service": "web"
+      }
+    }
+  }
+}

@@ -1,0 +1,157 @@
+#!/usr/bin/env python3
+"""First S2 feasibility episode per candidate; does not count as S4/main trials.
+
+A 60s pre-repair persistence observation is recorded explicitly. This is not an
+independent matched no-repair replay over the full outcome window; that and five
+qualification repeats are required subsequently. All raw observations are kept.
+"""
+import argparse,json,re,subprocess,sys,time,traceback
+from pathlib import Path
+import reset_baseline as rb
+from inject_fault import inject
+
+ROOT=Path(__file__).resolve().parent.parent
+OUT=ROOT/'results/fault-pilot';OUT.mkdir(parents=True,exist_ok=True)
+CALIBRATED_RESOURCE=False
+SUFFIX=''
+FAMILIES={'P1':('workload recovery','web'), 'P2':('replica adjustment','ratings'),
+          'P3':('resource adjustment','web'), 'P4':('configuration repair','web'),
+          'P5':('Service routing repair','web')}
+TARGETS={'P1':('/',r"Stan's Robot Shop"),'P2':('/api/ratings/api/fetch/Watson',r'"rating_count"\s*:'),
+         'P3':('/api/catalogue/products',r'"sku"\s*:'),'P4':('/api/catalogue/products',r'"sku"\s*:'),
+         'P5':('/',r"Stan's Robot Shop")}
+
+
+def observe(key):
+    path,pat=TARGETS[key]
+    p=subprocess.run(['kubectl','--context','k3d-lab','-n','robot-shop','exec','probe','--',
+                      'curl','-s','--max-time','4','-w','===STATUS===%{http_code} %{time_total}',
+                      'http://web:8080'+path],capture_output=True,text=True,timeout=20)
+    body,_,tail=p.stdout.rpartition('===STATUS===')
+    bits=tail.split();code=int(bits[0]) if bits and bits[0].isdigit() else 0
+    seconds=float(bits[1]) if len(bits)>1 else None
+    match=re.search(pat,body,re.S) is not None
+    # Fixed pilot criterion, declared before observations. Baseline must pass it.
+    healthy=p.returncode==0 and code==200 and match and seconds is not None and seconds<=1.0
+    rollout = None
+    if key=='P3' and CALIBRATED_RESOURCE:
+        dep=rb.kjson('get','deployment','web');desired=dep['spec']['replicas']
+        expected=next(c['resources'] for c in dep['spec']['template']['spec']['containers'] if c['name']=='web')
+        pods=rb.kjson('get','pods','-l','service=web')['items']
+        matched=[p for p in pods if not p['metadata'].get('deletionTimestamp') and
+                 any(c['name']=='web' and c['resources']==expected for c in p['spec']['containers']) and
+                 p.get('status',{}).get('containerStatuses') and all(c.get('ready') and c.get('restartCount',0)==0 for c in p.get('status',{}).get('containerStatuses',[]))]
+        rollout={'matching_ready_pods':len(matched),'desired':desired,'generation':dep['metadata']['generation'],
+                 'observed_generation':dep.get('status',{}).get('observedGeneration'),
+                 'complete':len(matched)>=desired and dep.get('status',{}).get('observedGeneration')==dep['metadata']['generation']}
+        healthy=healthy and rollout['complete']
+    return {'rollout':rollout,'at':time.time(),'command_rc':p.returncode,'status':code,'content_match':match,
+            'seconds':seconds,'healthy':healthy,'body_prefix':body[:90]}
+
+
+def reset(log):
+    with log.open('w') as f:
+        p=subprocess.run([sys.executable,'-u',str(ROOT/'tools/reset_baseline.py'),'--tier-timeout','600'],
+                         stdout=f,stderr=subprocess.STDOUT)
+    if p.returncode:
+        raise RuntimeError(f'baseline reset failed, see {log}')
+
+
+def episode(key):
+    family,target=FAMILIES[key]
+    record={'candidate':key,'family':family,'type':'S2_pilot_episode','target':target,
+            'registered':False,'S4_trials_completed':0,'criterion':'HTTP 200, expected body, <=1s target request',
+            'execution_complete':None,'target_recovery':None,'non_target_regression':None,
+            'requires_independent_matched_control':True}
+    if key=='P3' and CALIBRATED_RESOURCE:
+        record['criterion'] += '; desired generation has a ready, zero-restart Pod with the declared resources'
+        record['fault_origin']='study-defined calibrated underallocation; original MicroRemed values rejected in prior pilot'
+    rb.ensure_probe();base=observe(key);record['healthy_before']=base
+    if not base['healthy']:
+        raise RuntimeError(f'{key} pilot criterion does not pass healthy baseline: {base}')
+    t0=time.monotonic()
+    if key=='P1': record['injection']=inject('pod-failure',target,target)
+    elif key=='P2': rb.kubectl('scale','deployment',target,'--replicas=0');record['injection']={'type':'study-defined replicas=0'}
+    elif key=='P3': record['injection']=inject('pod-config-error',target,target,resource_values={'requests':{'cpu':'1m','memory':'1Mi'},'limits':{'cpu':'2m','memory':'1Mi'}} if CALIBRATED_RESOURCE else None)
+    elif key=='P4':
+        rb.kubectl('set','env','deployment/web','CATALOGUE_HOST=user')
+        rb.kubectl('rollout','status','deployment/web','--timeout=120s')
+        record['injection']={'type':'consumed env CATALOGUE_HOST=user; restart generated by template change'}
+    elif key=='P5':
+        rb.kubectl('patch','service','web','--type=merge','-p','{"spec":{"selector":{"service":"missing-pilot-target"}}}')
+        record['injection']={'type':'study-defined wrong Service selector only'}
+    samples=[];deadline=time.monotonic()+90
+    while time.monotonic()<deadline:
+        o=observe(key);samples.append(o)
+        if not o['healthy']:break
+        time.sleep(3)
+    record['fault_confirmation']=samples
+    if not samples or samples[-1]['healthy']:
+        record.update(fault_observable=False,result='fault not observable under fixed workload; no candidate repair scored')
+        return record
+    persistence=[];deadline=time.monotonic()+60
+    while time.monotonic()<deadline:
+        persistence.append(observe(key));time.sleep(5)
+    record['pre_repair_persistence']=persistence
+    if any(o['healthy'] for o in persistence):
+        record.update(fault_observable=True,result='symptom self-resolved during pre-repair observation; pairing not qualified')
+        return record
+    record['fault_observable']=True
+    with (OUT/f'{key}{SUFFIX}-ansible.log').open('w') as f:
+        p=subprocess.run(['uv','run','--with','ansible-core==2.19.3','ansible-playbook','-i',
+                          str(ROOT/'tools/ansible-inventory.ini'),str(ROOT/f'candidates/{key}.yaml'),
+                          '-e','kube_context=k3d-lab'],stdout=f,stderr=subprocess.STDOUT,timeout=240)
+    record['ansible_exit_code']=p.returncode;record['execution_complete']=p.returncode==0
+    if key!='P5':
+        try: rb.kubectl('rollout','status',f'deployment/{target}','--timeout=120s')
+        except Exception as e:record['rollout_error']=str(e)
+    recovered=[];streak=0;deadline=time.monotonic()+90
+    while time.monotonic()<deadline:
+        o=observe(key);recovered.append(o);streak=streak+1 if o['healthy'] else 0
+        if streak>=3:break
+        time.sleep(5)
+    record['post_repair_target']=recovered;record['target_recovery']=streak>=3
+    checks=[]
+    for name,path,status,pattern in rb.CHECKS:
+        code,body=rb.http_check(path)
+        checks.append({'name':name,'status':code,'content_match':bool(re.search(pattern,body,re.S)),
+                       'passed':code==status and bool(re.search(pattern,body,re.S))})
+    record['business_checks']=checks
+    pods=rb.kjson('get','pods')['items']
+    regressions=[p['metadata']['name'] for p in pods
+                 if p['metadata'].get('labels',{}).get('service') not in (None,target)
+                 and (not p.get('status',{}).get('containerStatuses') or
+                      any(not c.get('ready') or c.get('restartCount',0)>0
+                          for c in p.get('status',{}).get('containerStatuses',[])))]
+    record['non_target_regression']=bool(regressions or any(not c['passed'] for c in checks))
+    record['non_target_unhealthy_pods']=regressions
+    record['episode_seconds']=round(time.monotonic()-t0,2)
+    if key=='P1':
+        record['finished_before_fault_expiry']=record['episode_seconds']<1200
+        record['chaos_status']=rb.kjson('get','podchaos','pilot-pod-fail').get('status',{})
+    record['result']='pilot repair observed' if record['execution_complete'] and record['target_recovery'] and not record['non_target_regression'] else 'pilot failed; not qualified'
+    return record
+
+
+def main():
+    global CALIBRATED_RESOURCE, SUFFIX
+    ap=argparse.ArgumentParser();ap.add_argument('--calibrated-resource',action='store_true');ap.add_argument('--candidate',choices=list(FAMILIES));ap.add_argument('--skip-initial-reset',action='store_true');a=ap.parse_args()
+    CALIBRATED_RESOURCE=a.calibrated_resource;SUFFIX='-calibrated' if CALIBRATED_RESOURCE else ''
+    keys=[a.candidate] if a.candidate else list(FAMILIES)
+    records=[]
+    for index,key in enumerate(keys):
+        record=None
+        try:
+            if index or not a.skip_initial_reset:reset(OUT/f'{key}{SUFFIX}-baseline.log')
+            record=episode(key)
+        except Exception as e:
+            record={'candidate':key,'type':'pilot_failure','registered':False,'error':str(e),'traceback':traceback.format_exc()}
+        finally:
+            if key=='P1':rb.kubectl('delete','podchaos','pilot-pod-fail','--ignore-not-found','--timeout=60s',allow_fail=True)
+            rb.kubectl('delete','pod','probe','--grace-period=1','--ignore-not-found',allow_fail=True)
+        (OUT/f'{key}{SUFFIX}.json').write_text(json.dumps(record,indent=2));records.append(record)
+        (OUT/f'summary{SUFFIX}.json').write_text(json.dumps({'type':'pilot_only','records':records,'main_trials':0},indent=2))
+        print(f"{key}: {record.get('result',record.get('error'))}",flush=True)
+    reset(OUT/f'final-reset{SUFFIX}.log')
+
+if __name__=='__main__':main()

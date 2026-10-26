@@ -1,0 +1,33 @@
+# Large evidence travels as release assets. Keep local copies out of Git.
+/results/
+/outputs/
+/archive-supplemental/
+/runtime-logs/
+/seed/*.tar
+/seed/*.tar.*
+!/seed/*.tar.sha256
+*.tar.gz
+*.tar.zst
+*.tgz
+!/tools/vendor/*.tgz
+*.oci
+*.docker.tar
+
+# Local environments and credentials
+.venv/
+.cache/
+__pycache__/
+*.py[cod]
+.DS_Store
+.env
+!.env.example
+!.env.testbed.example
+*.pem
+*.key
+kubeconfig*
+.kube/
+.docker/
+*.log
+*.pid
+
+.build-assets/

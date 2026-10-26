@@ -1,0 +1,155 @@
+{
+  "schema_version": 2,
+  "repository": "Bdysj/SE-k8s-reuse-playbooks",
+  "published": false,
+  "status": "Local archives verified. Upload and fresh-cluster validation are pending.",
+  "evidence_root": ".",
+  "expected_evidence_regular_files": 48544,
+  "expected_supplemental_files": 23,
+  "expected_evidence_symlinks": 3767,
+  "expected_runtime_log_files": 95,
+  "evidence_file_manifest": "reproduction/evidence-manifest.jsonl",
+  "evidence_link_manifest": "reproduction/evidence-links.json",
+  "publication_redactions": "reproduction/publication-redactions.json",
+  "assets": [
+    {
+      "name": "evidence-main-20261026-v1.tar.gz",
+      "category": "evidence-main",
+      "format": "tar+gzip",
+      "bytes": 44417050,
+      "sha256": "3f144274a16bdb919e079bc5883199979432ae79496ff2391786778ac230022d",
+      "regular_files": 8490,
+      "symlinks": 0,
+      "uncompressed_payload_bytes": 678145107,
+      "required_for": [
+        "tables",
+        "verify"
+      ],
+      "archive_payload_hashes_verified": true,
+      "published": false,
+      "url": null
+    },
+    {
+      "name": "evidence-rq3a-20261026-v1.tar.gz",
+      "category": "evidence-rq3a",
+      "format": "tar+gzip",
+      "bytes": 120704407,
+      "sha256": "73ad4078fee05ce405ec977793021ab10054661db63c5bd7b441d7d5696c5c14",
+      "regular_files": 24829,
+      "symlinks": 3763,
+      "uncompressed_payload_bytes": 1235140895,
+      "required_for": [
+        "tables",
+        "verify"
+      ],
+      "archive_payload_hashes_verified": true,
+      "published": false,
+      "url": null
+    },
+    {
+      "name": "evidence-rq3b-20261026-v1.tar.gz",
+      "category": "evidence-rq3b",
+      "format": "tar+gzip",
+      "bytes": 7811880,
+      "sha256": "01dd0ff0e76c16e0cdbf1baaacebebcadb0ec694d6c6693f0b77cd986f626a79",
+      "regular_files": 3112,
+      "symlinks": 0,
+      "uncompressed_payload_bytes": 125852361,
+      "required_for": [
+        "tables",
+        "verify"
+      ],
+      "archive_payload_hashes_verified": true,
+      "published": false,
+      "url": null
+    },
+    {
+      "name": "evidence-history-analysis-20261026-v1.tar.gz",
+      "category": "evidence-history-analysis",
+      "format": "tar+gzip",
+      "bytes": 73907471,
+      "sha256": "0f72031a889b617c725d5efd812857f38278b88b8db69b20a4c7e0bcfb1a7693",
+      "regular_files": 12136,
+      "symlinks": 4,
+      "uncompressed_payload_bytes": 395100087,
+      "required_for": [
+        "tables",
+        "verify"
+      ],
+      "archive_payload_hashes_verified": true,
+      "published": false,
+      "url": null
+    },
+    {
+      "name": "runtime-logs-20261026-v1.tar.gz",
+      "category": "runtime-logs",
+      "format": "tar+gzip",
+      "bytes": 35498291,
+      "sha256": "3e95fc1e1e38f9848f14ec3f60edfe835c7abcf7d35305b7ce8be637a9903ab2",
+      "regular_files": 95,
+      "symlinks": 0,
+      "uncompressed_payload_bytes": 379887141,
+      "required_for": [
+        "verify"
+      ],
+      "archive_payload_hashes_verified": true,
+      "published": false,
+      "url": null
+    },
+    {
+      "name": "mysql-seed-20261026-v1.tar.gz",
+      "category": "mysql-seed",
+      "format": "tar+gzip",
+      "bytes": 103038085,
+      "sha256": "9c20c910a3651739e321fd736541e140a44f996dbf9d3eecf253fa66e37e35bb",
+      "regular_files": 1,
+      "symlinks": 0,
+      "uncompressed_payload_bytes": 487950848,
+      "required_for": [
+        "live"
+      ],
+      "archive_payload_hashes_verified": true,
+      "published": false,
+      "url": null
+    },
+    {
+      "name": "frozen-images-20261026-v1.tar.gz.part-01",
+      "bytes": 1073741824,
+      "sha256": "e3852e83f9f8e51d7ff70645167b229015724f1cf5b9b842bc03cbf5a457fd69",
+      "part": 1,
+      "category": "images",
+      "format": "docker-save+gzip-part",
+      "required_for": [
+        "offline-images"
+      ],
+      "published": false,
+      "url": null
+    },
+    {
+      "name": "frozen-images-20261026-v1.tar.gz.part-02",
+      "bytes": 1054127326,
+      "sha256": "0cc7e5e8da453c9b3c5e9fdb7ce6ca0286adfe2a4786e6ddafa8be599e74f605",
+      "part": 2,
+      "category": "images",
+      "format": "docker-save+gzip-part",
+      "required_for": [
+        "offline-images"
+      ],
+      "published": false,
+      "url": null
+    }
+  ],
+  "image_bundle": {
+    "joined_name": "frozen-images-20261026-v1.tar.gz",
+    "joined_bytes": 2127869150,
+    "joined_sha256": "0aa0550fa8be752e165b13fcf228257207c7596040b47c6170c9be33d7c5af4a",
+    "parts_in_order": [
+      "frozen-images-20261026-v1.tar.gz.part-01",
+      "frozen-images-20261026-v1.tar.gz.part-02"
+    ],
+    "unique_image_count": 16,
+    "restore_command": "cat frozen-images-20261026-v1.tar.gz.part-01 frozen-images-20261026-v1.tar.gz.part-02 | gzip -dc | docker image load"
+  },
+  "images_published": false,
+  "fresh_cluster_validated": false
+}

@@ -1,0 +1,773 @@
+{
+  "version": "playbook-registration-v1",
+  "registered_at": 1790871157.6578681,
+  "registered_date": "2026-10-02T00:12:37.657869+08:00",
+  "registered_candidates": 5,
+  "candidates": [
+    {
+      "id": "P1",
+      "registered": true,
+      "family": "workload recovery",
+      "origin": "repository-adapted",
+      "frozen_playbook": {
+        "path": "candidates/P1.yaml",
+        "sha256": "3955ed2918a54282ff2a84d71f694a1da04c68eef2a3c8efe94a67cc5ebf8047",
+        "adaptations": [
+          "Explicit Kubernetes context only; task order, targets and action values preserved."
+        ],
+        "discovery_and_action_bindings": "The frozen file is authoritative; no locator or literal target is replaced to rescue a later replay.",
+        "upstream_source": {
+          "path": "sources/kubeplaybook/Real_time_fault/12/1/Ansible Playbook_1.yaml",
+          "sha256": "a727045b57dae4d7978d2dc9b2974482e39042e92b6d03de4eeff5dbb6898460"
+        }
+      },
+      "historical_execution_evidence": {
+        "successful_trials": 5,
+        "records": [
+          {
+            "candidate": "P1",
+            "repeat": 3,
+            "record": "results/S4-registration-v1/03-P1-repeat-3/record.json",
+            "record_sha256": "c74776883c2694d1e5a554ac54bf514ead68252c471475a65a6d1df82c23decb",
+            "protocol": "results/S4-registration-v1/protocol.json",
+            "protocol_sha256": "922cde22f5135e3c35e9c082a7458f29f093091fd91764dda527f5844b9c8fa0",
+            "sustained_recovery_seconds": 139.69575983396498,
+            "execution_complete": true,
+            "target_recovery": true,
+            "non_target_regression": false,
+            "reset_confirmed": true
+          },
+          {
+            "candidate": "P1",
+            "repeat": 2,
+            "record": "results/S4-registration-v1/08-P1-repeat-2/record.json",
+            "record_sha256": "67ce1a009b1daeafb6f5482a3e7d6ab57d2f7d571af22b646971881bf8240478",
+            "protocol": "results/S4-registration-v1/protocol.json",
+            "protocol_sha256": "922cde22f5135e3c35e9c082a7458f29f093091fd91764dda527f5844b9c8fa0",
+            "sustained_recovery_seconds": 139.64906249998603,
+            "execution_complete": true,
+            "target_recovery": true,
+            "non_target_regression": false,
+            "reset_confirmed": true
+          },
+          {
+            "candidate": "P1",
+            "repeat": 4,
+            "record": "results/S4-registration-v3/08-P1-repeat-4/record.json",
+            "record_sha256": "f69a3bd3a2bd898850008eb6cbb8c59a89d05776da40c0f80ea1745043122f33",
+            "protocol": "results/S4-registration-v3/protocol.json",
+            "protocol_sha256": "bb32ce012f5895981605c071955e7852f863aa8378afc0adaf6ee28a9ce39ee2",
+            "sustained_recovery_seconds": 139.07230487500783,
+            "execution_complete": true,
+            "target_recovery": true,
+            "non_target_regression": false,
+            "reset_confirmed": true
+          },
+          {
+            "candidate": "P1",
+            "repeat": 5,
+            "record": "results/S4-registration-v3/12-P1-repeat-5/record.json",
+            "record_sha256": "3f501d2b2cf9c3b5f15def87d41972b196e36dac5abb0bfd2b18547a3d3778d9",
+            "protocol": "results/S4-registration-v3/protocol.json",
+            "protocol_sha256": "bb32ce012f5895981605c071955e7852f863aa8378afc0adaf6ee28a9ce39ee2",
+            "sustained_recovery_seconds": 139.86064070899738,
+            "execution_complete": true,
+            "target_recovery": true,
+            "non_target_regression": false,
+            "reset_confirmed": true
+          },
+          {
+            "candidate": "P1",
+            "repeat": 1,
+            "record": "results/S4-registration-v3/16-P1-repeat-1/record.json",
+            "record_sha256": "a2c366c6fb0fcea9a2d18a328d016c23e96eea11de3c00317cda091030633d4d",
+            "protocol": "results/S4-registration-v3/protocol.json",
+            "protocol_sha256": "bb32ce012f5895981605c071955e7852f863aa8378afc0adaf6ee28a9ce39ee2",
+            "sustained_recovery_seconds": 139.3726035419968,
+            "execution_complete": true,
+            "target_recovery": true,
+            "non_target_regression": false,
+            "reset_confirmed": true
+          }
+        ],
+        "qualification_acceptance": "results/S4-registration-v3/acceptance.json",
+        "acceptance_sha256": "944b773ae13cd19921947b26eb5116dba3bad9c15fac937a48479865729aca74"
+      },
+      "four_condition_requirements": {
+        "target_objects": "Existing deployment-list/grep web rule resolves intended serving Deployment, without adding discovery.",
+        "referenced_fields": "Restart template update and controller rollout are admitted; paused=true is unsupported by kubectl restart.",
+        "resource_relationships": "Current frontend Service routes to the Pods of the Deployment restarted by the candidate.",
+        "verification_criteria": "Historical homepage status/content/latency establishes only the original read criterion."
+      },
+      "requirements_source": {
+        "path": "candidates/requirements.S3-feasible.v1.yaml",
+        "sha256": "5e5df88e4956dfd3b21c144f14fe8b091382e06beb9f1ba9b1dc48ad91da869e"
+      },
+      "necessary_actions": [
+        "Restart the pods to solve process crash process for deployment"
+      ],
+      "registered_fault": "PodChaos pod-failure on one original web Pod, 1200s",
+      "scope": "Registered baseline repair only; S3 constructions establish feasibility, not successful changed-condition reuse."
+    },
+    {
+      "id": "P2",
+      "registered": true,
+      "family": "replica adjustment",
+      "origin": "repository-adapted",
+      "frozen_playbook": {
+        "path": "candidates/P2.yaml",
+        "sha256": "7a2adce624bf0bddc87e486c392f1ce723853111ef469deb9911acb600a4d0a2",
+        "adaptations": [
+          "Explicit Kubernetes context only; task order, targets and action values preserved."
+        ],
+        "discovery_and_action_bindings": "The frozen file is authoritative; no locator or literal target is replaced to rescue a later replay.",
+        "upstream_source": {
+          "path": "sources/kubeplaybook/Real_time_fault/7/nsible Playbook_GPT_Generated.yaml",
+          "sha256": "8af4a647f517b86f0728603d71c53531a180a640afd47d6ebb47b1a0d0af4c4c"
+        }
+      },
+      "historical_execution_evidence": {
+        "successful_trials": 5,
+        "records": [
+          {
+            "candidate": "P2",
+            "repeat": 1,
+            "record": "results/S4-registration-v1/07-P2-repeat-1/record.json",
+            "record_sha256": "94f98157d57f0b9658d6f7d62824b2a5d1cd6a504d5d010f901f05b98520cf1b",
+            "protocol": "results/S4-registration-v1/protocol.json",
+            "protocol_sha256": "922cde22f5135e3c35e9c082a7458f29f093091fd91764dda527f5844b9c8fa0",
+            "sustained_recovery_seconds": 134.53095899999607,
+            "execution_complete": true,
+            "target_recovery": true,
+            "non_target_regression": false,
+            "reset_confirmed": true
+          },
+          {
+            "candidate": "P2",
+            "repeat": 2,
+            "record": "results/S4-registration-v1/09-P2-repeat-2/record.json",
+            "record_sha256": "e8ee7974f871078ae7f9fede762783d4116541faeba03f918942c8f9b8c6af12",
+            "protocol": "results/S4-registration-v1/protocol.json",
+            "protocol_sha256": "922cde22f5135e3c35e9c082a7458f29f093091fd91764dda527f5844b9c8fa0",
+            "sustained_recovery_seconds": 130.60606737498892,
+            "execution_complete": true,
+            "target_recovery": true,
+            "non_target_regression": false,
+            "reset_confirmed": true
+          },
+          {
+            "candidate": "P2",
+            "repeat": 3,
+            "record": "results/S4-registration-v3/01-P2-repeat-3/record.json",
+            "record_sha256": "4d6887d3152dfaba6e7dc7b9e0ece181e69c06a6e98b6c9e4e0cbc1f4be165b5",
+            "protocol": "results/S4-registration-v3/protocol.json",
+            "protocol_sha256": "bb32ce012f5895981605c071955e7852f863aa8378afc0adaf6ee28a9ce39ee2",
+            "sustained_recovery_seconds": 135.4038847500342,
+            "execution_complete": true,
+            "target_recovery": true,
+            "non_target_regression": false,
+            "reset_confirmed": true
+          },
+          {
+            "candidate": "P2",
+            "repeat": 4,
+            "record": "results/S4-registration-v3/06-P2-repeat-4/record.json",
+            "record_sha256": "6612586e4e507c244b8bf388f3c931b349ce87e2235448019643fd2a3a8935c4",
+            "protocol": "results/S4-registration-v3/protocol.json",
+            "protocol_sha256": "bb32ce012f5895981605c071955e7852f863aa8378afc0adaf6ee28a9ce39ee2",
+            "sustained_recovery_seconds": 136.64769424998667,
+            "execution_complete": true,
+            "target_recovery": true,
+            "non_target_regression": false,
+            "reset_confirmed": true
+          },
+          {
+            "candidate": "P2",
+            "repeat": 5,
+            "record": "results/S4-registration-v3/10-P2-repeat-5/record.json",
+            "record_sha256": "c097f8f7c502e5157aa3f17aadf18f966a6980b8d940a371ade2df946bd87626",
+            "protocol": "results/S4-registration-v3/protocol.json",
+            "protocol_sha256": "bb32ce012f5895981605c071955e7852f863aa8378afc0adaf6ee28a9ce39ee2",
+            "sustained_recovery_seconds": 133.10156704101246,
+            "execution_complete": true,
+            "target_recovery": true,
+            "non_target_regression": false,
+            "reset_confirmed": true
+          }
+        ],
+        "qualification_acceptance": "results/S4-registration-v3/acceptance.json",
+        "acceptance_sha256": "944b773ae13cd19921947b26eb5116dba3bad9c15fac937a48479865729aca74"
+      },
+      "four_condition_requirements": {
+        "target_objects": "Literal Deployment ratings in robot-shop owns the intended serving Pods.",
+        "referenced_fields": "Numeric spec.replicas plus one satisfies the current required ready-replica minimum.",
+        "resource_relationships": "Ratings Service selects the scaled Deployment and Pods can access existing MySQL Service/account.",
+        "verification_criteria": "Historical fetch does not establish persistent vote write/read correctness."
+      },
+      "requirements_source": {
+        "path": "candidates/requirements.S3-feasible.v1.yaml",
+        "sha256": "5e5df88e4956dfd3b21c144f14fe8b091382e06beb9f1ba9b1dc48ad91da869e"
+      },
+      "necessary_actions": [
+        "Increase replica count by one"
+      ],
+      "registered_fault": "ratings replicas=0",
+      "scope": "Registered baseline repair only; S3 constructions establish feasibility, not successful changed-condition reuse."
+    },
+    {
+      "id": "P3",
+      "registered": true,
+      "family": "resource adjustment",
+      "origin": "repository-adapted",
+      "frozen_playbook": {
+        "path": "candidates/P3.yaml",
+        "sha256": "ec5656022730e08a468a5af478c8c31ab5961317f8b6ce9a51cbb0db33988c48",
+        "adaptations": [
+          "Explicit Kubernetes context only; task order, targets and action values preserved."
+        ],
+        "discovery_and_action_bindings": "The frozen file is authoritative; no locator or literal target is replaced to rescue a later replay.",
+        "upstream_source": {
+          "path": "sources/kubeplaybook/Real_time_fault/3/Ansible Playbook_GPT_Generated.yaml",
+          "sha256": "e68378755b18c3504675256c20e6d8dcb7366c6976043725b3dccd0ba9a423f8"
+        }
+      },
+      "historical_execution_evidence": {
+        "successful_trials": 5,
+        "records": [
+          {
+            "candidate": "P3",
+            "repeat": 5,
+            "record": "results/S4-registration-v1/01-P3-repeat-5/record.json",
+            "record_sha256": "87aa24fcdad6d7df6ae1ad2d73a6fe14a4bd50d70e6ab354fce7f652a33ac6f6",
+            "protocol": "results/S4-registration-v1/protocol.json",
+            "protocol_sha256": "922cde22f5135e3c35e9c082a7458f29f093091fd91764dda527f5844b9c8fa0",
+            "sustained_recovery_seconds": 135.6120923749986,
+            "execution_complete": true,
+            "target_recovery": true,
+            "non_target_regression": false,
+            "reset_confirmed": true
+          },
+          {
+            "candidate": "P3",
+            "repeat": 2,
+            "record": "results/S4-registration-v1/04-P3-repeat-2/record.json",
+            "record_sha256": "958ff6eb26bf53d611eeb16b4838d765f766417edd952d45724281d50aa9cfd6",
+            "protocol": "results/S4-registration-v1/protocol.json",
+            "protocol_sha256": "922cde22f5135e3c35e9c082a7458f29f093091fd91764dda527f5844b9c8fa0",
+            "sustained_recovery_seconds": 139.47969879204175,
+            "execution_complete": true,
+            "target_recovery": true,
+            "non_target_regression": false,
+            "reset_confirmed": true
+          },
+          {
+            "candidate": "P3",
+            "repeat": 4,
+            "record": "results/S4-registration-v1/05-P3-repeat-4/record.json",
+            "record_sha256": "758926a8a211a7aa79acb0975ef7f2dea5ea70a96676d9b8840201191ade1533",
+            "protocol": "results/S4-registration-v1/protocol.json",
+            "protocol_sha256": "922cde22f5135e3c35e9c082a7458f29f093091fd91764dda527f5844b9c8fa0",
+            "sustained_recovery_seconds": 144.40625008405186,
+            "execution_complete": true,
+            "target_recovery": true,
+            "non_target_regression": false,
+            "reset_confirmed": true
+          },
+          {
+            "candidate": "P3",
+            "repeat": 3,
+            "record": "results/S4-registration-v3/07-P3-repeat-3/record.json",
+            "record_sha256": "f8d9cf1cb70326fae0636a2bbba19b0d4d91203cc6d27d5ca06d1c37dd4a81bc",
+            "protocol": "results/S4-registration-v3/protocol.json",
+            "protocol_sha256": "bb32ce012f5895981605c071955e7852f863aa8378afc0adaf6ee28a9ce39ee2",
+            "sustained_recovery_seconds": 139.94045933400048,
+            "execution_complete": true,
+            "target_recovery": true,
+            "non_target_regression": false,
+            "reset_confirmed": true
+          },
+          {
+            "candidate": "P3",
+            "repeat": 1,
+            "record": "results/S4-registration-v3/13-P3-repeat-1/record.json",
+            "record_sha256": "ace968883afcfa4aebf7c7ecc4be1b6918451b42b0f5c3bca02dae0959d9962c",
+            "protocol": "results/S4-registration-v3/protocol.json",
+            "protocol_sha256": "bb32ce012f5895981605c071955e7852f863aa8378afc0adaf6ee28a9ce39ee2",
+            "sustained_recovery_seconds": 138.94891758298036,
+            "execution_complete": true,
+            "target_recovery": true,
+            "non_target_regression": false,
+            "reset_confirmed": true
+          }
+        ],
+        "qualification_acceptance": "results/S4-registration-v3/acceptance.json",
+        "acceptance_sha256": "944b773ae13cd19921947b26eb5116dba3bad9c15fac937a48479865729aca74"
+      },
+      "four_condition_requirements": {
+        "target_objects": "Literal Deployment web and actual named-container ownership remain valid.",
+        "referenced_fields": "Fixed resources and retained affinity/rollout fields must permit a ready current template on the declared node. beta.kubernetes.io/os=linux alone does not establish schedulability. Legacy annotation alone does not establish actual QoS.",
+        "resource_relationships": "Current serving desired template belongs to the workload whose resources the candidate changes.",
+        "verification_criteria": "Recovery binds to current matching ReplicaSet/Pod; stronger transaction criteria require new evidence."
+      },
+      "requirements_source": {
+        "path": "candidates/requirements.S3-feasible.v1.yaml",
+        "sha256": "5e5df88e4956dfd3b21c144f14fe8b091382e06beb9f1ba9b1dc48ad91da869e"
+      },
+      "necessary_actions": [
+        "Set resource limits/requests",
+        "Set Quality of Service (QoS) classes",
+        "Set node affinity"
+      ],
+      "registered_fault": "web requests 1m/1Mi, limits 2m/1Mi; predeclared calibrated fault",
+      "scope": "Registered baseline repair only; S3 constructions establish feasibility, not successful changed-condition reuse."
+    },
+    {
+      "id": "P4",
+      "registered": true,
+      "family": "configuration repair",
+      "origin": "manual",
+      "frozen_playbook": {
+        "path": "candidates/P4.yaml",
+        "sha256": "427e6db77f3dbdb51c85a88603b80f438a4c389a23ef79346bf815979e696a37",
+        "adaptations": [],
+        "discovery_and_action_bindings": "The frozen file is authoritative; no locator or literal target is replaced to rescue a later replay.",
+        "manual_repair_task": "Restore CATALOGUE_HOST=catalogue and recreate web containers."
+      },
+      "historical_execution_evidence": {
+        "successful_trials": 5,
+        "records": [
+          {
+            "candidate": "P4",
+            "repeat": 3,
+            "record": "results/S4-registration-v1/02-P4-repeat-3/record.json",
+            "record_sha256": "379516a468e84d979f5c26bc534e340f9de06fb03e97c371ed9f2ebaf7986348",
+            "protocol": "results/S4-registration-v1/protocol.json",
+            "protocol_sha256": "922cde22f5135e3c35e9c082a7458f29f093091fd91764dda527f5844b9c8fa0",
+            "sustained_recovery_seconds": 139.57229058304802,
+            "execution_complete": true,
+            "target_recovery": true,
+            "non_target_regression": false,
+            "reset_confirmed": true
+          },
+          {
+            "candidate": "P4",
+            "repeat": 4,
+            "record": "results/S4-registration-v1/06-P4-repeat-4/record.json",
+            "record_sha256": "35ae93c8e6a9a1236aae92f9378983382c2bbe5c7a0f666566d6658a3782b443",
+            "protocol": "results/S4-registration-v1/protocol.json",
+            "protocol_sha256": "922cde22f5135e3c35e9c082a7458f29f093091fd91764dda527f5844b9c8fa0",
+            "sustained_recovery_seconds": 140.3454056250048,
+            "execution_complete": true,
+            "target_recovery": true,
+            "non_target_regression": false,
+            "reset_confirmed": true
+          },
+          {
+            "candidate": "P4",
+            "repeat": 2,
+            "record": "results/S4-registration-v3/09-P4-repeat-2/record.json",
+            "record_sha256": "e82d232c93d0e8790f9cb13bf67ccbe98f5cf0804d470d81209cdcf0afaeeaca",
+            "protocol": "results/S4-registration-v3/protocol.json",
+            "protocol_sha256": "bb32ce012f5895981605c071955e7852f863aa8378afc0adaf6ee28a9ce39ee2",
+            "sustained_recovery_seconds": 139.1431188749848,
+            "execution_complete": true,
+            "target_recovery": true,
+            "non_target_regression": false,
+            "reset_confirmed": true
+          },
+          {
+            "candidate": "P4",
+            "repeat": 1,
+            "record": "results/S4-registration-v3/11-P4-repeat-1/record.json",
+            "record_sha256": "4192527374bace9585eea2847cf7c5443aad36da374e91e0885b1bc0dd388200",
+            "protocol": "results/S4-registration-v3/protocol.json",
+            "protocol_sha256": "bb32ce012f5895981605c071955e7852f863aa8378afc0adaf6ee28a9ce39ee2",
+            "sustained_recovery_seconds": 139.86083966703154,
+            "execution_complete": true,
+            "target_recovery": true,
+            "non_target_regression": false,
+            "reset_confirmed": true
+          },
+          {
+            "candidate": "P4",
+            "repeat": 5,
+            "record": "results/S4-registration-v3/15-P4-repeat-5/record.json",
+            "record_sha256": "9618adc12625e494ca5725ea7a07feac7640a7b08fbc68f6168fbf247bfe9d80",
+            "protocol": "results/S4-registration-v3/protocol.json",
+            "protocol_sha256": "bb32ce012f5895981605c071955e7852f863aa8378afc0adaf6ee28a9ce39ee2",
+            "sustained_recovery_seconds": 144.73120266699698,
+            "execution_complete": true,
+            "target_recovery": true,
+            "non_target_regression": false,
+            "reset_confirmed": true
+          }
+        ],
+        "qualification_acceptance": "results/S4-registration-v3/acceptance.json",
+        "acceptance_sha256": "944b773ae13cd19921947b26eb5116dba3bad9c15fac937a48479865729aca74"
+      },
+      "four_condition_requirements": {
+        "target_objects": "Literal Deployment web is the frontend consuming the repaired variable.",
+        "referenced_fields": "CATALOGUE_HOST is consumed by envsubst; catalogue resolves to intended backend; updates by name preserve other consumed variables.",
+        "resource_relationships": "Patched frontend receives current traffic and restarted nginx consumes updated variable.",
+        "verification_criteria": "Catalogue read success does not establish cart write/read integration."
+      },
+      "requirements_source": {
+        "path": "candidates/requirements.S3-feasible.v1.yaml",
+        "sha256": "5e5df88e4956dfd3b21c144f14fe8b091382e06beb9f1ba9b1dc48ad91da869e"
+      },
+      "necessary_actions": [
+        "Restore the consumed catalogue host on web",
+        "Wait for container recreation with the restored configuration"
+      ],
+      "registered_fault": "web CATALOGUE_HOST=user; consumed at container start",
+      "scope": "Registered baseline repair only; S3 constructions establish feasibility, not successful changed-condition reuse."
+    },
+    {
+      "id": "P5",
+      "registered": true,
+      "family": "Service routing repair",
+      "origin": "manual",
+      "frozen_playbook": {
+        "path": "candidates/P5.yaml",
+        "sha256": "f6f0071809636870a9e253a3eff6d324d17e977484ebddc3e6aa690a8e8c9f6c",
+        "adaptations": [],
+        "discovery_and_action_bindings": "The frozen file is authoritative; no locator or literal target is replaced to rescue a later replay.",
+        "manual_repair_task": "Restore web Service selector service=web; targetPort is not changed."
+      },
+      "historical_execution_evidence": {
+        "successful_trials": 5,
+        "records": [
+          {
+            "candidate": "P5",
+            "repeat": 2,
+            "record": "results/S4-registration-v3/02-P5-repeat-2/record.json",
+            "record_sha256": "df7d8dec1c3bdeca248da0f75496a304c3ee75b1cfc1be04e60d5fe7ad46aaa7",
+            "protocol": "results/S4-registration-v3/protocol.json",
+            "protocol_sha256": "bb32ce012f5895981605c071955e7852f863aa8378afc0adaf6ee28a9ce39ee2",
+            "sustained_recovery_seconds": 139.63355149998097,
+            "execution_complete": true,
+            "target_recovery": true,
+            "non_target_regression": false,
+            "reset_confirmed": true
+          },
+          {
+            "candidate": "P5",
+            "repeat": 4,
+            "record": "results/S4-registration-v3/03-P5-repeat-4/record.json",
+            "record_sha256": "1ab9e2beafd600bdb44d3dd11801eb3f9584c4ccc35f940d74588b75f743384b",
+            "protocol": "results/S4-registration-v3/protocol.json",
+            "protocol_sha256": "bb32ce012f5895981605c071955e7852f863aa8378afc0adaf6ee28a9ce39ee2",
+            "sustained_recovery_seconds": 139.4078282499686,
+            "execution_complete": true,
+            "target_recovery": true,
+            "non_target_regression": false,
+            "reset_confirmed": true
+          },
+          {
+            "candidate": "P5",
+            "repeat": 3,
+            "record": "results/S4-registration-v3/04-P5-repeat-3/record.json",
+            "record_sha256": "413d511b30210f35f7841ed51475aa97e83334729375ae2f2516462f2baacf87",
+            "protocol": "results/S4-registration-v3/protocol.json",
+            "protocol_sha256": "bb32ce012f5895981605c071955e7852f863aa8378afc0adaf6ee28a9ce39ee2",
+            "sustained_recovery_seconds": 144.72358708298998,
+            "execution_complete": true,
+            "target_recovery": true,
+            "non_target_regression": false,
+            "reset_confirmed": true
+          },
+          {
+            "candidate": "P5",
+            "repeat": 1,
+            "record": "results/S4-registration-v3/05-P5-repeat-1/record.json",
+            "record_sha256": "3df79ab2b95bc2b6ead8c8036f4b124c0120f015e92f85d6a4142160f5b483a1",
+            "protocol": "results/S4-registration-v3/protocol.json",
+            "protocol_sha256": "bb32ce012f5895981605c071955e7852f863aa8378afc0adaf6ee28a9ce39ee2",
+            "sustained_recovery_seconds": 139.58538649999537,
+            "execution_complete": true,
+            "target_recovery": true,
+            "non_target_regression": false,
+            "reset_confirmed": true
+          },
+          {
+            "candidate": "P5",
+            "repeat": 5,
+            "record": "results/S4-registration-v3/14-P5-repeat-5/record.json",
+            "record_sha256": "84ae3ff893ac8643341b65f1144105f03b120f57a34bada6998336be2048032c",
+            "protocol": "results/S4-registration-v3/protocol.json",
+            "protocol_sha256": "bb32ce012f5895981605c071955e7852f863aa8378afc0adaf6ee28a9ce39ee2",
+            "sustained_recovery_seconds": 139.76988691696897,
+            "execution_complete": true,
+            "target_recovery": true,
+            "non_target_regression": false,
+            "reset_confirmed": true
+          }
+        ],
+        "qualification_acceptance": "results/S4-registration-v3/acceptance.json",
+        "acceptance_sha256": "944b773ae13cd19921947b26eb5116dba3bad9c15fac937a48479865729aca74"
+      },
+      "four_condition_requirements": {
+        "target_objects": "Literal Service web is the routing object to be repaired.",
+        "referenced_fields": "Fixed selector.service=web matches current Pod labels and retained selector keys also match.",
+        "resource_relationships": "Current client path traverses repaired Service and selected endpoints are actual frontend Pods.",
+        "verification_criteria": "Historical homepage success does not establish current stateful cart write/read integration."
+      },
+      "requirements_source": {
+        "path": "candidates/requirements.S3-feasible.v1.yaml",
+        "sha256": "5e5df88e4956dfd3b21c144f14fe8b091382e06beb9f1ba9b1dc48ad91da869e"
+      },
+      "necessary_actions": [
+        "Restore only the declared web Service selector"
+      ],
+      "registered_fault": "web Service selector service=missing-pilot-target",
+      "scope": "Registered baseline repair only; S3 constructions establish feasibility, not successful changed-condition reuse."
+    }
+  ],
+  "declared_setup": {
+    "manifest": "manifests/qualification.v3.yaml",
+    "manifest_sha256": "7a9783f73212cfd245a363f59b5337c13794872cb086d5309455a8b1155e5f5f",
+    "fingerprint_sha256": "b04530edc349eb1f05998ffd0fdb97621654cabfe06b56256c34a4d56aff18a5",
+    "context": "k3d-lab",
+    "namespace": "robot-shop",
+    "inventory": "tools/ansible-inventory.ini",
+    "inventory_sha256": "bef68399acd0668b66f34e99bb512248234d6df23d82d5209f78cad5eb26f818",
+    "qualification_protocol": "results/S4-registration-v3/protocol.json",
+    "qualification_protocol_sha256": "bb32ce012f5895981605c071955e7852f863aa8378afc0adaf6ee28a9ce39ee2",
+    "source_pins": {
+      "robot-shop": {
+        "url": "https://github.com/instana/robot-shop",
+        "commit": "55292e2199f2fb00a165b1f7d3045fe7f8922038",
+        "license": "Apache-2.0",
+        "helm_chart": {
+          "path": "K8s/helm",
+          "chart_name": "robot-shop",
+          "chart_version": "1.1.0"
+        }
+      },
+      "kubeplaybook": {
+        "url": "https://github.com/K8sPlayBook/KubePlaybook",
+        "commit": "57136d02afa68c2ee5e6df4dc5479d455b98047d",
+        "license": "MIT"
+      },
+      "microremed": {
+        "url": "https://github.com/LLM4AIOps/MicroRemed",
+        "commit": "f579d32279188ea9e5843877d3311d8d7b4ea2c3",
+        "license": "NONE"
+      }
+    },
+    "application_image_refs": [
+      {
+        "workload": "cart",
+        "container": "cart",
+        "image": "ddn-eval/rs-cart:arm64"
+      },
+      {
+        "workload": "catalogue",
+        "container": "catalogue",
+        "image": "ddn-eval/rs-catalogue:arm64"
+      },
+      {
+        "workload": "dispatch",
+        "container": "dispatch",
+        "image": "ddn-eval/rs-dispatch:arm64"
+      },
+      {
+        "workload": "mongodb",
+        "container": "mongodb",
+        "image": "ddn-eval/rs-mongodb:arm64"
+      },
+      {
+        "workload": "mysql",
+        "container": "mysql",
+        "image": "ddn-eval/rs-mysql-db:amd64"
+      },
+      {
+        "workload": "payment",
+        "container": "payment",
+        "image": "ddn-eval/rs-payment:arm64"
+      },
+      {
+        "workload": "rabbitmq",
+        "container": "rabbitmq",
+        "image": "rabbitmq@sha256:e97f6bb68aab3f747f8a6f4dc52ed57401de91ca480a0be3a36e7476ac273169"
+      },
+      {
+        "workload": "ratings",
+        "container": "ratings",
+        "image": "ddn-eval/rs-ratings:arm64"
+      },
+      {
+        "workload": "shipping",
+        "container": "shipping",
+        "image": "ddn-eval/rs-shipping:arm64"
+      },
+      {
+        "workload": "user",
+        "container": "user",
+        "image": "ddn-eval/rs-user:arm64"
+      },
+      {
+        "workload": "web",
+        "container": "web",
+        "image": "ddn-eval/rs-web:arm64"
+      },
+      {
+        "workload": "redis",
+        "container": "redis",
+        "image": "redis@sha256:0e773022cd6572a5153e5013afced0f7191652d3cdf9b1c6785eb13f6b2974b1"
+      },
+      {
+        "workload": "load",
+        "container": "load",
+        "image": "ddn-eval/rs-load:arm64-grouped"
+      }
+    ],
+    "local_immutable_image_records": {
+      "rs-cart": {
+        "ref": "ddn-eval/rs-cart:arm64",
+        "image_id": "sha256:c6af8494a9e565c8c8ae2b7fad7b81b274117dab4c4f266728362f297e47164a",
+        "architecture": "arm64",
+        "built_from": "sources/robot-shop/cart/Dockerfile",
+        "deviation": "unmodified"
+      },
+      "rs-catalogue": {
+        "ref": "ddn-eval/rs-catalogue:arm64",
+        "image_id": "sha256:6c48504879a7277d22aa27e94e530e79257bc463cbd4bf2ac3221b17df72b3ee",
+        "architecture": "arm64",
+        "built_from": "sources/robot-shop/catalogue/Dockerfile",
+        "deviation": "unmodified"
+      },
+      "rs-user": {
+        "ref": "ddn-eval/rs-user:arm64",
+        "image_id": "sha256:1f368acb5df589244cd6d7685f58d2d0961ae52bba690bde41c9645dd6044df4",
+        "architecture": "arm64",
+        "built_from": "sources/robot-shop/user/Dockerfile",
+        "deviation": "unmodified"
+      },
+      "rs-payment": {
+        "ref": "ddn-eval/rs-payment:arm64",
+        "image_id": "sha256:abdb4597968923858568b10bdf8430399be2fb793b63afa04ca9efb56ba1fed3",
+        "architecture": "arm64",
+        "built_from": "sources/robot-shop/payment/Dockerfile",
+        "deviation": "unmodified"
+      },
+      "rs-web": {
+        "ref": "ddn-eval/rs-web:arm64",
+        "image_id": "sha256:cb242ed09d51e5114d251d26ef0680d76afc7fbbc417b5b52e63bd7f8b916444",
+        "architecture": "arm64",
+        "built_from": "sources/robot-shop/web/Dockerfile",
+        "deviation": "unmodified"
+      },
+      "rs-mongodb": {
+        "ref": "ddn-eval/rs-mongodb:arm64",
+        "image_id": "sha256:bc41708500734ac38c08c03a863ccdf9ddead09d7f226184da21180e6f2a1b6c",
+        "architecture": "arm64",
+        "built_from": "sources/robot-shop/mongo/Dockerfile",
+        "deviation": "unmodified"
+      },
+      "rs-load": {
+        "ref": "ddn-eval/rs-load:arm64-grouped",
+        "image_id": "sha256:17e590020aa926390071d4a8826e4f10c0d1252965b2c417bdf8970a98aeaa49",
+        "architecture": "arm64",
+        "built_from": "arch-eval/load.Dockerfile",
+        "deviation": "Preserve upstream HTTP transactions, user count, spawn rate and wait times. Aggregate dynamic URL statistics by route template using Locust name=, avoiding unbounded per-UUID stats; emit bounded health metrics. Existing Locust 2.34.0 dependency environment is reused without upgrades."
+      },
+      "rs-shipping": {
+        "ref": "ddn-eval/rs-shipping:arm64",
+        "image_id": "sha256:a985a68d3325bac8e9f7df07a9016567ce8307352e0b3620c3775e35b5f52cc5",
+        "architecture": "arm64",
+        "built_from": "arch-eval/shipping.Dockerfile",
+        "deviation": "runtime base openjdk:8-jdk replaced with eclipse-temurin:8-jdk; openjdk:8-jdk no longer exists on Docker Hub"
+      },
+      "rs-ratings": {
+        "ref": "ddn-eval/rs-ratings:arm64",
+        "image_id": "sha256:aa369d10f15874569021fa0f42ff3329db3179f4a807287a53fa1df8e104f0f4",
+        "architecture": "arm64",
+        "built_from": "arch-eval/ratings.Dockerfile",
+        "deviation": "unzip dropped because bullseye security packages moved to archive.debian.org and the pinned version 404s on both architectures; composer stage pinned to composer:2.7; Instana AutoProfile ini dropped"
+      },
+      "rs-dispatch": {
+        "ref": "ddn-eval/rs-dispatch:arm64",
+        "image_id": "sha256:baa118b600571fae683c759df7a7e1c8e7f1825655c4b5c7fc93c1a63d9c0098",
+        "architecture": "arm64",
+        "built_from": "arch-eval/dispatch.Dockerfile",
+        "deviation": "go-sensor pinned to v1.52.0, the last release before the pinned Robot Shop commit; the repository commits no go.mod so the published build floated on latest and can no longer resolve under Go 1.17"
+      },
+      "rs-mysql-db": {
+        "ref": "ddn-eval/rs-mysql-db:amd64",
+        "image_id": "sha256:7ae8f07f467acf49087c037b4d69d75b7c4fd121ecc8b857ba071d7f22773bf5",
+        "architecture": "amd64",
+        "built_from": "sources/robot-shop/mysql/Dockerfile",
+        "deviation": "kept on amd64 under emulation; MySQL 5.7 publishes no arm64 image and it is not a measured hotspot"
+      }
+    },
+    "workload_random_seed": 20261001,
+    "placement": {
+      "cart": "k3d-lab-agent-1",
+      "catalogue": "k3d-lab-agent-1",
+      "dispatch": "k3d-lab-agent-1",
+      "load": "k3d-lab-server-0",
+      "mongodb": "k3d-lab-agent-1",
+      "mysql": "k3d-lab-agent-0",
+      "payment": "k3d-lab-server-0",
+      "rabbitmq": "k3d-lab-server-0",
+      "ratings": "k3d-lab-agent-1",
+      "redis": "k3d-lab-agent-1",
+      "shipping": "k3d-lab-server-0",
+      "user": "k3d-lab-agent-1",
+      "web": "k3d-lab-agent-1"
+    },
+    "gateway_substitute": {
+      "override": true,
+      "endpoint": "http://user:8080/health",
+      "contract": "Explicit local substitute for the upstream dummy gateway HTTP-200 call. No financial transaction is performed by this endpoint. Existing payment handler, queue publication and cart deletion remain.",
+      "reason": "Avoid uncontrolled external Internet dependency in a single-worker synchronous payment service. The source consumes PAYMENT_GATEWAY through requests.get without a timeout; this is a versioned lab configuration, not an application upgrade.",
+      "scope": "Gateway networking/reliability and real payment processing are outside this testbed evaluation.",
+      "causal_limit": "Healthy no-fault control is retained separately. The single payment timeout cannot be attributed uniquely to PayPal; local substitution removes a known uncontrolled dependency prospectively, rather than re-labelling the failed run."
+    },
+    "verification": {
+      "timing_seconds": {
+        "healthy_warmup": 30,
+        "fault_confirmation_budget": 90,
+        "pre_repair_persistence": 60,
+        "repair_budget": 120,
+        "minimum_sustained_recovery": 30,
+        "matched_outcome_window": 210,
+        "sample_interval": 5
+      },
+      "target_check": "Through web Service: curl completes, HTTP 200, expected content and <=1s. P3 also requires current-template ReplicaSet/Pod ownership and complete desired rollout, zero target restarts.",
+      "non_target_checks": "Direct catalogue /products, shipping /codes, user /uniqueid, payment /health, ratings /api/fetch/Watson; exclude the target service; ready zero-restart Pods outside target; plus all six through-web checks during recovered window.",
+      "additional_S4_verification": "All targets also require current owner-bound ReplicaSet rollout, desired/ready replica count one, and zero target restarts. These are prospective stricter registration checks; historical S2 evidence is unchanged.",
+      "execution_gate": "Every listed necessary action must have runner_on_ok; skipped or absent necessary actions cannot qualify. All failed/unreachable task events remain execution errors."
+    }
+  },
+  "qualification_successes": 25,
+  "qualification_attempts": 27,
+  "rejected_attempts": [
+    {
+      "candidate": "P2",
+      "repeat": 3,
+      "record": "results/S4-registration-v1/10-P2-repeat-3/record.json",
+      "record_sha256": "50089cd8d00316ab022dcba1dba61e790824e0ce629bb9cdd3a8dc8cad76a6d7",
+      "reason": "20s shipping probe-exec collection timeout; recovery window incomplete. Qualification rejected, repair outcome indeterminate; concurrent host contention recorded but unique cause not established."
+    },
+    {
+      "candidate": "P2",
+      "repeat": 3,
+      "record": "results/S4-registration-v2/01-P2-repeat-3/record.json",
+      "record_sha256": "71f13107d008be9278d354a2129087bd94384d7ab068abf498af5d758f7680af",
+      "reason": "One catalogue curl request exceeded the fixed four-second budget before the candidate started. Necessary action and target recovery passed, but the full non-target-window gate failed and this qualification is rejected. The pre-action failure cannot be caused by the later candidate action. DNS/network/application cause remains undetermined. Raw outcome and non-target flags are unchanged; healthy diagnostic transport comparisons do not count as S4 successes or main results.",
+      "classification": "results/S4-registration-v2/rejection-classification.json",
+      "classification_sha256": "11cf3d95c2c746e94afce43dc7131b5119879b64e7b3b890b04d0087075e7112"
+    }
+  ],
+  "S3_feasible_constructions": 40,
+  "registered_main_scenarios": 0,
+  "main_replay_trials": 0,
+  "main_protocol_ready": false,
+  "limitations": [
+    "Historical S4 non-target gate checks the full window conservatively. Main Section 3.6 labels require synchronous immediately-pre-action checks and separate post-action failures.",
+    "Scenario-specific current verifiers, same-fault matched controls, prototype rules, permitted observations, evidence policy and comparison settings must be frozen before main collection.",
+    "Current v3 validation-replica fidelity is not established by the earlier baseline.arm64 dual-cluster pilot."
+  ]
+}

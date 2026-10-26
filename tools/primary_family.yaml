@@ -1,0 +1,86 @@
+# Declared primary repair family for each S1-passing candidate.
+#
+# Section 3.5.2 requires one candidate per repair family. Several KubePlaybook
+# candidates perform actions belonging to more than one family, so the primary
+# family must be declared before qualification, not chosen after seeing results.
+#
+# The declaration uses only evidence that already exists in the pinned
+# repository: the candidate's own natural-language prompt and Root cause text.
+# The quoted evidence is recorded here so the assignment can be audited.
+# It does not use any trial outcome.
+
+declared_by: "candidate prompt and Root cause text at KubePlaybook v1.0.0"
+declared_on: "2026-09-29"
+rule: >
+  The primary family is the repair family named by the stated intent of the
+  prompt. An action that only supports that intent, such as a restart applied
+  after a configuration change, does not change the primary family but is
+  registered as part of the frozen candidate.
+
+candidates:
+
+  "3":
+    primary: resource adjustment
+    evidence_prompt: "implement resource management techniques such as Quality of Service (QoS) classes, node affinity/anti-affinity, and resource limits/requests"
+    evidence_root_cause: "Node I/O stress in Kubernetes"
+    secondary_actions: ["QoS annotation", "required nodeAffinity on beta.kubernetes.io/os"]
+
+  "4":
+    primary: resource adjustment
+    evidence_prompt: "Optimize the number of containers per pod and utilize resource requests and limits effectively"
+    evidence_root_cause: "Pod API latency in kuberenets"
+    secondary_actions: ["scale to a fixed replica count of 2"]
+
+  "6":
+    primary: resource adjustment
+    evidence_prompt: "identifying and addressing memory-intensive pods or applications, optimizing resource requests and limits, implementing Horizontal Pod Autoscaling"
+    evidence_root_cause: "Node memory hog in kuberenets"
+    secondary_actions: ["autoscale, which creates an HPA"]
+
+  "7":
+    primary: replica adjustment
+    evidence_prompt: "check the current replica for the deployment \"ratings\" and Increase replica count by one"
+    evidence_root_cause: "Overload resources by increasing replica"
+    secondary_actions: []
+
+  "8":
+    primary: replica adjustment
+    evidence_prompt: "Increase replica count by one if current replica count is 3, otherwise decrease by one"
+    evidence_root_cause: "Overload resources"
+    secondary_actions: []
+
+  "9/1":
+    primary: configuration repair
+    evidence_prompt: "increase the maximum number of allowed connections then restart deployment"
+    evidence_root_cause: "MySQL server has reached its maximum connection limit"
+    secondary_actions: ["rollout restart, required for the new value to take effect"]
+
+  "9/3":
+    primary: replica adjustment
+    evidence_prompt: "scaling deployment horizontally by adding more services to handle temporary connection failures"
+    evidence_root_cause: "MySQL server has reached its maximum connection limit"
+    secondary_actions: []
+
+  "9/4":
+    primary: configuration repair
+    evidence_prompt: "implement a connection pooling mechanism to help manage and reuse database connections"
+    evidence_root_cause: "MySQL server has reached its maximum connection limit"
+    secondary_actions: []
+
+  "11/1":
+    primary: replica adjustment
+    evidence_prompt: "decrease replica by one for deployment 'web' if memory usage is high"
+    evidence_root_cause: "System stuck: High memory usage"
+    secondary_actions: []
+
+  "12/1":
+    primary: workload recovery
+    evidence_prompt: "restart the pods to solve the process crash process"
+    evidence_root_cause: "Process crach: Incorrect deallocation"
+    secondary_actions: []
+
+  "12/2":
+    primary: workload recovery
+    evidence_prompt: "solve the process crash that caused incorrect deallocation"
+    evidence_root_cause: "Process crach: Incorrect deallocation"
+    secondary_actions: []

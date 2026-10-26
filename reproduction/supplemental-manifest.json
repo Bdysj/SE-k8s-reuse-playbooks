@@ -1,0 +1,140 @@
+[
+  {
+    "path": "archive-supplemental/.codex-tmp/calibrate_resource.py",
+    "original_workspace_relative_path": ".codex-tmp/calibrate_resource.py",
+    "bytes": 3242,
+    "sha256": "a1559b719d6abc4efb435b717ebde3a685247d119893daebbc1b7fd2a4317f45"
+  },
+  {
+    "path": "archive-supplemental/.codex-tmp/chaos-values.yaml",
+    "original_workspace_relative_path": ".codex-tmp/chaos-values.yaml",
+    "bytes": 22517,
+    "sha256": "cae467fc11fee9f3ca8370d8a79cbd2356aa06212c666180c6032bf4d92e5ebf"
+  },
+  {
+    "path": "archive-supplemental/.codex-tmp/continuation-backup/baseline.arm64.fingerprint.json",
+    "original_workspace_relative_path": ".codex-tmp/continuation-backup/baseline.arm64.fingerprint.json",
+    "bytes": 10536,
+    "sha256": "10130b423e5366b9d6e5491c7c42a96cf33b07b7e6ab7aebcedbec3e0b8b0ed9"
+  },
+  {
+    "path": "archive-supplemental/.codex-tmp/continuation-backup/baseline.arm64.yaml",
+    "original_workspace_relative_path": ".codex-tmp/continuation-backup/baseline.arm64.yaml",
+    "bytes": 12401,
+    "sha256": "dd360279c3dcd707f78be61104e3d4cb51f6a6639dc8425d189f0233aeab6de3"
+  },
+  {
+    "path": "archive-supplemental/.codex-tmp/continuation-backup/native_arm64_report.md",
+    "original_workspace_relative_path": ".codex-tmp/continuation-backup/native_arm64_report.md",
+    "bytes": 7383,
+    "sha256": "6a56d5f7a9184e476a2408d9e65a5332c1f1609aa43d3cfefccb172b63d68c25"
+  },
+  {
+    "path": "archive-supplemental/.codex-tmp/continuation-backup/pilot_environment_report.md",
+    "original_workspace_relative_path": ".codex-tmp/continuation-backup/pilot_environment_report.md",
+    "bytes": 18293,
+    "sha256": "cfcf62f89367dcff73476b654994b38f9e031598751ccf4551568daed802efcb"
+  },
+  {
+    "path": "archive-supplemental/.codex-tmp/continuation-backup/record_local_images.py",
+    "original_workspace_relative_path": ".codex-tmp/continuation-backup/record_local_images.py",
+    "bytes": 5088,
+    "sha256": "17af052e3181cf1ff8e2c8e53db9d710cd6174e52ca68aee858a78893d4da72b"
+  },
+  {
+    "path": "archive-supplemental/.codex-tmp/continuation-backup/render_baseline.py",
+    "original_workspace_relative_path": ".codex-tmp/continuation-backup/render_baseline.py",
+    "bytes": 9758,
+    "sha256": "e30387021e38e092bb7f56e089b302603463043c145e0477612070b01f4415b3"
+  },
+  {
+    "path": "archive-supplemental/.codex-tmp/continuation-backup/reset_baseline.py",
+    "original_workspace_relative_path": ".codex-tmp/continuation-backup/reset_baseline.py",
+    "bytes": 28879,
+    "sha256": "4001721d0c55beb88a8b178bfe9fa14c6ad0760f7f5de0aaf573b9b8a13e744a"
+  },
+  {
+    "path": "archive-supplemental/.codex-tmp/continuation-backup/sources.lock.yaml",
+    "original_workspace_relative_path": ".codex-tmp/continuation-backup/sources.lock.yaml",
+    "bytes": 21143,
+    "sha256": "a489fb5909fc80d90cd6daf6af0edbe9d4f5d835d429e404f2b0cc8b0b3a3c8b"
+  },
+  {
+    "path": "archive-supplemental/.codex-tmp/extend_fingerprint.py",
+    "original_workspace_relative_path": ".codex-tmp/extend_fingerprint.py",
+    "bytes": 1416,
+    "sha256": "491f84355cbdfa62766a711350f24cb1c121bedee90cee9d95f2b8bf9ae5e9c5"
+  },
+  {
+    "path": "archive-supplemental/.codex-tmp/fix_full_reset.py",
+    "original_workspace_relative_path": ".codex-tmp/fix_full_reset.py",
+    "bytes": 3134,
+    "sha256": "cb99094dcc9a01811bbae29f06a5899e32b4fbf1e3278ea9c7c74b9b9b036cb6"
+  },
+  {
+    "path": "archive-supplemental/.codex-tmp/load-build-final.log",
+    "original_workspace_relative_path": ".codex-tmp/load-build-final.log",
+    "bytes": 978,
+    "sha256": "e0f08ccc533a40103ef08f3cf2fc2b3b9b540ab3cfb6f76d0e82623acd51e4a0"
+  },
+  {
+    "path": "archive-supplemental/.codex-tmp/load-import-final.log",
+    "original_workspace_relative_path": ".codex-tmp/load-import-final.log",
+    "bytes": 991,
+    "sha256": "fb930b1e2d189307f99fede90111c7663fa3ea0a00a5f4669109de33204012c3"
+  },
+  {
+    "path": "archive-supplemental/.codex-tmp/node-images.json",
+    "original_workspace_relative_path": ".codex-tmp/node-images.json",
+    "bytes": 7076,
+    "sha256": "ccb58616c0e937a0743bba6c74ea8063012d77e05585de1d4594d8cdb7563146"
+  },
+  {
+    "path": "archive-supplemental/.codex-tmp/prepare_candidates.py",
+    "original_workspace_relative_path": ".codex-tmp/prepare_candidates.py",
+    "bytes": 2567,
+    "sha256": "fce711a764a5da4787aa2333b7bd9a6a751729c2dab72b2519ed185cd7fb61bb"
+  },
+  {
+    "path": "archive-supplemental/.codex-tmp/prune_unused_node_copies.py",
+    "original_workspace_relative_path": ".codex-tmp/prune_unused_node_copies.py",
+    "bytes": 1834,
+    "sha256": "aa7193f8ba25a592d7dabde3cc07e7b856208d835a1cff40ad786fa2bb1a9c0e"
+  },
+  {
+    "path": "archive-supplemental/.codex-tmp/qualification-backup/baseline.arm64.fingerprint.json",
+    "original_workspace_relative_path": ".codex-tmp/qualification-backup/baseline.arm64.fingerprint.json",
+    "bytes": 14450,
+    "sha256": "2da64106d11fe059ec1a1e0ded2b3fc186a0b689c3fc57c180177276d1fb48f5"
+  },
+  {
+    "path": "archive-supplemental/.codex-tmp/qualification-backup/baseline.arm64.yaml",
+    "original_workspace_relative_path": ".codex-tmp/qualification-backup/baseline.arm64.yaml",
+    "bytes": 12410,
+    "sha256": "b9bbcba2353ac8cabdd2576dca6fa838c2abf69fd940dcc1a877613f609bb441"
+  },
+  {
+    "path": "archive-supplemental/.codex-tmp/qualification-backup/sources.lock.yaml",
+    "original_workspace_relative_path": ".codex-tmp/qualification-backup/sources.lock.yaml",
+    "bytes": 24723,
+    "sha256": "657f2f670df32c4e5f6002f8309f034964afa08a970bca478a5a15ed53bc954e"
+  },
+  {
+    "path": "archive-supplemental/.codex-tmp/strengthen_dual.py",
+    "original_workspace_relative_path": ".codex-tmp/strengthen_dual.py",
+    "bytes": 2995,
+    "sha256": "c1393fed0ec8741c78532e3f39be6c07c3216c1048a8424ef4b44d76d4957320"
+  },
+  {
+    "path": "archive-supplemental/.codex-tmp/update_lock.py",
+    "original_workspace_relative_path": ".codex-tmp/update_lock.py",
+    "bytes": 1801,
+    "sha256": "f21d199fb6f2e57705c85e77e9d0cbd6b4a44c38b4c85f2f3ca8ae0136456e82"
+  },
+  {
+    "path": "archive-supplemental/.codex-tmp/update_reset.py",
+    "original_workspace_relative_path": ".codex-tmp/update_reset.py",
+    "bytes": 8898,
+    "sha256": "34f816159d6b4c126b62e1926dacd033e1b255324cd0e2c180c641c3976e4c99"
+  }
+]

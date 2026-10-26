@@ -1,0 +1,21 @@
+# Full topology mirror for capacity pilot; separate network/API/work PVCs.
+apiVersion: k3d.io/v1alpha5
+kind: Simple
+metadata:
+  name: lab-validation
+servers: 1
+agents: 2
+image: rancher/k3s:v1.33.5-k3s1
+network: ddn-validation-net
+kubeAPI:
+  hostIP: 127.0.0.1
+  hostPort: '6551'
+options:
+  k3s:
+    extraArgs:
+    - arg: --disable=traefik
+      nodeFilters:
+      - server:0
+  kubeconfig:
+    updateDefaultKubeconfig: true
+    switchCurrentContext: false

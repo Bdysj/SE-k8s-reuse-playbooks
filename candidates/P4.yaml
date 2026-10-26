@@ -1,0 +1,8 @@
+- name: configuration repair
+  hosts: k8s_nodes
+  gather_facts: false
+  tasks:
+  - name: Restore the consumed catalogue host on web
+    ansible.builtin.command: kubectl --context {{ kube_context }} -n robot-shop set env deployment/web CATALOGUE_HOST=catalogue
+  - name: Wait for container recreation with the restored configuration
+    ansible.builtin.command: kubectl --context {{ kube_context }} -n robot-shop rollout status deployment/web --timeout=120s

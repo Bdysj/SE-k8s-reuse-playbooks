@@ -1,0 +1,213 @@
+created: '2026-10-01'
+stage: S1-S4 passed; five frozen playbooks registered; main protocol pending
+ansible_core: 2.19.3
+inventory: tools/ansible-inventory.ini
+candidates:
+- id: P1
+  family: workload recovery
+  origin: repository-adapted
+  source: sources/kubeplaybook/Real_time_fault/12/1/Ansible Playbook_1.yaml
+  source_sha256: a727045b57dae4d7978d2dc9b2974482e39042e92b6d03de4eeff5dbb6898460
+  candidate: candidates/P1.yaml
+  candidate_sha256: 3955ed2918a54282ff2a84d71f694a1da04c68eef2a3c8efe94a67cc5ebf8047
+  adaptations:
+  - Explicit Kubernetes context only; task order, targets and action values preserved.
+  pilot_evidence: results/fault-pilot/P1.json
+  S2_evidence:
+  - results/qualification-v3/01-P1-repair/record.json
+  - results/qualification-v3/03-P1-no-repair/record.json
+  S3_evidence:
+  - results/S3-feasibility-v1/03-P1-3-1/record.json
+  - results/S3-feasibility-v1/05-P1-4-2/record.json
+  - results/S3-feasibility-v1/11-P1-1-2/record.json
+  - results/S3-feasibility-v1/16-P1-2-2/record.json
+  - results/S3-feasibility-v1/17-P1-2-1/record.json
+  - results/S3-feasibility-v1/21-P1-4-1/record.json
+  - results/S3-feasibility-v1/24-P1-1-1/record.json
+  - results/S3-feasibility-v1/34-P1-3-2/record.json
+  registered: true
+  S4_successful_trials: 5
+  S4_evidence:
+  - results/S4-registration-v1/03-P1-repeat-3/record.json
+  - results/S4-registration-v1/08-P1-repeat-2/record.json
+  - results/S4-registration-v3/08-P1-repeat-4/record.json
+  - results/S4-registration-v3/12-P1-repeat-5/record.json
+  - results/S4-registration-v3/16-P1-repeat-1/record.json
+  registered_at: 1790871157.6578681
+- id: P2
+  family: replica adjustment
+  origin: repository-adapted
+  source: sources/kubeplaybook/Real_time_fault/7/nsible Playbook_GPT_Generated.yaml
+  source_sha256: 8af4a647f517b86f0728603d71c53531a180a640afd47d6ebb47b1a0d0af4c4c
+  candidate: candidates/P2.yaml
+  candidate_sha256: 7a2adce624bf0bddc87e486c392f1ce723853111ef469deb9911acb600a4d0a2
+  adaptations:
+  - Explicit Kubernetes context only; task order, targets and action values preserved.
+  pilot_evidence: results/fault-pilot/P2.json
+  S2_evidence:
+  - results/qualification-v3/02-P2-no-repair/record.json
+  - results/qualification-v3/10-P2-repair/record.json
+  S3_evidence:
+  - results/S3-feasibility-v1/04-P2-3-2/record.json
+  - results/S3-feasibility-v1/08-P2-2-2/record.json
+  - results/S3-mysql-replacement-v2/P2-3-1/record.json
+  - results/S3-feasibility-v1/22-P2-4-1/record.json
+  - results/S3-feasibility-v1/30-P2-4-2/record.json
+  - results/S3-feasibility-v1/31-P2-1-1/record.json
+  - results/S3-feasibility-v1/39-P2-1-2/record.json
+  - results/S3-feasibility-v1/40-P2-2-1/record.json
+  registered: true
+  S4_successful_trials: 5
+  S4_evidence:
+  - results/S4-registration-v1/07-P2-repeat-1/record.json
+  - results/S4-registration-v1/09-P2-repeat-2/record.json
+  - results/S4-registration-v3/01-P2-repeat-3/record.json
+  - results/S4-registration-v3/06-P2-repeat-4/record.json
+  - results/S4-registration-v3/10-P2-repeat-5/record.json
+  registered_at: 1790871157.6578681
+- id: P3
+  family: resource adjustment
+  origin: repository-adapted
+  source: sources/kubeplaybook/Real_time_fault/3/Ansible Playbook_GPT_Generated.yaml
+  source_sha256: e68378755b18c3504675256c20e6d8dcb7366c6976043725b3dccd0ba9a423f8
+  candidate: candidates/P3.yaml
+  candidate_sha256: ec5656022730e08a468a5af478c8c31ab5961317f8b6ce9a51cbb0db33988c48
+  adaptations:
+  - Explicit Kubernetes context only; task order, targets and action values preserved.
+  pilot_evidence: results/fault-pilot/P3-calibrated.json
+  S2_evidence:
+  - results/qualification-v3/06-P3-no-repair/record.json
+  - results/qualification-v3/09-P3-repair/record.json
+  S3_evidence:
+  - results/S3-feasibility-v1/10-P3-1-2/record.json
+  - results/S3-feasibility-v1/14-P3-2-1/record.json
+  - results/S3-feasibility-v1/18-P3-1-1/record.json
+  - results/S3-feasibility-v1/23-P3-3-2/record.json
+  - results/S3-rollout-constraint-v2/P3-2-2/record.json
+  - results/S3-observation-window-v2/P3-3-1/record.json
+  - results/S3-feasibility-v1/35-P3-4-1/record.json
+  - results/S3-feasibility-v1/37-P3-4-2/record.json
+  registered: true
+  S4_successful_trials: 5
+  S4_evidence:
+  - results/S4-registration-v1/01-P3-repeat-5/record.json
+  - results/S4-registration-v1/04-P3-repeat-2/record.json
+  - results/S4-registration-v1/05-P3-repeat-4/record.json
+  - results/S4-registration-v3/07-P3-repeat-3/record.json
+  - results/S4-registration-v3/13-P3-repeat-1/record.json
+  registered_at: 1790871157.6578681
+- id: P4
+  family: configuration repair
+  origin: manual
+  candidate: candidates/P4.yaml
+  candidate_sha256: 427e6db77f3dbdb51c85a88603b80f438a4c389a23ef79346bf815979e696a37
+  repair_task: Restore CATALOGUE_HOST=catalogue and recreate web containers.
+  pilot_evidence: results/fault-pilot/P4.json
+  S2_evidence:
+  - results/qualification-v3/05-P4-repair/record.json
+  - results/qualification-v3/07-P4-no-repair/record.json
+  S3_evidence:
+  - results/S3-feasibility-v1/02-P4-2-1/record.json
+  - results/S3-feasibility-v1/13-P4-3-2/record.json
+  - results/S3-feasibility-v1/15-P4-2-2/record.json
+  - results/S3-feasibility-v1/25-P4-4-1/record.json
+  - results/S3-feasibility-v1/26-P4-1-1/record.json
+  - results/S3-feasibility-v1/27-P4-3-1/record.json
+  - results/S3-feasibility-v1/33-P4-4-2/record.json
+  - results/S3-feasibility-v1/36-P4-1-2/record.json
+  registered: true
+  S4_successful_trials: 5
+  S4_evidence:
+  - results/S4-registration-v1/02-P4-repeat-3/record.json
+  - results/S4-registration-v1/06-P4-repeat-4/record.json
+  - results/S4-registration-v3/09-P4-repeat-2/record.json
+  - results/S4-registration-v3/11-P4-repeat-1/record.json
+  - results/S4-registration-v3/15-P4-repeat-5/record.json
+  registered_at: 1790871157.6578681
+- id: P5
+  family: Service routing repair
+  origin: manual
+  candidate: candidates/P5.yaml
+  candidate_sha256: f6f0071809636870a9e253a3eff6d324d17e977484ebddc3e6aa690a8e8c9f6c
+  repair_task: Restore web Service selector service=web; targetPort is not changed.
+  pilot_evidence: results/fault-pilot/P5.json
+  S2_evidence:
+  - results/qualification-v3/04-P5-repair/record.json
+  - results/qualification-v3/08-P5-no-repair/record.json
+  S3_evidence:
+  - results/S3-feasibility-v1/01-P5-1-1/record.json
+  - results/S3-feasibility-v1/06-P5-3-2/record.json
+  - results/S3-feasibility-v1/07-P5-2-2/record.json
+  - results/S3-feasibility-v1/09-P5-1-2/record.json
+  - results/S3-feasibility-v1/12-P5-4-2/record.json
+  - results/S3-feasibility-v1/20-P5-4-1/record.json
+  - results/S3-endpoint-replacement-v3/P5-3-1/record.json
+  - results/S3-feasibility-v1/38-P5-2-1/record.json
+  registered: true
+  S4_successful_trials: 5
+  S4_evidence:
+  - results/S4-registration-v3/02-P5-repeat-2/record.json
+  - results/S4-registration-v3/03-P5-repeat-4/record.json
+  - results/S4-registration-v3/04-P5-repeat-3/record.json
+  - results/S4-registration-v3/05-P5-repeat-1/record.json
+  - results/S4-registration-v3/14-P5-repeat-5/record.json
+  registered_at: 1790871157.6578681
+S4:
+  complete: true
+  status: accepted; five successful qualifications per candidate
+  protocol: results/S4-registration-v3/protocol.json
+  summary: results/S4-registration-v3/summary.json
+  required_trials: 25
+  required_per_candidate: 5
+  main_trials: 0
+  attempted_trials: 27
+  successful_trials: 25
+  rejected_trials: 2
+  successful_per_candidate:
+    P1: 5
+    P2: 5
+    P3: 5
+    P4: 5
+    P5: 5
+  remaining_qualification_slots: 0
+  resume_protocol: results/S4-registration-v3/protocol.json
+  resume_status: completed and audited
+  rejection_classification: results/continuation-20261001/S4-rejection-classification.json
+  runtime_state: Primary and validation clusters stopped after successful final verification; registry, images,
+    data volumes and build cache retained
+  stop_receipt: results/S4-registration-v3/cluster-stop-receipt.json
+  environment_window: results/S4-registration-v3/environment-window.json
+  network_diagnostic: results/probe-network-control-v1/record.json
+  rejection_classifications:
+  - results/continuation-20261001/S4-rejection-classification.json
+  - results/S4-registration-v2/rejection-classification.json
+  acceptance: results/S4-registration-v3/acceptance.json
+  final_state: results/S4-registration-v3/final-state.json
+  bootstrap_helper_cleanup: results/S4-registration-v3/bootstrap-helper-cleanup.json
+  prior_protocols:
+  - results/S4-registration-v1/protocol.json
+  - results/S4-registration-v2/protocol.json
+S2:
+  passed: true
+  setup: manifests/qualification.v3.yaml
+  evidence: results/qualification-v3/S2-acceptance.json
+  independent_controls: 5
+  corresponding_repair_arms: 5
+  qualification_trials_counted: 0
+  excluded_attempts:
+  - results/qualification-v1/01-P1-repair/record.json
+  - results/qualification-v2/01-P1-repair/record.json
+S3:
+  requirements: candidates/requirements.S3-feasible.v1.yaml
+  proposals: 40
+  feasibility_verified: 40
+  complete: true
+  acceptance: results/S3-feasibility-v1/acceptance.json
+  development_construction_trials: 45
+  rejected_harness_attempts: 2
+  rejected_infeasible_proposals: 1
+registration_record: candidates/registration.v1.json
+registration_record_sha256: 1afe16a2a5eb9fd4696a6f51916fd5ba160267533f9bbe92dc231c7ed5e5a68a
+registered_main_scenarios: 0
+main_replay_trials: 0
+main_protocol_ready: false

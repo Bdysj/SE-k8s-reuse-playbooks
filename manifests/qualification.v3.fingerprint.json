@@ -1,0 +1,709 @@
+{
+  "services": {
+    "cart": {
+      "ports": [
+        {
+          "name": "http",
+          "port": 8080,
+          "targetPort": 8080
+        }
+      ],
+      "selector": {
+        "service": "cart"
+      },
+      "type": "ClusterIP"
+    },
+    "catalogue": {
+      "ports": [
+        {
+          "name": "http",
+          "port": 8080,
+          "targetPort": 8080
+        }
+      ],
+      "selector": {
+        "service": "catalogue"
+      },
+      "type": "ClusterIP"
+    },
+    "dispatch": {
+      "ports": [
+        {
+          "name": "headless",
+          "port": 55555,
+          "targetPort": 55555
+        }
+      ],
+      "selector": {
+        "service": "dispatch"
+      },
+      "type": "ClusterIP"
+    },
+    "mongodb": {
+      "ports": [
+        {
+          "name": "mongo",
+          "port": 27017,
+          "targetPort": 27017
+        }
+      ],
+      "selector": {
+        "service": "mongodb"
+      },
+      "type": "ClusterIP"
+    },
+    "mysql": {
+      "ports": [
+        {
+          "name": "mysql",
+          "port": 3306,
+          "targetPort": 3306
+        }
+      ],
+      "selector": {
+        "service": "mysql"
+      },
+      "type": "ClusterIP"
+    },
+    "payment": {
+      "ports": [
+        {
+          "name": "http",
+          "port": 8080,
+          "targetPort": 8080
+        }
+      ],
+      "selector": {
+        "service": "payment"
+      },
+      "type": "ClusterIP"
+    },
+    "rabbitmq": {
+      "ports": [
+        {
+          "name": "tcp-epmd",
+          "port": 4369,
+          "targetPort": 4369
+        },
+        {
+          "name": "tcp-amqp",
+          "port": 5672,
+          "targetPort": 5672
+        },
+        {
+          "name": "http-management",
+          "port": 15672,
+          "targetPort": 15672
+        }
+      ],
+      "selector": {
+        "service": "rabbitmq"
+      },
+      "type": "ClusterIP"
+    },
+    "ratings": {
+      "ports": [
+        {
+          "name": "http",
+          "port": 80,
+          "targetPort": 80
+        }
+      ],
+      "selector": {
+        "service": "ratings"
+      },
+      "type": "ClusterIP"
+    },
+    "redis": {
+      "ports": [
+        {
+          "name": "redis",
+          "port": 6379,
+          "targetPort": 6379
+        }
+      ],
+      "selector": {
+        "service": "redis"
+      },
+      "type": "ClusterIP"
+    },
+    "shipping": {
+      "ports": [
+        {
+          "name": "http",
+          "port": 8080,
+          "targetPort": 8080
+        }
+      ],
+      "selector": {
+        "service": "shipping"
+      },
+      "type": "ClusterIP"
+    },
+    "user": {
+      "ports": [
+        {
+          "name": "http",
+          "port": 8080,
+          "targetPort": 8080
+        }
+      ],
+      "selector": {
+        "service": "user"
+      },
+      "type": "ClusterIP"
+    },
+    "web": {
+      "ports": [
+        {
+          "name": "http",
+          "port": 8080,
+          "targetPort": 8080
+        }
+      ],
+      "selector": {
+        "service": "web"
+      },
+      "type": "LoadBalancer"
+    }
+  },
+  "workloads": {
+    "cart": {
+      "affinity": {},
+      "annotations": {},
+      "containers": {
+        "cart": {
+          "args": [],
+          "command": [],
+          "env": [
+            [
+              "INSTANA_AGENT_HOST",
+              "valueFrom:fieldRef:status.hostIP"
+            ]
+          ],
+          "image": "ddn-eval/rs-cart:arm64",
+          "resources": {
+            "limits": {
+              "cpu": 200,
+              "memory": 268435456
+            },
+            "requests": {
+              "cpu": 100,
+              "memory": 134217728
+            }
+          },
+          "volumeMounts": []
+        }
+      },
+      "kind": "Deployment",
+      "nodeSelector": {
+        "kubernetes.io/hostname": "k3d-lab-agent-1"
+      },
+      "pod_labels": {
+        "service": "cart"
+      },
+      "replicas": 1,
+      "selector": {
+        "service": "cart"
+      },
+      "strategy_type": "RollingUpdate",
+      "volumes": []
+    },
+    "catalogue": {
+      "affinity": {},
+      "annotations": {},
+      "containers": {
+        "catalogue": {
+          "args": [],
+          "command": [],
+          "env": [
+            [
+              "INSTANA_AGENT_HOST",
+              "valueFrom:fieldRef:status.hostIP"
+            ]
+          ],
+          "image": "ddn-eval/rs-catalogue:arm64",
+          "resources": {
+            "limits": {
+              "cpu": 200,
+              "memory": 268435456
+            },
+            "requests": {
+              "cpu": 100,
+              "memory": 134217728
+            }
+          },
+          "volumeMounts": []
+        }
+      },
+      "kind": "Deployment",
+      "nodeSelector": {
+        "kubernetes.io/hostname": "k3d-lab-agent-1"
+      },
+      "pod_labels": {
+        "service": "catalogue"
+      },
+      "replicas": 1,
+      "selector": {
+        "service": "catalogue"
+      },
+      "strategy_type": "RollingUpdate",
+      "volumes": []
+    },
+    "dispatch": {
+      "affinity": {},
+      "annotations": {},
+      "containers": {
+        "dispatch": {
+          "args": [],
+          "command": [],
+          "env": [
+            [
+              "INSTANA_AGENT_HOST",
+              "valueFrom:fieldRef:status.hostIP"
+            ]
+          ],
+          "image": "ddn-eval/rs-dispatch:arm64",
+          "resources": {
+            "limits": {
+              "cpu": 200,
+              "memory": 268435456
+            },
+            "requests": {
+              "cpu": 100,
+              "memory": 134217728
+            }
+          },
+          "volumeMounts": []
+        }
+      },
+      "kind": "Deployment",
+      "nodeSelector": {
+        "kubernetes.io/hostname": "k3d-lab-agent-1"
+      },
+      "pod_labels": {
+        "service": "dispatch"
+      },
+      "replicas": 1,
+      "selector": {
+        "service": "dispatch"
+      },
+      "strategy_type": "RollingUpdate",
+      "volumes": []
+    },
+    "load": {
+      "affinity": {},
+      "annotations": {},
+      "containers": {
+        "load": {
+          "args": [],
+          "command": [
+            "sh",
+            "-c",
+            "exec python -c 'import os,random,runpy,sys; random.seed(20261001); sys.argv=['\"'\"'locust'\"'\"','\"'\"'-f'\"'\"','\"'\"'/load/grouped-load.py'\"'\"','\"'\"'--host'\"'\"',os.environ['\"'\"'HOST'\"'\"'],'\"'\"'--headless'\"'\"','\"'\"'-r'\"'\"','\"'\"'1'\"'\"','\"'\"'-u'\"'\"',os.environ['\"'\"'NUM_CLIENTS'\"'\"'],'\"'\"'--only-summary'\"'\"']; runpy.run_module('\"'\"'locust'\"'\"',run_name='\"'\"'__main__'\"'\"')' > /tmp/locust.log 2>&1"
+          ],
+          "env": [
+            [
+              "ERROR",
+              "1"
+            ],
+            [
+              "HOST",
+              "http://web:8080/"
+            ],
+            [
+              "NUM_CLIENTS",
+              "5"
+            ],
+            [
+              "SILENT",
+              "1"
+            ]
+          ],
+          "image": "ddn-eval/rs-load:arm64-grouped",
+          "resources": {
+            "limits": {
+              "cpu": 200,
+              "memory": 1073741824
+            },
+            "requests": {
+              "cpu": 100,
+              "memory": 402653184
+            }
+          },
+          "volumeMounts": []
+        }
+      },
+      "kind": "Deployment",
+      "nodeSelector": {
+        "kubernetes.io/hostname": "k3d-lab-server-0"
+      },
+      "pod_labels": {
+        "service": "load"
+      },
+      "replicas": 1,
+      "selector": {
+        "service": "load"
+      },
+      "strategy_type": "RollingUpdate",
+      "volumes": []
+    },
+    "mongodb": {
+      "affinity": {},
+      "annotations": {},
+      "containers": {
+        "mongodb": {
+          "args": [],
+          "command": [],
+          "env": [],
+          "image": "ddn-eval/rs-mongodb:arm64",
+          "resources": {
+            "limits": {
+              "cpu": 200,
+              "memory": 209715200
+            },
+            "requests": {
+              "cpu": 100,
+              "memory": 104857600
+            }
+          },
+          "volumeMounts": []
+        }
+      },
+      "kind": "Deployment",
+      "nodeSelector": {
+        "kubernetes.io/hostname": "k3d-lab-agent-1"
+      },
+      "pod_labels": {
+        "service": "mongodb"
+      },
+      "replicas": 1,
+      "selector": {
+        "service": "mongodb"
+      },
+      "strategy_type": "RollingUpdate",
+      "volumes": []
+    },
+    "mysql": {
+      "affinity": {},
+      "annotations": {},
+      "containers": {
+        "mysql": {
+          "args": [],
+          "command": [],
+          "env": [],
+          "image": "ddn-eval/rs-mysql-db:amd64",
+          "resources": {
+            "limits": {
+              "cpu": 200,
+              "memory": 1073741824
+            },
+            "requests": {
+              "cpu": 100,
+              "memory": 734003200
+            }
+          },
+          "volumeMounts": [
+            {
+              "mountPath": "/var/lib/mysql",
+              "name": "mysql-data"
+            }
+          ]
+        }
+      },
+      "kind": "Deployment",
+      "nodeSelector": {
+        "kubernetes.io/hostname": "k3d-lab-agent-0"
+      },
+      "pod_labels": {
+        "service": "mysql"
+      },
+      "replicas": 1,
+      "selector": {
+        "service": "mysql"
+      },
+      "strategy_type": "Recreate",
+      "volumes": [
+        {
+          "name": "mysql-data",
+          "persistentVolumeClaim": {
+            "claimName": "mysql-data"
+          }
+        }
+      ]
+    },
+    "payment": {
+      "affinity": {},
+      "annotations": {},
+      "containers": {
+        "payment": {
+          "args": [],
+          "command": [],
+          "env": [
+            [
+              "INSTANA_AGENT_HOST",
+              "valueFrom:fieldRef:status.hostIP"
+            ],
+            [
+              "PAYMENT_GATEWAY",
+              "http://user:8080/health"
+            ]
+          ],
+          "image": "ddn-eval/rs-payment:arm64",
+          "resources": {
+            "limits": {
+              "cpu": 200,
+              "memory": 268435456
+            },
+            "requests": {
+              "cpu": 100,
+              "memory": 134217728
+            }
+          },
+          "volumeMounts": []
+        }
+      },
+      "kind": "Deployment",
+      "nodeSelector": {
+        "kubernetes.io/hostname": "k3d-lab-server-0"
+      },
+      "pod_labels": {
+        "service": "payment",
+        "stage": "prod"
+      },
+      "replicas": 1,
+      "selector": {
+        "service": "payment",
+        "stage": "prod"
+      },
+      "strategy_type": "RollingUpdate",
+      "volumes": []
+    },
+    "rabbitmq": {
+      "affinity": {},
+      "annotations": {},
+      "containers": {
+        "rabbitmq": {
+          "args": [],
+          "command": [],
+          "env": [],
+          "image": "rabbitmq@sha256:e97f6bb68aab3f747f8a6f4dc52ed57401de91ca480a0be3a36e7476ac273169",
+          "resources": {
+            "limits": {
+              "cpu": 200,
+              "memory": 536870912
+            },
+            "requests": {
+              "cpu": 100,
+              "memory": 268435456
+            }
+          },
+          "volumeMounts": []
+        }
+      },
+      "kind": "Deployment",
+      "nodeSelector": {
+        "kubernetes.io/hostname": "k3d-lab-server-0"
+      },
+      "pod_labels": {
+        "service": "rabbitmq"
+      },
+      "replicas": 1,
+      "selector": {
+        "service": "rabbitmq"
+      },
+      "strategy_type": "RollingUpdate",
+      "volumes": []
+    },
+    "ratings": {
+      "affinity": {},
+      "annotations": {},
+      "containers": {
+        "ratings": {
+          "args": [],
+          "command": [],
+          "env": [],
+          "image": "ddn-eval/rs-ratings:arm64",
+          "resources": {
+            "limits": {
+              "cpu": 200,
+              "memory": 536870912
+            },
+            "requests": {
+              "cpu": 100,
+              "memory": 201326592
+            }
+          },
+          "volumeMounts": []
+        }
+      },
+      "kind": "Deployment",
+      "nodeSelector": {
+        "kubernetes.io/hostname": "k3d-lab-agent-1"
+      },
+      "pod_labels": {
+        "service": "ratings"
+      },
+      "replicas": 1,
+      "selector": {
+        "service": "ratings"
+      },
+      "strategy_type": "RollingUpdate",
+      "volumes": []
+    },
+    "redis": {
+      "affinity": {},
+      "annotations": {},
+      "containers": {
+        "redis": {
+          "args": [],
+          "command": [],
+          "env": [],
+          "image": "redis@sha256:0e773022cd6572a5153e5013afced0f7191652d3cdf9b1c6785eb13f6b2974b1",
+          "resources": {
+            "limits": {
+              "cpu": 200,
+              "memory": 268435456
+            },
+            "requests": {
+              "cpu": 100,
+              "memory": 134217728
+            }
+          },
+          "volumeMounts": [
+            {
+              "mountPath": "/mnt/redis",
+              "name": "data"
+            }
+          ]
+        }
+      },
+      "kind": "StatefulSet",
+      "nodeSelector": {
+        "kubernetes.io/hostname": "k3d-lab-agent-1"
+      },
+      "pod_labels": {
+        "service": "redis"
+      },
+      "replicas": 1,
+      "selector": {
+        "service": "redis"
+      },
+      "strategy_type": "RollingUpdate",
+      "volumes": []
+    },
+    "shipping": {
+      "affinity": {},
+      "annotations": {},
+      "containers": {
+        "shipping": {
+          "args": [],
+          "command": [],
+          "env": [],
+          "image": "ddn-eval/rs-shipping:arm64",
+          "resources": {
+            "limits": {
+              "cpu": 2000,
+              "memory": 2147483648
+            },
+            "requests": {
+              "cpu": 100,
+              "memory": 671088640
+            }
+          },
+          "volumeMounts": []
+        }
+      },
+      "kind": "Deployment",
+      "nodeSelector": {
+        "kubernetes.io/hostname": "k3d-lab-server-0"
+      },
+      "pod_labels": {
+        "service": "shipping"
+      },
+      "replicas": 1,
+      "selector": {
+        "service": "shipping"
+      },
+      "strategy_type": "RollingUpdate",
+      "volumes": []
+    },
+    "user": {
+      "affinity": {},
+      "annotations": {},
+      "containers": {
+        "user": {
+          "args": [],
+          "command": [],
+          "env": [
+            [
+              "INSTANA_AGENT_HOST",
+              "valueFrom:fieldRef:status.hostIP"
+            ]
+          ],
+          "image": "ddn-eval/rs-user:arm64",
+          "resources": {
+            "limits": {
+              "cpu": 200,
+              "memory": 268435456
+            },
+            "requests": {
+              "cpu": 100,
+              "memory": 134217728
+            }
+          },
+          "volumeMounts": []
+        }
+      },
+      "kind": "Deployment",
+      "nodeSelector": {
+        "kubernetes.io/hostname": "k3d-lab-agent-1"
+      },
+      "pod_labels": {
+        "service": "user"
+      },
+      "replicas": 1,
+      "selector": {
+        "service": "user"
+      },
+      "strategy_type": "RollingUpdate",
+      "volumes": []
+    },
+    "web": {
+      "affinity": {},
+      "annotations": {},
+      "containers": {
+        "web": {
+          "args": [],
+          "command": [],
+          "env": [],
+          "image": "ddn-eval/rs-web:arm64",
+          "resources": {
+            "limits": {
+              "cpu": 200,
+              "memory": 268435456
+            },
+            "requests": {
+              "cpu": 100,
+              "memory": 134217728
+            }
+          },
+          "volumeMounts": []
+        }
+      },
+      "kind": "Deployment",
+      "nodeSelector": {
+        "kubernetes.io/hostname": "k3d-lab-agent-1"
+      },
+      "pod_labels": {
+        "service": "web"
+      },
+      "replicas": 1,
+      "selector": {
+        "service": "web"
+      },
+      "strategy_type": "RollingUpdate",
+      "volumes": []
+    }
+  }
+}

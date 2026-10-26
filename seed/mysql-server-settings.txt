@@ -1,0 +1,8 @@
+character-set-server                                         latin1
+collation-server                                             latin1_swedish_ci
+innodb-page-size                                             16384
+version=5.7.44
+datadir=/var/lib/mysql/
+innodb_page_size=16384
+character_set_server=latin1
+lower_case_table_names=0

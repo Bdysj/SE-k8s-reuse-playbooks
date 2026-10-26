@@ -1,0 +1,18 @@
+# MySQL seed snapshot. Produced once by tools/make_mysql_seed.sh.
+# Restored to a fresh, independent work volume at the start of each round.
+created: "2026-09-30T15:22:32Z"
+source_image: ddn-eval/rs-mysql-db:amd64
+server_version: "5.7.44"
+datadir: /var/lib/mysql
+datadir_note: >
+  The effective datadir is /var/lib/mysql. The repository's mysql/config.sh
+  attempts to rewrite it to /data but no file under /etc/mysql sets datadir, so
+  the rewrite never happens. Confirmed with SELECT @@datadir on a live server.
+shutdown: clean (mysqladmin shutdown, container exited, log shows Shutdown complete)
+archive: mysql-5.7-seed.tar
+archive_bytes: 487950848
+archive_sha256: 270b4241a511d725e08b577632bd69a17fe25c71a49e432ac1634136169547c5
+content_assertions:
+  cities_cities_rows: 948833
+  ratings_ratings_table_present: 1
+  application_accounts: 2

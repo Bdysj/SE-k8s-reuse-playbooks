@@ -1,0 +1,756 @@
+[
+  {
+    "path": "runtime-logs/containers/k3d-lab-validation-serverlb/stdout.log",
+    "bytes": 14622,
+    "sha256": "7160bf53f62209622c4c7df0aaa7e2c95cfe3f554878a17037628835bc3f3704",
+    "raw_source_sha256": "7160bf53f62209622c4c7df0aaa7e2c95cfe3f554878a17037628835bc3f3704",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/containers/k3d-lab-validation-serverlb/stderr.log",
+    "bytes": 231112,
+    "sha256": "f59f131e3d3dee8fe6c14528c5fcf7f86e70491596c7d458b5d1e3debaa46e80",
+    "raw_source_sha256": "f59f131e3d3dee8fe6c14528c5fcf7f86e70491596c7d458b5d1e3debaa46e80",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/containers/k3d-lab-validation-agent-1/stdout.log",
+    "bytes": 1064,
+    "sha256": "b0f41901a7d39a4ed25d471ed9585ee456a8e1cb5af530792ab0197d1e3b0961",
+    "raw_source_sha256": "b0f41901a7d39a4ed25d471ed9585ee456a8e1cb5af530792ab0197d1e3b0961",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/containers/k3d-lab-validation-agent-1/stderr.log",
+    "bytes": 11033427,
+    "sha256": "9eb294b153d3fa2ddd56004c8289c45a307d08170172fa4dcf6fa1c8015911f4",
+    "raw_source_sha256": "9eb294b153d3fa2ddd56004c8289c45a307d08170172fa4dcf6fa1c8015911f4",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-validation-agent-1/pods/chaos-mesh_chaos-controller-manager-d47cf6768-5x6mj_ed0ac26c-fc86-4159-aeba-4a726aa286a5/chaos-mesh/40.log",
+    "bytes": 51866,
+    "sha256": "b708e4968faaf7216da84e97ad286e2a171634fbb86424031b59bc02f98a9c23",
+    "raw_source_sha256": "b708e4968faaf7216da84e97ad286e2a171634fbb86424031b59bc02f98a9c23",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-validation-agent-1/pods/chaos-mesh_chaos-daemon-ftwqc_0e4e2775-483d-4dd9-836e-be9a6c811bc1/chaos-daemon/4.log",
+    "bytes": 1789,
+    "sha256": "f84e8d1b591ce0fda7f08a5aef582c8040a40cd0b5c0ebf1a4d22f037401b76b",
+    "raw_source_sha256": "f84e8d1b591ce0fda7f08a5aef582c8040a40cd0b5c0ebf1a4d22f037401b76b",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-validation-agent-1/pods/chaos-mesh_chaos-daemon-ftwqc_0e4e2775-483d-4dd9-836e-be9a6c811bc1/chaos-daemon/5.log",
+    "bytes": 1785,
+    "sha256": "994a2141d66940b8b99ccd740851563916b128de87d17faaa32d46fbb9a83083",
+    "raw_source_sha256": "994a2141d66940b8b99ccd740851563916b128de87d17faaa32d46fbb9a83083",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-validation-agent-1/pods/chaos-mesh_chaos-dns-server-6bf4dd5d6-fjqhw_28c12ee6-d776-4cdb-9003-3b4cd6df17a3/chaos-dns-server/3.log",
+    "bytes": 29056,
+    "sha256": "736102b91ea9864b67ebc998a11ee8eaf399539604431b39c334fb2595a4ad0b",
+    "raw_source_sha256": "736102b91ea9864b67ebc998a11ee8eaf399539604431b39c334fb2595a4ad0b",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-validation-agent-1/pods/chaos-mesh_chaos-dns-server-6bf4dd5d6-fjqhw_28c12ee6-d776-4cdb-9003-3b4cd6df17a3/chaos-dns-server/4.log",
+    "bytes": 18730,
+    "sha256": "d2b1b3e0546522700235f3d1ecd555cbbad0ed2c2580445ced88603dee118d3d",
+    "raw_source_sha256": "d2b1b3e0546522700235f3d1ecd555cbbad0ed2c2580445ced88603dee118d3d",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-validation-agent-1/pods/kube-system_local-path-provisioner-774c6665dc-ssp5h_352a9ffb-a53b-4c4f-8369-3df6f4700005/local-path-provisioner/4.log",
+    "bytes": 467,
+    "sha256": "91732ace77764be38cefd2206be42cf4d909fb6653d8ffd9d0f0ebc5157145c5",
+    "raw_source_sha256": "91732ace77764be38cefd2206be42cf4d909fb6653d8ffd9d0f0ebc5157145c5",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-validation-agent-1/pods/kube-system_local-path-provisioner-774c6665dc-ssp5h_352a9ffb-a53b-4c4f-8369-3df6f4700005/local-path-provisioner/5.log",
+    "bytes": 5955,
+    "sha256": "5baeea869840bf28645d84311bacf71a501c844ae9bb0e23cc67af857c4e95f9",
+    "raw_source_sha256": "5baeea869840bf28645d84311bacf71a501c844ae9bb0e23cc67af857c4e95f9",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-validation-agent-1/pods/kube-system_svclb-web-8fed8324-nkwxt_e7993f82-86c1-4915-8269-3f4c69e19f10/lb-tcp-8080/0.log",
+    "bytes": 2051,
+    "sha256": "1c3d5e8c1947feef741a757e698b48cc573ec9c659e1f59bbdf9dfe6542ebe98",
+    "raw_source_sha256": "1c3d5e8c1947feef741a757e698b48cc573ec9c659e1f59bbdf9dfe6542ebe98",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-validation-agent-1/pods/kube-system_svclb-web-8fed8324-nkwxt_e7993f82-86c1-4915-8269-3f4c69e19f10/lb-tcp-8080/1.log",
+    "bytes": 2056,
+    "sha256": "46df98ad45dceebe9ccb3dcc18d2280695dfd7ac769fafdd834fd139dc6deb7b",
+    "raw_source_sha256": "46df98ad45dceebe9ccb3dcc18d2280695dfd7ac769fafdd834fd139dc6deb7b",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-validation-agent-1/pods/robot-shop_cart-6c5947db6-dx5pj_22d0b471-2172-4831-9d71-6e41d057c502/cart/0.log",
+    "bytes": 9694608,
+    "sha256": "5b0bff1ee13ef854c27a0a247f98d6b9ba45c74b745f15e18003442e2c29f521",
+    "raw_source_sha256": "5b0bff1ee13ef854c27a0a247f98d6b9ba45c74b745f15e18003442e2c29f521",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-validation-agent-1/pods/robot-shop_cart-6c5947db6-dx5pj_22d0b471-2172-4831-9d71-6e41d057c502/cart/0.log.20261009-020234",
+    "bytes": 10494836,
+    "sha256": "dfee469f284dc1bfb012ecb086d16d337d4c73058491a04a92b6c13d826584dd",
+    "raw_source_sha256": "a34c2ac7e43930ef55337f70cf899b8d2572389d6008f8ab529a041abd325872",
+    "redaction_counts": {},
+    "raw_source_compressed": true
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-validation-agent-1/pods/robot-shop_cart-6c5947db6-dx5pj_22d0b471-2172-4831-9d71-6e41d057c502/cart/0.log.20261009-031955",
+    "bytes": 10493752,
+    "sha256": "127b4f44121e713282ca281de8d832951fbcca28a22f1940a4e00721d6fcb350",
+    "raw_source_sha256": "127b4f44121e713282ca281de8d832951fbcca28a22f1940a4e00721d6fcb350",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-validation-agent-1/pods/robot-shop_catalogue-556c8f6d9-fxfbj_e306bb2d-d3a2-48ab-972b-56fd076817d3/catalogue/0.log",
+    "bytes": 4667804,
+    "sha256": "a57d67d96f0d60b6a4c7bf5837b2565a6ec73c2ff51cb6df315bc961ea09da14",
+    "raw_source_sha256": "a57d67d96f0d60b6a4c7bf5837b2565a6ec73c2ff51cb6df315bc961ea09da14",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-validation-agent-1/pods/robot-shop_catalogue-556c8f6d9-fxfbj_e306bb2d-d3a2-48ab-972b-56fd076817d3/catalogue/0.log.20261009-021824",
+    "bytes": 10511982,
+    "sha256": "1c6314dbad15525bac73deee4763ba37cb1d775ea8e1b2497e1b390d66cc04da",
+    "raw_source_sha256": "c52004c44de0693f0f276366e84f9b52c29f05986b4e122774cc9f9c91f93880",
+    "redaction_counts": {},
+    "raw_source_compressed": true
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-validation-agent-1/pods/robot-shop_catalogue-556c8f6d9-fxfbj_e306bb2d-d3a2-48ab-972b-56fd076817d3/catalogue/0.log.20261009-035208",
+    "bytes": 10511383,
+    "sha256": "688033d34c384ee263a1b209a5036200dc7ead2aefb51eb62f9992e0eaf8f8bf",
+    "raw_source_sha256": "688033d34c384ee263a1b209a5036200dc7ead2aefb51eb62f9992e0eaf8f8bf",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-validation-agent-1/pods/robot-shop_dispatch-6b8f4b8d77-hh5qd_fef0027a-73c0-413d-a206-9dc507f16841/dispatch/0.log",
+    "bytes": 3249607,
+    "sha256": "2af26bbdc4373c3039b8340974bf1461dc5df2a7ff02e9c687c8d242e50f2303",
+    "raw_source_sha256": "2af26bbdc4373c3039b8340974bf1461dc5df2a7ff02e9c687c8d242e50f2303",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-validation-agent-1/pods/robot-shop_mongodb-678485d7d4-hgqlj_18c6c69f-e9ed-4225-879a-d46419c2219b/mongodb/0.log",
+    "bytes": 328016,
+    "sha256": "d10f3ff26308abe5ca4e9dd557dcc30a601fa40c362fe9b724496b7f2f3690a5",
+    "raw_source_sha256": "d10f3ff26308abe5ca4e9dd557dcc30a601fa40c362fe9b724496b7f2f3690a5",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-validation-agent-1/pods/robot-shop_ratings-57c64f8448-4ps6b_c900c482-345c-4545-adae-142db00990aa/ratings/0.log",
+    "bytes": 10338262,
+    "sha256": "12ccc7f4d557d6554eaae7d62ceb3e770d8b4251ebab218ce703948470a46fa1",
+    "raw_source_sha256": "12ccc7f4d557d6554eaae7d62ceb3e770d8b4251ebab218ce703948470a46fa1",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-validation-agent-1/pods/robot-shop_redis-0_e5063029-5df3-48a9-a965-9a0e181cd32e/redis/0.log",
+    "bytes": 25988,
+    "sha256": "f4fc9ae1e33db09dac8e5844498eeddb5c4f4bed7197fc83565eba9882ce5b90",
+    "raw_source_sha256": "f4fc9ae1e33db09dac8e5844498eeddb5c4f4bed7197fc83565eba9882ce5b90",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-validation-agent-1/pods/robot-shop_user-5cbbb86bdc-vrlxg_dc7ec733-c58a-4cfa-bdaf-561475be52fd/user/0.log",
+    "bytes": 8373936,
+    "sha256": "0b71de9b09570cefc12044e206309eb4b119a973c0f2daa0a9f33c4386c9928b",
+    "raw_source_sha256": "0b71de9b09570cefc12044e206309eb4b119a973c0f2daa0a9f33c4386c9928b",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-validation-agent-1/pods/robot-shop_user-5cbbb86bdc-vrlxg_dc7ec733-c58a-4cfa-bdaf-561475be52fd/user/0.log.20261009-025115",
+    "bytes": 10487043,
+    "sha256": "004935957dc7765b2416519e456b5140bac22e3e33a5336aa3f6ac7b88e432a7",
+    "raw_source_sha256": "004935957dc7765b2416519e456b5140bac22e3e33a5336aa3f6ac7b88e432a7",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-validation-agent-1/pods/robot-shop_web-7fc96bb4d5-6dgq4_108ee0b7-c25c-4661-8201-ab4555d4784e/web/0.log",
+    "bytes": 2309070,
+    "sha256": "e795c412442f174b20a1f43f66584a698cbd776c10e4924590bed85e43893b49",
+    "raw_source_sha256": "e795c412442f174b20a1f43f66584a698cbd776c10e4924590bed85e43893b49",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-validation-agent-1/pods/robot-shop_web-7fc96bb4d5-6dgq4_108ee0b7-c25c-4661-8201-ab4555d4784e/web/0.log.20261009-035228",
+    "bytes": 10496433,
+    "sha256": "0c4b2e33c4f6f04e4641cc55ad48032f8dcd843fca2b36ab84bf37384508ab04",
+    "raw_source_sha256": "0c4b2e33c4f6f04e4641cc55ad48032f8dcd843fca2b36ab84bf37384508ab04",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/containers/k3d-lab-validation-agent-0/stdout.log",
+    "bytes": 1064,
+    "sha256": "fe2df4e171383f9aa601662b0df882e4e751e8523a006346110df3fd30fab0ed",
+    "raw_source_sha256": "fe2df4e171383f9aa601662b0df882e4e751e8523a006346110df3fd30fab0ed",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/containers/k3d-lab-validation-agent-0/stderr.log",
+    "bytes": 6931894,
+    "sha256": "8788137f4c50b2069c4c3ab07ec60b0914d3fe47e1203ecf1c35ffb06f4a2f0e",
+    "raw_source_sha256": "8788137f4c50b2069c4c3ab07ec60b0914d3fe47e1203ecf1c35ffb06f4a2f0e",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-validation-agent-0/pods/chaos-mesh_chaos-daemon-vztkd_fc2ff611-e7cf-4bad-be3e-d54724189fdd/chaos-daemon/4.log",
+    "bytes": 1789,
+    "sha256": "45b94c07e5f5a382a6dbbb8fbfde3c4ff7fbc8b11759dcc5a34b330d1a6120f6",
+    "raw_source_sha256": "45b94c07e5f5a382a6dbbb8fbfde3c4ff7fbc8b11759dcc5a34b330d1a6120f6",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-validation-agent-0/pods/chaos-mesh_chaos-daemon-vztkd_fc2ff611-e7cf-4bad-be3e-d54724189fdd/chaos-daemon/5.log",
+    "bytes": 1789,
+    "sha256": "36406a31467cebfd88110332fe2eb25293f4ffa2a859308e68b2d07a634d9e19",
+    "raw_source_sha256": "36406a31467cebfd88110332fe2eb25293f4ffa2a859308e68b2d07a634d9e19",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-validation-agent-0/pods/kube-system_coredns-64fd4b4794-9lk2v_e582f8a3-3a53-497a-ab70-31c34c11ad26/coredns/5.log",
+    "bytes": 751597,
+    "sha256": "8a0c73bc9592a42e60cdfb14b9cb5e44c6033091b04f212c848296bdf4233251",
+    "raw_source_sha256": "8a0c73bc9592a42e60cdfb14b9cb5e44c6033091b04f212c848296bdf4233251",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-validation-agent-0/pods/kube-system_coredns-64fd4b4794-9lk2v_e582f8a3-3a53-497a-ab70-31c34c11ad26/coredns/6.log",
+    "bytes": 402886,
+    "sha256": "ce921301f4e440ae6f12e56d09136d76012bb1d0017aa18c6d81c34c7abf277b",
+    "raw_source_sha256": "ce921301f4e440ae6f12e56d09136d76012bb1d0017aa18c6d81c34c7abf277b",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-validation-agent-0/pods/kube-system_metrics-server-7bfffcd44-sn5ld_02b74140-dc0c-450b-ba52-fd08282fe4af/metrics-server/11.log",
+    "bytes": 10289,
+    "sha256": "89b4cebad91b5e648c5fb9b4a2987f756a85ea9582bc350652f346ae13e25893",
+    "raw_source_sha256": "89b4cebad91b5e648c5fb9b4a2987f756a85ea9582bc350652f346ae13e25893",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-validation-agent-0/pods/kube-system_metrics-server-7bfffcd44-sn5ld_02b74140-dc0c-450b-ba52-fd08282fe4af/metrics-server/12.log",
+    "bytes": 52271,
+    "sha256": "d060f7fb606dc794599ce8a909f479c23b5b952d5ae367dc1acf4505741af831",
+    "raw_source_sha256": "d060f7fb606dc794599ce8a909f479c23b5b952d5ae367dc1acf4505741af831",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-validation-agent-0/pods/kube-system_svclb-web-8fed8324-7nq6f_f9ef2fce-250a-45df-97a6-7ddf04ea0623/lb-tcp-8080/0.log",
+    "bytes": 2054,
+    "sha256": "4f0e65072d645fea50fa7303a43fa6e2ed75b0eb09738f0023b4779734faa534",
+    "raw_source_sha256": "4f0e65072d645fea50fa7303a43fa6e2ed75b0eb09738f0023b4779734faa534",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-validation-agent-0/pods/kube-system_svclb-web-8fed8324-7nq6f_f9ef2fce-250a-45df-97a6-7ddf04ea0623/lb-tcp-8080/1.log",
+    "bytes": 2044,
+    "sha256": "8f60f43f42ed7cb22932639df51eaebffbc7a55211b845d718af392347dc9761",
+    "raw_source_sha256": "8f60f43f42ed7cb22932639df51eaebffbc7a55211b845d718af392347dc9761",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-validation-agent-0/pods/robot-shop_mysql-7b57586874-s47xc_5aa32512-1a80-4735-a79b-78606e68ccd7/mysql/0.log",
+    "bytes": 5951,
+    "sha256": "02594dcd7b6eef8f387739814dfda1057dc5383665c37b28d2bfe53bf21077b2",
+    "raw_source_sha256": "02594dcd7b6eef8f387739814dfda1057dc5383665c37b28d2bfe53bf21077b2",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/containers/k3d-lab-validation-server-0/stdout.log",
+    "bytes": 2257,
+    "sha256": "31219accbf18f76b124f232ddc50d7f51bf8ccc0755dbbbf56909f33765f189b",
+    "raw_source_sha256": "31219accbf18f76b124f232ddc50d7f51bf8ccc0755dbbbf56909f33765f189b",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/containers/k3d-lab-validation-server-0/stderr.log",
+    "bytes": 13697578,
+    "sha256": "6ce10528260a17b2f83037fc9f5aeefd17ec380544c7f4a5aa3ef07c3cee4982",
+    "raw_source_sha256": "6ce10528260a17b2f83037fc9f5aeefd17ec380544c7f4a5aa3ef07c3cee4982",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-validation-server-0/pods/chaos-mesh_chaos-daemon-f2rnt_8b68f1c0-3031-44cb-86d2-81f318b3d73a/chaos-daemon/4.log",
+    "bytes": 1789,
+    "sha256": "aa56b54799e7156b296adf6ad63c307ac38df4833af66a66b32346869b32d7a5",
+    "raw_source_sha256": "aa56b54799e7156b296adf6ad63c307ac38df4833af66a66b32346869b32d7a5",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-validation-server-0/pods/chaos-mesh_chaos-daemon-f2rnt_8b68f1c0-3031-44cb-86d2-81f318b3d73a/chaos-daemon/5.log",
+    "bytes": 1789,
+    "sha256": "7f4254d22afc3e1937d7006977d957701240fc7410a5019d4a415b5d1a1b9e08",
+    "raw_source_sha256": "7f4254d22afc3e1937d7006977d957701240fc7410a5019d4a415b5d1a1b9e08",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-validation-server-0/pods/kube-system_svclb-web-8fed8324-w8db7_7aa2afd0-e0ac-42a4-ba1a-1584c3beb048/lb-tcp-8080/0.log",
+    "bytes": 2048,
+    "sha256": "f25499842772ce0ad255f661fb844cec73c7c1a1af1ff3a06972ff0d1166811e",
+    "raw_source_sha256": "f25499842772ce0ad255f661fb844cec73c7c1a1af1ff3a06972ff0d1166811e",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-validation-server-0/pods/kube-system_svclb-web-8fed8324-w8db7_7aa2afd0-e0ac-42a4-ba1a-1584c3beb048/lb-tcp-8080/1.log",
+    "bytes": 2056,
+    "sha256": "bec290793b31dcc0db98000c6152c5bae9ab8764e9858ad64dd2d3c4e822d3c5",
+    "raw_source_sha256": "bec290793b31dcc0db98000c6152c5bae9ab8764e9858ad64dd2d3c4e822d3c5",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-validation-server-0/pods/robot-shop_payment-6c799b6478-7tdmg_3d9811ba-6ccc-4cb2-b12f-db3783851949/payment/0.log",
+    "bytes": 6359627,
+    "sha256": "0204e7ec16bfbdb85e02ff735cf1318f33a791c31f766c65abf8062ff8a8a2b4",
+    "raw_source_sha256": "0204e7ec16bfbdb85e02ff735cf1318f33a791c31f766c65abf8062ff8a8a2b4",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-validation-server-0/pods/robot-shop_rabbitmq-69f56d7844-p2ssx_6d3a8ea0-48ce-4a95-9797-a46c87cf5338/rabbitmq/0.log",
+    "bytes": 19227,
+    "sha256": "db86042f84cb1d8d33a20f700ae305f5fa3b929a314afa12e16d27ec658ee7f7",
+    "raw_source_sha256": "db86042f84cb1d8d33a20f700ae305f5fa3b929a314afa12e16d27ec658ee7f7",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/containers/k3d-lab-serverlb/stdout.log",
+    "bytes": 22858,
+    "sha256": "d78335924b6f0da680e4770e296ec593e0822122ddc7efd2b279403b626ad54e",
+    "raw_source_sha256": "d78335924b6f0da680e4770e296ec593e0822122ddc7efd2b279403b626ad54e",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/containers/k3d-lab-serverlb/stderr.log",
+    "bytes": 650905,
+    "sha256": "fa526be7a8625de23a95c9833aa540b5234255d4c25592889508ab9a49620059",
+    "raw_source_sha256": "fa526be7a8625de23a95c9833aa540b5234255d4c25592889508ab9a49620059",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/containers/k3d-lab-agent-1/stdout.log",
+    "bytes": 1752,
+    "sha256": "3ad99193a31f78cb34a1007e54fabaf4d2090dd9dcf8e65c90c538e7019b1ec8",
+    "raw_source_sha256": "3ad99193a31f78cb34a1007e54fabaf4d2090dd9dcf8e65c90c538e7019b1ec8",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/containers/k3d-lab-agent-1/stderr.log",
+    "bytes": 53451010,
+    "sha256": "cbe60b20a7c33547759136bb4bdc1467d3733ab1a423863845f04ef4b7dd8e00",
+    "raw_source_sha256": "cbe60b20a7c33547759136bb4bdc1467d3733ab1a423863845f04ef4b7dd8e00",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-agent-1/pods/chaos-mesh_chaos-daemon-hvqlt_708fa194-ca98-4753-bc94-abeed3e9007e/chaos-daemon/8.log",
+    "bytes": 1789,
+    "sha256": "0d6721f9d5c6a549c5778624a9fec87ff5cc9794112b09128688a6c898a5fa97",
+    "raw_source_sha256": "0d6721f9d5c6a549c5778624a9fec87ff5cc9794112b09128688a6c898a5fa97",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-agent-1/pods/chaos-mesh_chaos-daemon-hvqlt_708fa194-ca98-4753-bc94-abeed3e9007e/chaos-daemon/9.log",
+    "bytes": 1787,
+    "sha256": "1ef1cc4ce2babdaba58de077fd743a283c7cef000d8ce58118adf42e9ea72608",
+    "raw_source_sha256": "1ef1cc4ce2babdaba58de077fd743a283c7cef000d8ce58118adf42e9ea72608",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-agent-1/pods/chaos-mesh_chaos-dns-server-6bf4dd5d6-sxkqk_6a364ddf-46cb-4349-a378-a8b6c32dea88/chaos-dns-server/7.log",
+    "bytes": 29062,
+    "sha256": "e1c88f85dea61d68e6012bb84f3a9ce5c59c9d0a229c5458595a6ebb97ff5fcc",
+    "raw_source_sha256": "e1c88f85dea61d68e6012bb84f3a9ce5c59c9d0a229c5458595a6ebb97ff5fcc",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-agent-1/pods/chaos-mesh_chaos-dns-server-6bf4dd5d6-sxkqk_6a364ddf-46cb-4349-a378-a8b6c32dea88/chaos-dns-server/8.log",
+    "bytes": 24287,
+    "sha256": "28caf3ea3def1778b633fc803eeb7b9e17e8ad90b3838eadf3b6e729db84ffd9",
+    "raw_source_sha256": "28caf3ea3def1778b633fc803eeb7b9e17e8ad90b3838eadf3b6e729db84ffd9",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-agent-1/pods/kube-system_metrics-server-7bfffcd44-nqvfg_17180c43-13ce-417b-b842-df0bfdb08d23/metrics-server/22.log",
+    "bytes": 63931,
+    "sha256": "1dd376d99096536eea5fa97ea7e90bf0cc787071504ee14cf57871c3a8a2b7b7",
+    "raw_source_sha256": "1dd376d99096536eea5fa97ea7e90bf0cc787071504ee14cf57871c3a8a2b7b7",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-agent-1/pods/kube-system_svclb-web-0363e30a-cnxhn_0f3c85f2-017a-4f24-a08c-6bb7af338534/lb-tcp-8080/0.log",
+    "bytes": 2051,
+    "sha256": "d6ec636d55d912834b58ade107a9aeb845635d0298868829003ecb7ac7cb38ef",
+    "raw_source_sha256": "d6ec636d55d912834b58ade107a9aeb845635d0298868829003ecb7ac7cb38ef",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-agent-1/pods/kube-system_svclb-web-0363e30a-cnxhn_0f3c85f2-017a-4f24-a08c-6bb7af338534/lb-tcp-8080/1.log",
+    "bytes": 2049,
+    "sha256": "687bee118b378baedc72fcd5536e70fa7a2e7deda221c0cef20f077bc6cb08bb",
+    "raw_source_sha256": "687bee118b378baedc72fcd5536e70fa7a2e7deda221c0cef20f077bc6cb08bb",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-agent-1/pods/robot-shop_cart-5b94dcb858-hn9sl_ca9122c3-b17f-471f-948b-96449c94864f/cart/0.log",
+    "bytes": 1421481,
+    "sha256": "1d372125daee85c4b3f3b44663c05ee9e50c751de146d82159a6363936964ae0",
+    "raw_source_sha256": "1d372125daee85c4b3f3b44663c05ee9e50c751de146d82159a6363936964ae0",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-agent-1/pods/robot-shop_cart-5b94dcb858-hn9sl_ca9122c3-b17f-471f-948b-96449c94864f/cart/0.log.20261009-030046",
+    "bytes": 10487773,
+    "sha256": "3c68383e7a85ca47987e21ba594266cc9e227c0b5b31dd6fea94cb03779e23e3",
+    "raw_source_sha256": "ba2ecc75c212533318b231e5761eef8471be862ad62fa5608d243145847ebe46",
+    "redaction_counts": {},
+    "raw_source_compressed": true
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-agent-1/pods/robot-shop_cart-5b94dcb858-hn9sl_ca9122c3-b17f-471f-948b-96449c94864f/cart/0.log.20261009-043047",
+    "bytes": 10487844,
+    "sha256": "88ee16d881dd8f6565788f3918846ed11e08d432c340e5087f4b8cc3178e2e2e",
+    "raw_source_sha256": "88ee16d881dd8f6565788f3918846ed11e08d432c340e5087f4b8cc3178e2e2e",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-agent-1/pods/robot-shop_catalogue-74d95c6d99-gs4k7_0c81aa8d-3bac-46eb-92d4-bb00d2f0136b/catalogue/0.log",
+    "bytes": 8253198,
+    "sha256": "22b0747b99803fa1bd7ba05e18bec1c26ae97edeaf3c41cc2024bef765b907ad",
+    "raw_source_sha256": "22b0747b99803fa1bd7ba05e18bec1c26ae97edeaf3c41cc2024bef765b907ad",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-agent-1/pods/robot-shop_catalogue-74d95c6d99-gs4k7_0c81aa8d-3bac-46eb-92d4-bb00d2f0136b/catalogue/0.log.20261009-031607",
+    "bytes": 10491034,
+    "sha256": "4ca72f6d98d03bf4f86268324c7a5f9e4134306c3e88fdfcbe3814d5f9690afe",
+    "raw_source_sha256": "4ca72f6d98d03bf4f86268324c7a5f9e4134306c3e88fdfcbe3814d5f9690afe",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-agent-1/pods/robot-shop_dispatch-8cc795c79-dt6j9_1e09adff-287e-4c3c-8b5f-7d7051abb3dd/dispatch/0.log",
+    "bytes": 2368956,
+    "sha256": "5c51f9a5b817a6b8f712806ba0ba3c740cdfa090cf119bc420271f7cc20d9129",
+    "raw_source_sha256": "5c51f9a5b817a6b8f712806ba0ba3c740cdfa090cf119bc420271f7cc20d9129",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-agent-1/pods/robot-shop_mongodb-767f89699b-ddntq_856102f8-15d7-41dd-a636-4b2e7be515cd/mongodb/0.log",
+    "bytes": 298183,
+    "sha256": "93eb3eb6bae69327f8fbb5639ddb087ca96f30ba7d5c3b27baf40bc462042289",
+    "raw_source_sha256": "93eb3eb6bae69327f8fbb5639ddb087ca96f30ba7d5c3b27baf40bc462042289",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-agent-1/pods/robot-shop_ratings-79d56879b-sk9s9_ef298858-0e82-4a25-a402-21e0ada5fb36/ratings/0.log",
+    "bytes": 7609504,
+    "sha256": "2fca2de05d881201cf57d34863efca3840f6dce659f2231ec7e09e406fbd1354",
+    "raw_source_sha256": "2fca2de05d881201cf57d34863efca3840f6dce659f2231ec7e09e406fbd1354",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-agent-1/pods/robot-shop_redis-0_1c0cad5a-45fb-4953-9c21-51b83c8d2ac6/redis/0.log",
+    "bytes": 19905,
+    "sha256": "74f57d4fc8d0589f691e55ce194c0cc63288ac686f39cacbf18e8f6e666d40e8",
+    "raw_source_sha256": "74f57d4fc8d0589f691e55ce194c0cc63288ac686f39cacbf18e8f6e666d40e8",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-agent-1/pods/robot-shop_user-756ffb6f49-zfmjh_2eb45894-1a14-42e0-9a97-75179bc7d4bb/user/0.log",
+    "bytes": 3288139,
+    "sha256": "3939d3f1f0f08948f541b78fa7a52e470ebec0f60b9d82d853666d668f2e382f",
+    "raw_source_sha256": "3939d3f1f0f08948f541b78fa7a52e470ebec0f60b9d82d853666d668f2e382f",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-agent-1/pods/robot-shop_user-756ffb6f49-zfmjh_2eb45894-1a14-42e0-9a97-75179bc7d4bb/user/0.log.20261009-035148",
+    "bytes": 10491604,
+    "sha256": "10cd6f869d8c091e701fd4dcea661fee6f7904d50a0e33a08a525c497569967c",
+    "raw_source_sha256": "10cd6f869d8c091e701fd4dcea661fee6f7904d50a0e33a08a525c497569967c",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-agent-1/pods/robot-shop_web-5db79b78cf-46fd5_c4e7ddc9-105e-47ee-9c83-c88359c28791/web/0.log",
+    "bytes": 9362667,
+    "sha256": "5dc8b12aaf03d0d274a2cca295cb4c9b5035f7b654a3645b77841d4939c05d62",
+    "raw_source_sha256": "5dc8b12aaf03d0d274a2cca295cb4c9b5035f7b654a3645b77841d4939c05d62",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/containers/k3d-lab-agent-0/stdout.log",
+    "bytes": 1752,
+    "sha256": "6044de92d641341efc925a52eb98803419c1aaddc11a87f61a0a7bf7e13ac37b",
+    "raw_source_sha256": "6044de92d641341efc925a52eb98803419c1aaddc11a87f61a0a7bf7e13ac37b",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/containers/k3d-lab-agent-0/stderr.log",
+    "bytes": 32567300,
+    "sha256": "f7c4f0fed09d6b13ad3dd538b1dd868193ca7b66ed5cda9f2e06cc160c281d2f",
+    "raw_source_sha256": "f7c4f0fed09d6b13ad3dd538b1dd868193ca7b66ed5cda9f2e06cc160c281d2f",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-agent-0/pods/chaos-mesh_chaos-controller-manager-685588d87b-hkspz_17858e1e-72ef-4168-bfa2-735f6f5c49ab/chaos-mesh/55.log",
+    "bytes": 123416,
+    "sha256": "865fd3e7d71b24ac38d288a6af3ac30660ff1f3f3262fa464c05509fa8529c8d",
+    "raw_source_sha256": "865fd3e7d71b24ac38d288a6af3ac30660ff1f3f3262fa464c05509fa8529c8d",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-agent-0/pods/chaos-mesh_chaos-daemon-hccj8_f19f32da-ded2-4da1-8878-0d3cb2e8a9a0/chaos-daemon/8.log",
+    "bytes": 1786,
+    "sha256": "2e8afcc2424bc82c0abc0265a937339c8ce24f77df11306b61c9df5e9c7637fc",
+    "raw_source_sha256": "2e8afcc2424bc82c0abc0265a937339c8ce24f77df11306b61c9df5e9c7637fc",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-agent-0/pods/chaos-mesh_chaos-daemon-hccj8_f19f32da-ded2-4da1-8878-0d3cb2e8a9a0/chaos-daemon/9.log",
+    "bytes": 1789,
+    "sha256": "d108790aacd706ce12b6de7029517ae886ed63ddd35da3b5668f2d271338eb2d",
+    "raw_source_sha256": "d108790aacd706ce12b6de7029517ae886ed63ddd35da3b5668f2d271338eb2d",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-agent-0/pods/kube-system_coredns-64fd4b4794-j6cw8_f6e02649-3e7c-4b4b-bb48-0f76aa08e04c/coredns/13.log",
+    "bytes": 504289,
+    "sha256": "940dd96c67096d544a28216eff37e414fce4560e06355d99aa89e726befc42fa",
+    "raw_source_sha256": "940dd96c67096d544a28216eff37e414fce4560e06355d99aa89e726befc42fa",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-agent-0/pods/kube-system_coredns-64fd4b4794-j6cw8_f6e02649-3e7c-4b4b-bb48-0f76aa08e04c/coredns/14.log",
+    "bytes": 339032,
+    "sha256": "1b4c5aad20e0365428a4eaa3e0e52d0b1ed663f64bc2c8c0de816600ea300af9",
+    "raw_source_sha256": "1b4c5aad20e0365428a4eaa3e0e52d0b1ed663f64bc2c8c0de816600ea300af9",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-agent-0/pods/kube-system_local-path-provisioner-774c6665dc-gpbbs_d3b0cd9c-de38-4908-a3af-bf5be40ca6ee/local-path-provisioner/10.log",
+    "bytes": 7134,
+    "sha256": "1fcd1bcf6d896b66b7c4f493388bf04fba7952a16c829639b4fd43008e14b473",
+    "raw_source_sha256": "1fcd1bcf6d896b66b7c4f493388bf04fba7952a16c829639b4fd43008e14b473",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-agent-0/pods/kube-system_local-path-provisioner-774c6665dc-gpbbs_d3b0cd9c-de38-4908-a3af-bf5be40ca6ee/local-path-provisioner/9.log",
+    "bytes": 466,
+    "sha256": "7d81d323981accda08504f1d0a9e952a7de2abd640da4e38444ef79182e5ca23",
+    "raw_source_sha256": "7d81d323981accda08504f1d0a9e952a7de2abd640da4e38444ef79182e5ca23",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-agent-0/pods/kube-system_svclb-web-0363e30a-df4s7_ac67a24c-abc3-4fb7-ab9e-08d75c5e9a0c/lb-tcp-8080/0.log",
+    "bytes": 2050,
+    "sha256": "39bb6d419563611806392fedf7786666c08fe5619cc158310c6e508f6b6d2f1b",
+    "raw_source_sha256": "39bb6d419563611806392fedf7786666c08fe5619cc158310c6e508f6b6d2f1b",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-agent-0/pods/kube-system_svclb-web-0363e30a-df4s7_ac67a24c-abc3-4fb7-ab9e-08d75c5e9a0c/lb-tcp-8080/1.log",
+    "bytes": 2046,
+    "sha256": "07e703ede2f626ac08eef5e41c0e90fe24c351d783c2494d5fafe90841a8a357",
+    "raw_source_sha256": "07e703ede2f626ac08eef5e41c0e90fe24c351d783c2494d5fafe90841a8a357",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-agent-0/pods/robot-shop_mysql-6797c6dc84-zfpfb_65bf631b-f87b-429a-99fd-fb4428c353ab/mysql/0.log",
+    "bytes": 5953,
+    "sha256": "7f9f0a4db16b1cce06d514dbb7a027e253134e8d5a87a48f8f1793d5818c8b55",
+    "raw_source_sha256": "7f9f0a4db16b1cce06d514dbb7a027e253134e8d5a87a48f8f1793d5818c8b55",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/containers/k3d-lab-server-0/stdout.log",
+    "bytes": 3678,
+    "sha256": "e75f94cb0993920e47c2b12ab6fa0ffb2b939987c6acd1f6b720c1c7eea08d4c",
+    "raw_source_sha256": "e75f94cb0993920e47c2b12ab6fa0ffb2b939987c6acd1f6b720c1c7eea08d4c",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/containers/k3d-lab-server-0/stderr.log",
+    "bytes": 68005700,
+    "sha256": "0ab430eb84f12d0d481d2db702d00940d447fd3434b0d6087c2f0fa6f62d4cf5",
+    "raw_source_sha256": "0ab430eb84f12d0d481d2db702d00940d447fd3434b0d6087c2f0fa6f62d4cf5",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-server-0/pods/chaos-mesh_chaos-daemon-zrgql_3b361744-a17d-4ae4-8135-463d09d0014f/chaos-daemon/8.log",
+    "bytes": 1787,
+    "sha256": "89228297b3a5ea7db8bccb20f6a4f056e5f2a5fffe4ed86b12390de9c475b244",
+    "raw_source_sha256": "89228297b3a5ea7db8bccb20f6a4f056e5f2a5fffe4ed86b12390de9c475b244",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-server-0/pods/chaos-mesh_chaos-daemon-zrgql_3b361744-a17d-4ae4-8135-463d09d0014f/chaos-daemon/9.log",
+    "bytes": 1787,
+    "sha256": "3e7ffada5563b7bd125178b069deb1c0414b3d012806120142171eae7deab2c4",
+    "raw_source_sha256": "3e7ffada5563b7bd125178b069deb1c0414b3d012806120142171eae7deab2c4",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-server-0/pods/kube-system_svclb-web-0363e30a-2vhgn_edacf60b-3162-4635-935e-556d08852402/lb-tcp-8080/0.log",
+    "bytes": 2053,
+    "sha256": "5563c312bae2a5e959e9fb22dafc7d3893f83169c0c2b7ee5d03809b6718c189",
+    "raw_source_sha256": "5563c312bae2a5e959e9fb22dafc7d3893f83169c0c2b7ee5d03809b6718c189",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-server-0/pods/kube-system_svclb-web-0363e30a-2vhgn_edacf60b-3162-4635-935e-556d08852402/lb-tcp-8080/1.log",
+    "bytes": 2052,
+    "sha256": "02b320826d727433593eb8f9d3024f73173c67c56ab3953c51db3c4451ff84ef",
+    "raw_source_sha256": "02b320826d727433593eb8f9d3024f73173c67c56ab3953c51db3c4451ff84ef",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-server-0/pods/robot-shop_load-7dcbd6d866-jczst_486200f7-353b-4429-9624-3e2ff965a437/load/0.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw_source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-server-0/pods/robot-shop_payment-dccdfd5c6-qx96z_54acb7fe-bfe5-41fa-ae47-e9a4b37af928/payment/0.log",
+    "bytes": 4627173,
+    "sha256": "b3a4af153ed54344cacf5d485450be64cdaefc0b9a0195c182e765a9a0eb19c7",
+    "raw_source_sha256": "b3a4af153ed54344cacf5d485450be64cdaefc0b9a0195c182e765a9a0eb19c7",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-server-0/pods/robot-shop_rabbitmq-74c669fd54-x8thp_25c7b1d2-242d-4cf0-9930-cc9e28992001/rabbitmq/0.log",
+    "bytes": 19204,
+    "sha256": "afd770f953571914064f5e67b556f814bf1112210c61386f4ccb7cbe9fd3de05",
+    "raw_source_sha256": "afd770f953571914064f5e67b556f814bf1112210c61386f4ccb7cbe9fd3de05",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/pods/k3d-lab-server-0/pods/robot-shop_shipping-54d4fbd4f-zl68w_d772fe4b-624f-4a9d-941f-175d1b5b71a0/shipping/0.log",
+    "bytes": 3185261,
+    "sha256": "76729426f0438b3da7f864fc4c1b5358b9d2f399966f770ce288f2db4c4eee7c",
+    "raw_source_sha256": "76729426f0438b3da7f864fc4c1b5358b9d2f399966f770ce288f2db4c4eee7c",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/containers/k3d-ddn-registry/stdout.log",
+    "bytes": 703,
+    "sha256": "bc59658bbdcacdbffc0eae3363aadd0140fb18c0a4b48ddc560e03e06afee18a",
+    "raw_source_sha256": "bc59658bbdcacdbffc0eae3363aadd0140fb18c0a4b48ddc560e03e06afee18a",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/containers/k3d-ddn-registry/stderr.log",
+    "bytes": 16686,
+    "sha256": "44c4519d43a910ed7108d015a23abe7cf851ea2086443423986bb2b7f44de01b",
+    "raw_source_sha256": "44c4519d43a910ed7108d015a23abe7cf851ea2086443423986bb2b7f44de01b",
+    "redaction_counts": {},
+    "raw_source_compressed": false
+  },
+  {
+    "path": "runtime-logs/collection.json",
+    "bytes": 3962,
+    "sha256": "06068e4660ee70992a0933fdc5cc62479797d7d66c98dc0e9780b8aa7731a419"
+  },
+  {
+    "path": "runtime-logs/redaction-ledger.json",
+    "bytes": 1614,
+    "sha256": "91a62a792ecd578ee93cea32c70b28c0e0b697f23c2163895252065ef0fecb8a"
+  }
+]

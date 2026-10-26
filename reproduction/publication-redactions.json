@@ -1,0 +1,125 @@
+{
+  "changed_publication_copies": 13,
+  "original_inputs_edited": 0,
+  "frozen_or_analysis_input_paths_changed": 0,
+  "credential_values_in_ledger": false,
+  "files": [
+    {
+      "path": "results/comparison-calibration-v3/runtime/startup-after.json",
+      "original_sha256": "eadf8197d7c60dee31eae21040805fc9fd4df8261cbd36eecd9a1b7268f093f7",
+      "public_sha256": "bd70f62c8a6eaba2f6a2a1c24f4dda3a0d6227e65184eb8b13cd4e308466b5a1",
+      "original_bytes": 42776,
+      "public_bytes": 42839,
+      "credential_occurrences_removed": 7,
+      "reason": "Remove the retained cluster access credential from diagnostic metadata. Scientific frozen inputs are unchanged."
+    },
+    {
+      "path": "results/comparison-calibration-v3/runtime/startup-before.json",
+      "original_sha256": "5081aa6576c5396ebdba3b911a2936bcb82315e171747fc5db449f64e8d46cc0",
+      "public_sha256": "4819cee1157c2308ba85f794921be733dffc014415cae743fce239ef9f7a9886",
+      "original_bytes": 36910,
+      "public_bytes": 36973,
+      "credential_occurrences_removed": 7,
+      "reason": "Remove the retained cluster access credential from diagnostic metadata. Scientific frozen inputs are unchanged."
+    },
+    {
+      "path": "results/continuation-20261001/cluster-stop-receipt.json",
+      "original_sha256": "196ca92ab03364d942ab6b56104a7eac6d852c2d02da9f1472a1081454c77feb",
+      "public_sha256": "5ea38575692d39eb4691cedcb2bfbb0bf8f624e729777788f7554ed27e8ee1f1",
+      "original_bytes": 6269,
+      "public_bytes": 6305,
+      "credential_occurrences_removed": 4,
+      "reason": "Remove the retained cluster access credential from diagnostic metadata. Scientific frozen inputs are unchanged."
+    },
+    {
+      "path": "results/continuation-20261001/external-container-observation.json",
+      "original_sha256": "d0ddada01abcc9f9fd3ab6aa12e4cb67bbf9b807d8697b639a9605fa913ecfcf",
+      "public_sha256": "e8ba7572d3be365c28c7cad368a531db5a55e3b08f4e7ee176d73c6797ac3021",
+      "original_bytes": 10233,
+      "public_bytes": 10269,
+      "credential_occurrences_removed": 4,
+      "reason": "Remove the retained cluster access credential from diagnostic metadata. Scientific frozen inputs are unchanged."
+    },
+    {
+      "path": "results/continuation-20261001/final-state.json",
+      "original_sha256": "0031e94fb0144ee6590717c4eefaf96238856c0b4f726cecf844a5ed033e6b75",
+      "public_sha256": "4cb7e086208b727e6f6117570181e22f22000f02840d7c811cdf52f669da20ae",
+      "original_bytes": 45638,
+      "public_bytes": 45710,
+      "credential_occurrences_removed": 8,
+      "reason": "Remove the retained cluster access credential from diagnostic metadata. Scientific frozen inputs are unchanged."
+    },
+    {
+      "path": "results/continuation-20261001/host-contention-S4-trial-10.json",
+      "original_sha256": "733958a7551a3bf73f12465bd26c5f247a53d029a4d01a911e01392af3bd1d43",
+      "public_sha256": "55ee64efd29f67fc55d6f75e17f8ba0fa0808f07e9779a9371c63aae725d8f09",
+      "original_bytes": 11530,
+      "public_bytes": 11566,
+      "credential_occurrences_removed": 4,
+      "reason": "Remove the retained cluster access credential from diagnostic metadata. Scientific frozen inputs are unchanged."
+    },
+    {
+      "path": "results/docker-safe-cleanup-20261020-v1/disk-after.json",
+      "original_sha256": "e9b4274ac12b6c00267b6f9c5129925e3a09dd1abd01c72ad4a9408b20f7b619",
+      "public_sha256": "dfdf23f3d12d24c6566b56d98d0e6eea2e7f41c980842d8d028a71481531d678",
+      "original_bytes": 387286,
+      "public_bytes": 387430,
+      "credential_occurrences_removed": 16,
+      "reason": "Remove the retained cluster access credential from diagnostic metadata. Scientific frozen inputs are unchanged."
+    },
+    {
+      "path": "results/docker-safe-cleanup-20261020-v1/disk-before.json",
+      "original_sha256": "33184332e02ed9003b24fa9cae193ee25d5150e7139d264388ccca113240c1c5",
+      "public_sha256": "5ee4c7d0d14027a76e358789d914e72e39e7c32a3487698a0733379d880ff1a5",
+      "original_bytes": 524854,
+      "public_bytes": 524998,
+      "credential_occurrences_removed": 16,
+      "reason": "Remove the retained cluster access credential from diagnostic metadata. Scientific frozen inputs are unchanged."
+    },
+    {
+      "path": "results/docker-space-audit-20261020-v1/engine-disk-usage.json",
+      "original_sha256": "fd0a00a82283be3904132bdb16d0936b43bff38af68da74e7f30343c6496155c",
+      "public_sha256": "4d140c6abb8595a8b829ea292062ce76ae1bbd71dad4a09163149f8a04e319ba",
+      "original_bytes": 524854,
+      "public_bytes": 524998,
+      "credential_occurrences_removed": 16,
+      "reason": "Remove the retained cluster access credential from diagnostic metadata. Scientific frozen inputs are unchanged."
+    },
+    {
+      "path": "results/dual-cluster/final-state.json",
+      "original_sha256": "1b79b2031451216703cdb7329f6436b0b28b65e4a1ab828913e538d1686d1e95",
+      "public_sha256": "2b13449565e7b3403358cfdd144260d2a9d3550b33e9a5752cb4628f0d183463",
+      "original_bytes": 13195,
+      "public_bytes": 13321,
+      "credential_occurrences_removed": 14,
+      "reason": "Remove the retained cluster access credential from diagnostic metadata. Scientific frozen inputs are unchanged."
+    },
+    {
+      "path": "results/formal-main-v1/recoveries/transport-144-attempt-1/transport-144-oom-events.log",
+      "original_sha256": "70ece9bc62c1d6fe504ca9210aab0c30f388c1f460a2bdbb8a7e7bb5ca682004",
+      "public_sha256": "c1e350a14a0acb8cc1bb2206e34acced9e5c3fd09019a0f6631b6e0941925ca0",
+      "original_bytes": 3102,
+      "public_bytes": 3129,
+      "credential_occurrences_removed": 3,
+      "reason": "Remove the retained cluster access credential from diagnostic metadata. Scientific frozen inputs are unchanged."
+    },
+    {
+      "path": "results/formal-main-v1/runtime/transport-144-oom-events.log",
+      "original_sha256": "70ece9bc62c1d6fe504ca9210aab0c30f388c1f460a2bdbb8a7e7bb5ca682004",
+      "public_sha256": "c1e350a14a0acb8cc1bb2206e34acced9e5c3fd09019a0f6631b6e0941925ca0",
+      "original_bytes": 3102,
+      "public_bytes": 3129,
+      "credential_occurrences_removed": 3,
+      "reason": "Remove the retained cluster access credential from diagnostic metadata. Scientific frozen inputs are unchanged."
+    },
+    {
+      "path": "results/qualification-v3/final-state.json",
+      "original_sha256": "5b9426cc5026b4d24e0c98bb577a9fe45f1ccddb35fc6548e5d14564b1aeb274",
+      "public_sha256": "53e1384b9923bcf1173b17d9fb721f9b395c29b50d63797d3a8003ca07ace40f",
+      "original_bytes": 45869,
+      "public_bytes": 45941,
+      "credential_occurrences_removed": 8,
+      "reason": "Remove the retained cluster access credential from diagnostic metadata. Scientific frozen inputs are unchanged."
+    }
+  ]
+}
