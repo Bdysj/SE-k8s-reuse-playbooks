@@ -52,6 +52,7 @@ jobs:
             outputs/live-*/baseline.log
             outputs/live-*/p5-ansible.log
             outputs/live-*/verification-samples.json
+            outputs/live-*/recovery-samples.json
             outputs/live-*/final-baseline.log
             outputs/live-*/final-pods.json
             outputs/live-*/qualification.yaml

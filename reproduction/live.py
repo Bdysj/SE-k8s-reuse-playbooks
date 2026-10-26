@@ -166,7 +166,7 @@ def main():
         rb.kubectl('patch', 'service', 'web', '--type=merge', '-p', '{"spec":{"selector":{"service":"deliberately-missing-reproduction-target"}}}')
         time.sleep(5)
         slices = rb.kjson('get', 'endpointslices', '-l', 'kubernetes.io/service-name=web')['items']
-        ready = sum(ep.get('conditions', {}).get('ready', False) for item in slices for ep in item.get('endpoints', []))
+        ready = sum(ep.get('conditions', {}).get('ready', False) for item in slices for ep in (item.get('endpoints') or []))
         if ready:
             raise ValueError('Injected selector fault still has a ready web endpoint')
         receipt['fault_ready_web_endpoints'] = ready
@@ -188,6 +188,26 @@ def main():
         if not ansible.exists():
             raise ValueError('Install requirements.txt into this Python environment')
         run_logged([ansible, '-i', ROOT / 'tools/ansible-inventory.ini', ROOT / 'candidates/P5.yaml', '-e', 'kube_context=' + context], output / 'p5-ansible.log')
+        # EndpointSlice and kube-proxy changes are asynchronous. Measure recovery
+        # first, then require the full continuous post-recovery business window.
+        recovery_started = time.monotonic()
+        recovery_samples = []
+        while True:
+            try:
+                status, body = rb.http_check('/')
+                recovered = status == 200 and "Stan's Robot Shop" in body
+                item = {'elapsed_seconds': time.monotonic() - recovery_started, 'status': status, 'recovered': recovered}
+            except rb.Failure as error:
+                recovered = False
+                item = {'elapsed_seconds': time.monotonic() - recovery_started, 'recovered': False, 'error': str(error)}
+            recovery_samples.append(item)
+            (output / 'recovery-samples.json').write_text(json.dumps(recovery_samples, indent=2))
+            if recovered:
+                receipt['observed_recovery_seconds_after_ansible'] = item['elapsed_seconds']
+                break
+            if time.monotonic() - recovery_started > 90:
+                raise ValueError('P5 did not restore the web response within 90 seconds')
+            time.sleep(2)
         samples = []
         started = time.monotonic()
         while True:
