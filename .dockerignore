@@ -15,3 +15,6 @@ seed/*.tar
 *.pid
 *.pem
 *.key
+source-report
+image-results
+source-result.sha256

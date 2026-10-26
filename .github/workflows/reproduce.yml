@@ -1,0 +1,75 @@
+name: Build and verify reproducibility image
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+  packages: write
+jobs:
+  native:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: ubuntu-24.04
+            arch: amd64
+          - runner: ubuntu-24.04-arm
+            arch: arm64
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12.13'
+      - name: Recompute from source
+        run: |
+          python -m venv .venv
+          .venv/bin/python -m pip install -r requirements.txt
+          ./reproduce.sh result --output source-report
+          cp source-report/result.sha256 source-result.sha256
+          rm -rf results runtime-logs archive-supplemental outputs source-report
+      - name: Download verified build inputs
+        run: ./reproduce.sh image-assets
+      - uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f
+      - uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8
+        with:
+          context: .
+          load: true
+          tags: ghcr.io/bdysj/se-k8s-reuse-playbooks:build-${{ matrix.arch }}
+          provenance: false
+      - name: Recompute from image without network
+        run: |
+          mkdir image-results
+          chmod 777 image-results
+          docker run --rm --network none -v "$PWD/image-results:/export" ghcr.io/bdysj/se-k8s-reuse-playbooks:build-${{ matrix.arch }} --output /export/report
+          cmp source-result.sha256 image-results/report/result.sha256
+          cmp reproduction/expected-result.sha256 image-results/report/result.sha256
+      - name: Publish tested native image
+        run: |
+          docker tag ghcr.io/bdysj/se-k8s-reuse-playbooks:build-${{ matrix.arch }} ghcr.io/bdysj/se-k8s-reuse-playbooks:sha-${{ github.sha }}-${{ matrix.arch }}
+          docker push ghcr.io/bdysj/se-k8s-reuse-playbooks:sha-${{ github.sha }}-${{ matrix.arch }}
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: acceptance-${{ matrix.arch }}
+          path: |
+            image-results/report
+            source-result.sha256
+          retention-days: 30
+  publish:
+    needs: native
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f
+      - uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Publish both tested architectures
+        run: |
+          docker buildx imagetools create --tag ghcr.io/bdysj/se-k8s-reuse-playbooks:v1.0.0 --tag ghcr.io/bdysj/se-k8s-reuse-playbooks:latest ghcr.io/bdysj/se-k8s-reuse-playbooks:sha-${{ github.sha }}-amd64 ghcr.io/bdysj/se-k8s-reuse-playbooks:sha-${{ github.sha }}-arm64
