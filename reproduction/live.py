@@ -32,6 +32,18 @@ def run(args, **kwargs):
     return subprocess.run(list(map(str, args)), check=True, text=True, **kwargs)
 
 
+def run_logged(args, destination):
+    print('+ ' + ' '.join(map(str, args)), flush=True)
+    with destination.open('w') as log:
+        child = subprocess.Popen(list(map(str, args)), stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+        for line in child.stdout:
+            log.write(line)
+            log.flush()
+            print(line, end='', flush=True)
+        if child.wait():
+            raise subprocess.CalledProcessError(child.returncode, args)
+
+
 def ensure_images(index):
     catalog = json.loads((ROOT / 'reproduction/images.json').read_text())
     expected = {x['ref']: x['image_id'] for x in catalog['application_images']}
@@ -125,7 +137,8 @@ def main():
                'cluster': args.cluster, 'context': context, 'source_manifest_sha256': sha(original),
                'rendered_manifest_sha256': sha(manifest), 'placement_change': 'Only the cluster name in hostname selectors changes.',
                'candidate': 'P5', 'candidate_sha256': sha(ROOT / 'candidates/P5.yaml'),
-               'image_ids': images, 'new_model_calls': 0, 'observation_seconds': args.window}
+               'image_ids': images, 'new_model_calls': 0, 'observation_seconds': args.window,
+               'fresh_pvc_adaptation': 'Place MySQL/Redis restore jobs on the workload node before first-consumer local-path PVC binding. Frozen seed bytes, application contracts and verifier are unchanged.'}
     try:
         with socket.socket() as port_probe:
             port_probe.bind(('127.0.0.1', 0))
@@ -147,8 +160,7 @@ def main():
         rb.CONTEXT, rb.MANIFEST = context, manifest
         rb.FINGERPRINT = manifest.with_suffix('.fingerprint.json')
         rb.FINGERPRINT.write_text(json.dumps(rb.declared_fingerprint(), indent=2))
-        with (output / 'baseline.log').open('w') as log:
-            run([sys.executable, '-B', ROOT / 'tools/reset_baseline.py', '--context', context, '--manifest', manifest], stdout=log, stderr=subprocess.STDOUT)
+        run_logged([sys.executable, '-u', '-B', ROOT / 'reproduction/baseline.py', '--context', context, '--manifest', manifest], output / 'baseline.log')
         receipt['baseline_confirmed'] = True
         rb.ensure_probe()
         rb.kubectl('patch', 'service', 'web', '--type=merge', '-p', '{"spec":{"selector":{"service":"deliberately-missing-reproduction-target"}}}')
@@ -160,8 +172,7 @@ def main():
         ansible = Path(sys.executable).parent / 'ansible-playbook'
         if not ansible.exists():
             raise ValueError('Install requirements.txt into this Python environment')
-        with (output / 'p5-ansible.log').open('w') as log:
-            run([ansible, '-i', ROOT / 'tools/ansible-inventory.ini', ROOT / 'candidates/P5.yaml', '-e', 'kube_context=' + context], stdout=log, stderr=subprocess.STDOUT)
+        run_logged([ansible, '-i', ROOT / 'tools/ansible-inventory.ini', ROOT / 'candidates/P5.yaml', '-e', 'kube_context=' + context], output / 'p5-ansible.log')
         samples = []
         started = time.monotonic()
         while True:
@@ -177,8 +188,7 @@ def main():
             if time.monotonic() - started >= args.window:
                 break
             time.sleep(5)
-        with (output / 'final-baseline.log').open('w') as log:
-            run([sys.executable, '-B', ROOT / 'tools/reset_baseline.py', '--context', context, '--manifest', manifest, '--verify'], stdout=log, stderr=subprocess.STDOUT)
+        run_logged([sys.executable, '-u', '-B', ROOT / 'reproduction/baseline.py', '--context', context, '--manifest', manifest, '--verify'], output / 'final-baseline.log')
         receipt.update(accepted=True, final_baseline_confirmed=True, verification_samples=len(samples),
                        measured_window_seconds=samples[-1]['elapsed'])
         print('PASS: fresh deployment, original database seed, injected routing failure and unchanged P5 repair.', flush=True)
