@@ -8,6 +8,7 @@ import os
 from pathlib import Path
 import re
 import shutil
+import socket
 import subprocess
 import sys
 import time
@@ -126,7 +127,10 @@ def main():
                'candidate': 'P5', 'candidate_sha256': sha(ROOT / 'candidates/P5.yaml'),
                'image_ids': images, 'new_model_calls': 0, 'observation_seconds': args.window}
     try:
-        run(['k3d', 'cluster', 'create', args.cluster, '--servers', '1', '--agents', '2', '--image', 'rancher/k3s:v1.33.5-k3s1', '--api-port', '127.0.0.1:0', '--k3s-arg', '--disable=traefik@server:0', '--kubeconfig-update-default=false', '--kubeconfig-switch-context=false', '--timeout', '240s'])
+        with socket.socket() as port_probe:
+            port_probe.bind(('127.0.0.1', 0))
+            api_port = port_probe.getsockname()[1]
+        run(['k3d', 'cluster', 'create', args.cluster, '--servers', '1', '--agents', '2', '--image', 'rancher/k3s:v1.33.5-k3s1', '--api-port', '127.0.0.1:' + str(api_port), '--k3s-arg', '--disable=traefik@server:0', '--kubeconfig-update-default=false', '--kubeconfig-switch-context=false', '--timeout', '240s'])
         created = True
         kubeconfig.write_bytes(subprocess.check_output(['k3d', 'kubeconfig', 'get', args.cluster]))
         kubeconfig.chmod(0o600)
