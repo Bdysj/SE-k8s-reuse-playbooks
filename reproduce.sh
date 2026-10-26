@@ -26,6 +26,6 @@ case "$REPRO_MODE" in
   verify) exec "$REPRO_PYTHON" -B "$REPO_ROOT/reproduction/verify.py" "$@" ;;
   restore) exec "$REPRO_PYTHON" -B "$REPO_ROOT/reproduction/restore.py" "$@" ;;
   check) exec "$REPRO_PYTHON" -B "$REPO_ROOT/reproduction/check.py" "$@" ;;
-  help|-h|--help) echo 'Usage: ./reproduce.sh {result [--output NEW_DIR]|tables|verify|restore [--from DIR] [--seed]|image-assets [--from DIR]|check [--live]}' ;;
+  help|-h|--help) echo 'Usage: ./reproduce.sh {result [--output NEW_DIR]|tables|verify|restore [--from DIR] [--seed]|image-assets [--from DIR]|live [--cleanup]|check [--live]}' ;;
   *) echo "Unknown mode: $REPRO_MODE. Use tables, verify, restore or check." >&2; exit 2 ;;
 esac

@@ -1,0 +1,71 @@
+{
+  "accepted": true,
+  "checks": {
+    "RQ1_RQ2": {
+      "accepted_records": 295,
+      "main": 200,
+      "controls": 95,
+      "unique_attempts": 298,
+      "policy_decisions_recomputed": 750,
+      "ablations_recomputed": 800,
+      "evidence_only_cases_recomputed": 50,
+      "analysis_leaves_matched": 379
+    },
+    "RQ3a": {
+      "accepted_responses": 240,
+      "extra_attempts": 8,
+      "matched_blocks": 80,
+      "analysis_leaves_matched": 1283,
+      "nonexecution_by_method": {
+        "whole_environment": 34,
+        "proposed": 30,
+        "fault_matching": 20
+      }
+    },
+    "RQ3b": {
+      "sequences": 9,
+      "formal_incidents": 45,
+      "analysis_leaves_matched": 440,
+      "model_calls": 0,
+      "archived_model_calls_verified": 23
+    },
+    "offline_conformance": {
+      "tests": 44,
+      "passed": true,
+      "new_live_trials": 0,
+      "new_model_calls": 0
+    }
+  },
+  "frozen_inputs_verified": 3577,
+  "release_analysis_sources_verified": 3,
+  "unique_inputs_verified": 4499,
+  "input_stability_verified": true,
+  "network_and_subprocesses_blocked": true,
+  "writes_limited_to_new_output": true,
+  "new_live_trials": 0,
+  "new_model_calls": 0,
+  "numeric_tolerance": {
+    "relative": 1e-12,
+    "absolute": 1e-09
+  },
+  "excluded_from_equality": [
+    "New analysis timestamps; narrative scope/limitations of RQ1 are not numerical tables"
+  ],
+  "output_files_sha256": {
+    "offline-conformance.log": "827067f02f16bb90468ae86b5c1647f9d54d082638753f71fd8fba251aa56bb1",
+    "rq1-all-attempts.csv": "effe5c846e854985bd6b543e5338687ad538a9dff85cc678ce0d562b9f711711",
+    "rq1-analysis.json": "7b4c003cb664ad459eeefe8313efb839b3654aed71fadfd92947c1f22bae9cf0",
+    "rq1-by-playbook.csv": "dbcecdf284ddd2f6f10b3432d7be4117592a9fd6f494ef723e5f8acd4e25c683",
+    "rq1-trials.csv": "e29222f9ad90972c483562254e6fa0a5134ff810e886dbb75057f04472046aa6",
+    "rq2-evidence-only.json": "49aff74a4251390e3c35e31e2d07433bc3c53010a81dd0a8321390b48a2b2023",
+    "rq3a-all-attempts.csv": "bd5cadaf476c8087676ef5f0b5c6b0ddf825c084a4468fb1abde1a847d4920af",
+    "rq3a-analysis.json": "49a6399e8a560a9b16f4391603f16fbbce26bd71c322096a467cdffcbdb13e94",
+    "rq3a-input-snapshot.json": "573057f17f7fba117478e3967e06866d748eb1fb068f97f3d04d8cacd67d3161",
+    "rq3a-routes.csv": "0ff926450a7e40160122c7d887120eebeaccd114d185a4f05a65d29e051c9f5b",
+    "rq3b/analysis.json": "8e7893ab22879adb60dcb20d7de28cf7ac3f3435e4f8f6174756ed3430d5ffad",
+    "rq3b/input-snapshot.json": "aa9d9a65238664232d5a8f7bef378ea0e186f083715ee8a6a8c2765fcf7c49b3",
+    "rq3b-incidents.csv": "a8b1cdd487ece4fbeea1bb80b9283b0fc553b477c5e57c3284e66e83b326c9ac",
+    "rq3b-sequences.csv": "c03ef289268a7a965414ec7e2532b890ca6629f013df6791a1220da2567a775f",
+    "verified-inputs.json": "0cbfbd0744fb5d59c64e5f2d8d1a40905f47b37f5c6da3ba7b6c23a1c6c1d906"
+  }
+}

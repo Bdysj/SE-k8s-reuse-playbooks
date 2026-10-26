@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "version": "v1.0.0",
+  "image": "ghcr.io/bdysj/se-k8s-reuse-playbooks:v1.0.0",
+  "manifest_digest": "sha256:80d2fa7af27ec90a61b426f6dc1760686e87cc331528cbb982271c6323212d68",
+  "scientific_result_sha256": "c11eddbf468ab37563adb46bd64ae16960d083ca8bc552f830770b197d229115",
+  "platforms": [
+    "linux/amd64",
+    "linux/arm64"
+  ],
+  "source_and_image_native_ci": "https://github.com/Bdysj/SE-k8s-reuse-playbooks/actions/runs/40322024579",
+  "source_and_image_match_on_both_platforms": true,
+  "anonymous_manifest_access_verified": true,
+  "anonymous_pull_and_run_verified": true,
+  "fresh_live_smoke_accepted": false,
+  "full_formal_collection_repeated": false,
+  "anonymous_test": "Empty DOCKER_CONFIG; docker pull; network-disabled docker run as the host UID; mounted report export; expected scientific result digest matched."
+}

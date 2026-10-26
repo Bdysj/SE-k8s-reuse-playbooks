@@ -25,6 +25,8 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output', type=Path, help='New report directory. It must not already exist.')
     args = parser.parse_args()
+    if args.output and args.output.exists():
+        raise ValueError('Choose a new output directory: ' + str(args.output.resolve()))
     if not (ROOT / 'results/formal-main-v1/protocol.json').exists():
         subprocess.run([sys.executable, '-B', str(ROOT / 'reproduction/restore.py')], check=True)
     work = ROOT / 'outputs' / ('tables-' + datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ'))
@@ -44,7 +46,10 @@ def main():
     rows = [['RQ1 main', rq1['trials'], rq1['outcomes']['Successful repair'], rq1['outcomes']['Confirmed failure']]]
     for method, data in rq3a.items():
         rows.append(['RQ3a ' + method, data['actual_live_executions'], data['all_live_outcomes']['Successful repair'], data['all_live_outcomes']['Confirmed failure']])
-    rows.append(['RQ3b incidents', 45, 45, 0])
+    rq3b = science['rq3b/analysis.json']
+    rows.append(['RQ3b incidents', rq3b['formal_incidents'],
+                 sum(x['successful_live_executions'] for x in rq3b['sequences']),
+                 sum(x['invalid_live_executions'] for x in rq3b['sequences'])])
     report = {'accepted': acceptance['accepted'], 'mode': 'archived-evidence-recomputation',
               'scientific_result_sha256': identity, 'normalization': 'Remove only RQ3b generation time. Round JSON floats to 8 decimal places for the cross-platform digest. Full precision files remain available.',
               'checks': acceptance['checks'], 'summary_columns': ['scope', 'executions', 'successful', 'confirmed_failures'],

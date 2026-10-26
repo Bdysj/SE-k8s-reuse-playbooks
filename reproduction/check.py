@@ -24,10 +24,11 @@ def main():
             actual = None
         packages[name] = {'expected': version, 'installed': actual, 'matches': actual == version}
     data = (ROOT / 'results/formal-main-v1/protocol.json').is_file()
+    release = json.loads((ROOT / 'reproduction/release-verification.json').read_text()) if (ROOT / 'reproduction/release-verification.json').exists() else {}
     answer = {'python': platform.python_version(), 'platform': platform.system(), 'architecture': platform.machine(),
               'packages': packages, 'evidence_present': data,
               'tables_ready': sys.version_info[:2] == (3, 12) and data and all(v['matches'] for v in packages.values()),
-              'live_deployment_validated': False}
+              'live_deployment_validated': release.get('fresh_live_smoke_accepted', False)}
     code = 0 if answer['tables_ready'] else 2
     if args.live:
         answer['commands'] = {name: shutil.which(name) is not None for name in ('docker', 'k3d', 'kubectl', 'helm', 'git')}
@@ -41,7 +42,7 @@ def main():
             except (OSError, subprocess.TimeoutExpired):
                 pass
         answer['docker_available'] = docker_running
-        answer['image_release_status'] = 'Pending current image inspection and fresh-environment validation.'
+        answer['image_release_status'] = release.get('image', 'See release verification record.')
         if not docker_running or not all(answer['commands'].values()):
             code = 2
     print(json.dumps(answer, indent=2))
