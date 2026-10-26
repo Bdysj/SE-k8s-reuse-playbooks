@@ -19,6 +19,7 @@ fi
 REPRO_MODE="${1:-help}"
 if [ "$#" -gt 0 ]; then shift; fi
 case "$REPRO_MODE" in
+  live) exec "$REPRO_PYTHON" -B "$REPO_ROOT/reproduction/live.py" "$@" ;;
   result) exec "$REPRO_PYTHON" -B "$REPO_ROOT/reproduction/result.py" "$@" ;;
   image-assets) exec "$REPRO_PYTHON" -B "$REPO_ROOT/reproduction/prepare_image.py" "$@" ;;
   tables) exec "$REPRO_PYTHON" -B "$REPO_ROOT/reproduction/rebuild.py" "$@" ;;

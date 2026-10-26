@@ -1,0 +1,56 @@
+name: Fresh ARM64 deployment and repair smoke
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  live:
+    runs-on: ubuntu-24.04-arm
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12.13'
+      - uses: docker/setup-qemu-action@c7c53464625b32c7a7e944ae62b3e17d2b600130
+        with:
+          platforms: amd64
+      - name: Install pinned control tools
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fL --retry 3 https://github.com/k3d-io/k3d/releases/download/v5.9.0/k3d-linux-arm64 -o k3d
+          echo '03cde5cf23e6e8e67de5a039ecf26e5b85aca82fba3e5d13dadf904cd218a250  k3d' | sha256sum -c -
+          sudo install k3d /usr/local/bin/k3d
+          curl -fL --retry 3 https://dl.k8s.io/release/v1.34.1/bin/linux/arm64/kubectl -o kubectl
+          curl -fL --retry 3 https://dl.k8s.io/release/v1.34.1/bin/linux/arm64/kubectl.sha256 -o kubectl.sha256
+          echo "$(cat kubectl.sha256)  kubectl" | sha256sum -c -
+          sudo install kubectl /usr/local/bin/kubectl
+          curl -fL --retry 3 https://get.helm.sh/helm-v4.3.0-linux-arm64.tar.gz -o helm.tar.gz
+          curl -fL --retry 3 https://get.helm.sh/helm-v4.3.0-linux-arm64.tar.gz.sha256sum -o helm.sha256sum
+          sed -i 's/helm-v4.3.0-linux-arm64.tar.gz/helm.tar.gz/' helm.sha256sum
+          sha256sum -c helm.sha256sum
+          tar -xzf helm.tar.gz
+          sudo install linux-arm64/helm /usr/local/bin/helm
+          python -m venv .venv
+          .venv/bin/python -m pip install -r requirements.txt
+          df -h .
+      - name: Deploy frozen binaries, restore seed and repair an injected fault
+        run: |
+          ./reproduce.sh live --cleanup 2>&1 | tee live-run.log
+      - name: Save public acceptance evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: fresh-arm64-smoke
+          path: |
+            live-run.log
+            outputs/live-*/acceptance.json
+            outputs/live-*/baseline.log
+            outputs/live-*/p5-ansible.log
+            outputs/live-*/verification-samples.json
+            outputs/live-*/final-baseline.log
+            outputs/live-*/final-pods.json
+            outputs/live-*/qualification.yaml
+            outputs/live-*/qualification.fingerprint.json
+          retention-days: 30
