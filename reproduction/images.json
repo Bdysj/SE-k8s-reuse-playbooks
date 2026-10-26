@@ -1,5 +1,5 @@
 {
-  "status": "current_ids_and_architectures_verified_exported_locally",
+  "status": "frozen_image_backup_published_and_fresh_baseline_P5_smoke_passed",
   "historical_at_utc": "2026-10-20T02:35:56.405511+00:00",
   "application_images": [
     {
@@ -173,12 +173,13 @@
     "redis@sha256:0e773022cd6572a5153e5013afced0f7191652d3cdf9b1c6785eb13f6b2974b1"
   ],
   "ghcr_published": false,
-  "fresh_cluster_validated": false,
+  "fresh_cluster_validated": true,
   "notes": [
     "Docker config image IDs are not registry manifest digests.",
     "ARM64 application images and AMD64 MySQL are the recorded baseline.",
     "The local Docker image bundle contains 11 application images, one seed image and four infrastructure images.",
-    "Redis, RabbitMQ, curl probe and cluster-managed runtime images are separate dependencies. See external_runtime_dependencies."
+    "Redis, RabbitMQ, curl probe and cluster-managed runtime images are separate dependencies. See external_runtime_dependencies.",
+    "Frozen application images are distributed as a Docker-save Release backup. ghcr_published refers to individual application tags. The separate runnable result image is published on GHCR."
   ],
   "verified_at": "2026-10-26",
   "offline_bundle": {
@@ -243,13 +244,15 @@
       "ref": "docker.io/curlimages/curl@sha256:c1fe1679c34d9784c1b0d1e5f62ac0a79fca01fb6377cdd33e90473c6f9f9a69",
       "historical_node_config_image_id": "sha256:9b23c989cdb641988d7a866b742f5085d8ea331cad9fbbb978988de5436e68be",
       "included_in_host_image_bundle": false,
-      "source": "Historical node inventory; current upstream pull is not tested."
+      "source": "Frozen manifest/reset digest. Pull and use passed in the fresh ARM64 baseline/P5 smoke.",
+      "fresh_baseline_pull_validated": true
     },
     {
       "ref": "docker.io/library/rabbitmq@sha256:e97f6bb68aab3f747f8a6f4dc52ed57401de91ca480a0be3a36e7476ac273169",
       "historical_node_config_image_id": "sha256:aff41f192e4bd9e6a5fae3fb5e2a6c7f7bc45556f2f53dde0480b2312201bd73",
       "included_in_host_image_bundle": false,
-      "source": "Historical node inventory; current upstream pull is not tested."
+      "source": "Frozen manifest/reset digest. Pull and use passed in the fresh ARM64 baseline/P5 smoke.",
+      "fresh_baseline_pull_validated": true
     },
     {
       "ref": "docker.io/rancher/klipper-lb@sha256:7eb86d5b908ec6ddd9796253d8cc2f43df99420fc8b8a18452a94dc56f86aca0",
@@ -290,12 +293,17 @@
     {
       "ref": "redis@sha256:0e773022cd6572a5153e5013afced0f7191652d3cdf9b1c6785eb13f6b2974b1",
       "included_in_host_image_bundle": false,
-      "source": "Frozen qualification.v3 manifest; current upstream pull is not tested."
+      "source": "Frozen manifest/reset digest. Pull and use passed in the fresh ARM64 baseline/P5 smoke.",
+      "fresh_baseline_pull_validated": true
     },
     {
       "ref": "ghcr.io/chaos-mesh/chaos-mesh:v2.8.4",
       "included_in_host_image_bundle": false,
-      "source": "Frozen Helm chart version. Controller digest remains to be captured during isolated deployment validation."
+      "source": "Upstream manifest resolved on 2026-10-26. Chaos Mesh fault experiments were not repeated by the P5 routing smoke.",
+      "resolved_manifest_digest": "sha256:9e48285bb44c63be80f2fe4468c54b0f2d7cdc447ba5f5bc9ded4ab6a973cd37"
     }
-  ]
+  ],
+  "fresh_cluster_validation_scope": "Baseline and P5 routing repair smoke; full formal collection not repeated.",
+  "frozen_application_backup_published": true,
+  "published_result_image": "ghcr.io/bdysj/se-k8s-reuse-playbooks:v1.0.0"
 }

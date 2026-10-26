@@ -2,17 +2,28 @@
   "schema_version": 1,
   "version": "v1.0.0",
   "image": "ghcr.io/bdysj/se-k8s-reuse-playbooks:v1.0.0",
-  "manifest_digest": "sha256:80d2fa7af27ec90a61b426f6dc1760686e87cc331528cbb982271c6323212d68",
+  "manifest_digest": "sha256:f0538f21da37c3a5c71bc45828f8ea1842a42b61acb81dc93b4a3897b3f0f8f2",
   "scientific_result_sha256": "c11eddbf468ab37563adb46bd64ae16960d083ca8bc552f830770b197d229115",
   "platforms": [
     "linux/amd64",
     "linux/arm64"
   ],
-  "source_and_image_native_ci": "https://github.com/Bdysj/SE-k8s-reuse-playbooks/actions/runs/40322024579",
+  "source_and_image_native_ci": "https://github.com/Bdysj/SE-k8s-reuse-playbooks/actions/runs/40324954103",
   "source_and_image_match_on_both_platforms": true,
   "anonymous_manifest_access_verified": true,
   "anonymous_pull_and_run_verified": true,
-  "fresh_live_smoke_accepted": false,
+  "fresh_live_smoke_accepted": true,
   "full_formal_collection_repeated": false,
-  "anonymous_test": "Empty DOCKER_CONFIG; docker pull; network-disabled docker run as the host UID; mounted report export; expected scientific result digest matched."
+  "anonymous_test": "Empty DOCKER_CONFIG; docker pull; network-disabled docker run as the host UID; mounted report export; expected scientific result digest matched.",
+  "image_source_commit": "a8f57abfef9c0136cf9db40fb5dee11cf07925b1",
+  "image_runtime_analysis_matches_final_source": true,
+  "exact_equality_scope": "Archived scientific results reconstructed from frozen evidence. Full precision comparisons use the stated tolerances. New live timings and model outputs are outside exact equality.",
+  "fresh_live_smoke_ci": "https://github.com/Bdysj/SE-k8s-reuse-playbooks/actions/runs/40327406594",
+  "fresh_live_source_commit": "731375444145e3c6ab29e4ba63c3f779029f4a2c",
+  "fresh_live_smoke_receipt": "reproduction/acceptance/fresh-arm64-smoke.json",
+  "fresh_live_smoke_scope": "Fresh three-node ARM64 baseline, exact frozen application/seed images, original P5 routing repair, 214.759-second continuous six-check window. No new formal collection or model call.",
+  "fresh_live_verification_samples": 38,
+  "fresh_live_cleanup_verified": true,
+  "public_reports_url": "https://github.com/Bdysj/SE-k8s-reuse-playbooks/releases/download/v1.0.0/reproduction-reports-v1.0.0.zip",
+  "public_reports_sha256": "29d54a86905d0819c37c216c88f24e363377e2ddc70f301469cfee36848490b0"
 }

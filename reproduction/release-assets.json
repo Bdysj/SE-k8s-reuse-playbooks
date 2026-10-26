@@ -2,7 +2,7 @@
   "schema_version": 2,
   "repository": "Bdysj/SE-k8s-reuse-playbooks",
   "published": true,
-  "status": "All release assets uploaded. GitHub server SHA-256 and sizes match the local verified archives.",
+  "status": "Published archives verified by GitHub server hashes. Native source/image checks pass on AMD64 and ARM64. Anonymous pull/run and fresh ARM64 baseline/P5 smoke pass.",
   "evidence_root": ".",
   "expected_evidence_regular_files": 48544,
   "expected_supplemental_files": 23,
@@ -137,6 +137,18 @@
       ],
       "published": true,
       "url": "https://github.com/Bdysj/SE-k8s-reuse-playbooks/releases/download/v1.0.0/frozen-images-20261026-v1.tar.gz.part-02"
+    },
+    {
+      "name": "reproduction-reports-v1.0.0.zip",
+      "category": "reproduction-reports",
+      "format": "zip",
+      "bytes": 927852,
+      "sha256": "29d54a86905d0819c37c216c88f24e363377e2ddc70f301469cfee36848490b0",
+      "required_for": [
+        "review"
+      ],
+      "published": true,
+      "url": "https://github.com/Bdysj/SE-k8s-reuse-playbooks/releases/download/v1.0.0/reproduction-reports-v1.0.0.zip"
     }
   ],
   "image_bundle": {
@@ -150,6 +162,9 @@
     "unique_image_count": 16,
     "restore_command": "cat frozen-images-20261026-v1.tar.gz.part-01 frozen-images-20261026-v1.tar.gz.part-02 | gzip -dc | docker image load"
   },
-  "images_published": false,
-  "fresh_cluster_validated": false
+  "images_published": true,
+  "fresh_cluster_validated": true,
+  "fresh_cluster_validation_scope": "Baseline and P5 smoke only; full formal collection was not repeated.",
+  "result_image": "ghcr.io/bdysj/se-k8s-reuse-playbooks:v1.0.0",
+  "result_image_manifest_digest": "sha256:f0538f21da37c3a5c71bc45828f8ea1842a42b61acb81dc93b4a3897b3f0f8f2"
 }
