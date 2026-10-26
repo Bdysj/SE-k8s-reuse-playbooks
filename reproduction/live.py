@@ -165,10 +165,25 @@ def main():
         rb.ensure_probe()
         rb.kubectl('patch', 'service', 'web', '--type=merge', '-p', '{"spec":{"selector":{"service":"deliberately-missing-reproduction-target"}}}')
         time.sleep(5)
-        fault_status, fault_body = rb.http_check('/')
-        receipt['fault_status'] = fault_status
-        if fault_status == 200:
-            raise ValueError('Injected routing fault did not cause a visible failure')
+        slices = rb.kjson('get', 'endpointslices', '-l', 'kubernetes.io/service-name=web')['items']
+        ready = sum(ep.get('conditions', {}).get('ready', False) for item in slices for ep in item.get('endpoints', []))
+        if ready:
+            raise ValueError('Injected selector fault still has a ready web endpoint')
+        receipt['fault_ready_web_endpoints'] = ready
+        try:
+            fault_status, fault_body = rb.http_check('/')
+            receipt['fault_status'] = fault_status
+            if fault_status == 200:
+                raise ValueError('Injected routing fault did not cause a visible failure')
+        except rb.Failure as error:
+            # An empty Service can reject TCP rather than return an HTTP error.
+            # The baseline passed immediately before injection. Also require a
+            # healthy probe and an empty EndpointSlice so an unrelated API or
+            # probe failure cannot pass as the declared routing fault.
+            probe = rb.kjson('get', 'pod', rb.PROBE)
+            if not any(c['type'] == 'Ready' and c['status'] == 'True' for c in probe['status']['conditions']):
+                raise ValueError('Fault observation probe is not ready') from error
+            receipt['fault_transport_error'] = str(error)
         ansible = Path(sys.executable).parent / 'ansible-playbook'
         if not ansible.exists():
             raise ValueError('Install requirements.txt into this Python environment')
